@@ -14,6 +14,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+        //UILabel Appearance 전역설정
+        UILabel.appearance().textColor = Constant.Color.primaryBlack
+        
+        //UINavigationBar Appearance 전역설정
+        let appearance = UINavigationBarAppearance()
+        appearance.backgroundColor = Constant.Color.primaryWhite
+        UINavigationBar.appearance().tintColor = Constant.Color.primaryBlack
+        UINavigationBar.appearance().standardAppearance = appearance
+        UINavigationBar.appearance().scrollEdgeAppearance = appearance
+        
+        //UITabBar Appearance 전역설정
+        UITabBar.appearance().tintColor = Constant.Color.primaryBlack
+        UITabBar.appearance().unselectedItemTintColor = Constant.Color.primaryLightGray
+        
         sleep(2)
         return true
     }
