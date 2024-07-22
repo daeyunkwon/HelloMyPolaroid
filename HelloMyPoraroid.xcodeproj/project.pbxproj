@@ -10,9 +10,9 @@
 		44689C5A2C4E4D7A00E307B4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44689C592C4E4D7A00E307B4 /* AppDelegate.swift */; };
 		44689C5C2C4E4D7A00E307B4 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44689C5B2C4E4D7A00E307B4 /* SceneDelegate.swift */; };
 		44689C5E2C4E4D7A00E307B4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44689C5D2C4E4D7A00E307B4 /* ViewController.swift */; };
-		44689C612C4E4D7A00E307B4 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 44689C602C4E4D7A00E307B4 /* Base */; };
 		44689C632C4E4D7B00E307B4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 44689C622C4E4D7B00E307B4 /* Assets.xcassets */; };
 		44689C662C4E4D7B00E307B4 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 44689C652C4E4D7B00E307B4 /* Base */; };
+		44689C702C4E4E5900E307B4 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 44689C6F2C4E4E5900E307B4 /* .gitignore */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -20,10 +20,10 @@
 		44689C592C4E4D7A00E307B4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		44689C5B2C4E4D7A00E307B4 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		44689C5D2C4E4D7A00E307B4 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		44689C602C4E4D7A00E307B4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		44689C622C4E4D7B00E307B4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		44689C652C4E4D7B00E307B4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		44689C672C4E4D7B00E307B4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		44689C6F2C4E4E5900E307B4 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -40,6 +40,7 @@
 		44689C4D2C4E4D7A00E307B4 = {
 			isa = PBXGroup;
 			children = (
+				44689C6F2C4E4E5900E307B4 /* .gitignore */,
 				44689C582C4E4D7A00E307B4 /* HelloMyPoraroid */,
 				44689C572C4E4D7A00E307B4 /* Products */,
 			);
@@ -56,15 +57,30 @@
 		44689C582C4E4D7A00E307B4 /* HelloMyPoraroid */ = {
 			isa = PBXGroup;
 			children = (
+				44689C6D2C4E4E1600E307B4 /* Application */,
+				44689C5D2C4E4D7A00E307B4 /* ViewController.swift */,
+				44689C6E2C4E4E2100E307B4 /* Resource */,
+			);
+			path = HelloMyPoraroid;
+			sourceTree = "<group>";
+		};
+		44689C6D2C4E4E1600E307B4 /* Application */ = {
+			isa = PBXGroup;
+			children = (
 				44689C592C4E4D7A00E307B4 /* AppDelegate.swift */,
 				44689C5B2C4E4D7A00E307B4 /* SceneDelegate.swift */,
-				44689C5D2C4E4D7A00E307B4 /* ViewController.swift */,
-				44689C5F2C4E4D7A00E307B4 /* Main.storyboard */,
+			);
+			path = Application;
+			sourceTree = "<group>";
+		};
+		44689C6E2C4E4E2100E307B4 /* Resource */ = {
+			isa = PBXGroup;
+			children = (
 				44689C622C4E4D7B00E307B4 /* Assets.xcassets */,
 				44689C642C4E4D7B00E307B4 /* LaunchScreen.storyboard */,
 				44689C672C4E4D7B00E307B4 /* Info.plist */,
 			);
-			path = HelloMyPoraroid;
+			path = Resource;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -126,8 +142,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				44689C632C4E4D7B00E307B4 /* Assets.xcassets in Resources */,
+				44689C702C4E4E5900E307B4 /* .gitignore in Resources */,
 				44689C662C4E4D7B00E307B4 /* Base in Resources */,
-				44689C612C4E4D7A00E307B4 /* Base in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -147,14 +163,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		44689C5F2C4E4D7A00E307B4 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				44689C602C4E4D7A00E307B4 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		44689C642C4E4D7B00E307B4 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -294,12 +302,12 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 9M37U587ZT;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = HelloMyPoraroid/Info.plist;
+				INFOPLIST_FILE = HelloMyPoraroid/Resource/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = UIInterfaceOrientationPortrait;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -307,9 +315,13 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.daeyunkwon.HelloMyPoraroid;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -322,12 +334,12 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 9M37U587ZT;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = HelloMyPoraroid/Info.plist;
+				INFOPLIST_FILE = HelloMyPoraroid/Resource/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = UIInterfaceOrientationPortrait;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -335,9 +347,13 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.daeyunkwon.HelloMyPoraroid;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
