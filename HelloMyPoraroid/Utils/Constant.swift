@@ -28,6 +28,7 @@ enum Constant {
         static let system15 = UIFont.systemFont(ofSize: 15)
         static let system14 = UIFont.systemFont(ofSize: 14)
         static let system13 = UIFont.systemFont(ofSize: 13)
+        static let onboardingButtonTitleFont = UIFont.boldSystemFont(ofSize: 16)
     }
     
     enum Icon {
