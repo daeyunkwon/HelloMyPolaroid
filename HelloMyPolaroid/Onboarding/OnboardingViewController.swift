@@ -59,6 +59,7 @@ final class OnboardingViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationItem.title = ""
     }
     
     //MARK: - Configurations
@@ -98,7 +99,7 @@ final class OnboardingViewController: BaseViewController {
     //MARK: - Actions
     
     @objc private func startButtonTapped() {
-        print(#function)
+        self.pushViewController(ProfileSettingViewController())
     }
 }
 

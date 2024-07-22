@@ -16,10 +16,14 @@
 		44689C752C4E582700E307B4 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44689C742C4E582700E307B4 /* Constant.swift */; };
 		44689C782C4E5C9E00E307B4 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 44689C772C4E5C9E00E307B4 /* SnapKit */; };
 		44689C7C2C4E5F8400E307B4 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44689C7B2C4E5F8400E307B4 /* BaseViewController.swift */; };
+		44689C812C4E6D9A00E307B4 /* ProfileSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44689C802C4E6D9A00E307B4 /* ProfileSettingViewController.swift */; };
+		44689C832C4E6E9300E307B4 /* ProfileCircleWithCameraIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44689C822C4E6E9300E307B4 /* ProfileCircleWithCameraIcon.swift */; };
+		44689C852C4E732E00E307B4 /* ProfileSettingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44689C842C4E732E00E307B4 /* ProfileSettingViewModel.swift */; };
+		44689C882C4E73AB00E307B4 /* Observable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44689C872C4E73AB00E307B4 /* Observable.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		44689C562C4E4D7A00E307B4 /* HelloMyPoraroid.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HelloMyPoraroid.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		44689C562C4E4D7A00E307B4 /* HelloMyPolaroid.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HelloMyPolaroid.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		44689C592C4E4D7A00E307B4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		44689C5B2C4E4D7A00E307B4 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		44689C5D2C4E4D7A00E307B4 /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
@@ -29,6 +33,10 @@
 		44689C6F2C4E4E5900E307B4 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		44689C742C4E582700E307B4 /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
 		44689C7B2C4E5F8400E307B4 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		44689C802C4E6D9A00E307B4 /* ProfileSettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSettingViewController.swift; sourceTree = "<group>"; };
+		44689C822C4E6E9300E307B4 /* ProfileCircleWithCameraIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCircleWithCameraIcon.swift; sourceTree = "<group>"; };
+		44689C842C4E732E00E307B4 /* ProfileSettingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSettingViewModel.swift; sourceTree = "<group>"; };
+		44689C872C4E73AB00E307B4 /* Observable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Observable.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -47,7 +55,7 @@
 			isa = PBXGroup;
 			children = (
 				44689C6F2C4E4E5900E307B4 /* .gitignore */,
-				44689C582C4E4D7A00E307B4 /* HelloMyPoraroid */,
+				44689C582C4E4D7A00E307B4 /* HelloMyPolaroid */,
 				44689C572C4E4D7A00E307B4 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -55,12 +63,12 @@
 		44689C572C4E4D7A00E307B4 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				44689C562C4E4D7A00E307B4 /* HelloMyPoraroid.app */,
+				44689C562C4E4D7A00E307B4 /* HelloMyPolaroid.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		44689C582C4E4D7A00E307B4 /* HelloMyPoraroid */ = {
+		44689C582C4E4D7A00E307B4 /* HelloMyPolaroid */ = {
 			isa = PBXGroup;
 			children = (
 				44689C6D2C4E4E1600E307B4 /* Application */,
@@ -68,7 +76,7 @@
 				44689C732C4E575700E307B4 /* Onboarding */,
 				44689C6E2C4E4E2100E307B4 /* Resource */,
 			);
-			path = HelloMyPoraroid;
+			path = HelloMyPolaroid;
 			sourceTree = "<group>";
 		};
 		44689C6D2C4E4E1600E307B4 /* Application */ = {
@@ -94,6 +102,7 @@
 			isa = PBXGroup;
 			children = (
 				44689C742C4E582700E307B4 /* Constant.swift */,
+				44689C872C4E73AB00E307B4 /* Observable.swift */,
 				44689C7D2C4E673B00E307B4 /* CustomView */,
 				44689C7A2C4E5F7600E307B4 /* Base */,
 			);
@@ -104,6 +113,7 @@
 			isa = PBXGroup;
 			children = (
 				44689C5D2C4E4D7A00E307B4 /* OnboardingViewController.swift */,
+				44689C862C4E738500E307B4 /* ProfileSetting */,
 			);
 			path = Onboarding;
 			sourceTree = "<group>";
@@ -119,16 +129,26 @@
 		44689C7D2C4E673B00E307B4 /* CustomView */ = {
 			isa = PBXGroup;
 			children = (
+				44689C822C4E6E9300E307B4 /* ProfileCircleWithCameraIcon.swift */,
 			);
 			path = CustomView;
+			sourceTree = "<group>";
+		};
+		44689C862C4E738500E307B4 /* ProfileSetting */ = {
+			isa = PBXGroup;
+			children = (
+				44689C842C4E732E00E307B4 /* ProfileSettingViewModel.swift */,
+				44689C802C4E6D9A00E307B4 /* ProfileSettingViewController.swift */,
+			);
+			path = ProfileSetting;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		44689C552C4E4D7A00E307B4 /* HelloMyPoraroid */ = {
+		44689C552C4E4D7A00E307B4 /* HelloMyPolaroid */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 44689C6A2C4E4D7B00E307B4 /* Build configuration list for PBXNativeTarget "HelloMyPoraroid" */;
+			buildConfigurationList = 44689C6A2C4E4D7B00E307B4 /* Build configuration list for PBXNativeTarget "HelloMyPolaroid" */;
 			buildPhases = (
 				44689C522C4E4D7A00E307B4 /* Sources */,
 				44689C532C4E4D7A00E307B4 /* Frameworks */,
@@ -138,12 +158,12 @@
 			);
 			dependencies = (
 			);
-			name = HelloMyPoraroid;
+			name = HelloMyPolaroid;
 			packageProductDependencies = (
 				44689C772C4E5C9E00E307B4 /* SnapKit */,
 			);
 			productName = HelloMyPoraroid;
-			productReference = 44689C562C4E4D7A00E307B4 /* HelloMyPoraroid.app */;
+			productReference = 44689C562C4E4D7A00E307B4 /* HelloMyPolaroid.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -161,7 +181,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 44689C512C4E4D7A00E307B4 /* Build configuration list for PBXProject "HelloMyPoraroid" */;
+			buildConfigurationList = 44689C512C4E4D7A00E307B4 /* Build configuration list for PBXProject "HelloMyPolaroid" */;
 			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -177,7 +197,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				44689C552C4E4D7A00E307B4 /* HelloMyPoraroid */,
+				44689C552C4E4D7A00E307B4 /* HelloMyPolaroid */,
 			);
 		};
 /* End PBXProject section */
@@ -202,9 +222,13 @@
 			files = (
 				44689C7C2C4E5F8400E307B4 /* BaseViewController.swift in Sources */,
 				44689C5E2C4E4D7A00E307B4 /* OnboardingViewController.swift in Sources */,
+				44689C832C4E6E9300E307B4 /* ProfileCircleWithCameraIcon.swift in Sources */,
+				44689C852C4E732E00E307B4 /* ProfileSettingViewModel.swift in Sources */,
+				44689C882C4E73AB00E307B4 /* Observable.swift in Sources */,
 				44689C5A2C4E4D7A00E307B4 /* AppDelegate.swift in Sources */,
 				44689C5C2C4E4D7A00E307B4 /* SceneDelegate.swift in Sources */,
 				44689C752C4E582700E307B4 /* Constant.swift in Sources */,
+				44689C812C4E6D9A00E307B4 /* ProfileSettingViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -350,7 +374,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 9M37U587ZT;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = HelloMyPoraroid/Resource/Info.plist;
+				INFOPLIST_FILE = HelloMyPolaroid/Resource/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
@@ -361,7 +385,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.daeyunkwon.HelloMyPoraroid;
+				PRODUCT_BUNDLE_IDENTIFIER = com.daeyunkwon.HelloMyPolaroid;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
@@ -382,7 +406,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 9M37U587ZT;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = HelloMyPoraroid/Resource/Info.plist;
+				INFOPLIST_FILE = HelloMyPolaroid/Resource/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
@@ -393,7 +417,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.daeyunkwon.HelloMyPoraroid;
+				PRODUCT_BUNDLE_IDENTIFIER = com.daeyunkwon.HelloMyPolaroid;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
@@ -408,7 +432,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		44689C512C4E4D7A00E307B4 /* Build configuration list for PBXProject "HelloMyPoraroid" */ = {
+		44689C512C4E4D7A00E307B4 /* Build configuration list for PBXProject "HelloMyPolaroid" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				44689C682C4E4D7B00E307B4 /* Debug */,
@@ -417,7 +441,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		44689C6A2C4E4D7B00E307B4 /* Build configuration list for PBXNativeTarget "HelloMyPoraroid" */ = {
+		44689C6A2C4E4D7B00E307B4 /* Build configuration list for PBXNativeTarget "HelloMyPolaroid" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				44689C6B2C4E4D7B00E307B4 /* Debug */,
