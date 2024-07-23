@@ -20,6 +20,9 @@
 		44689C832C4E6E9300E307B4 /* ProfileCircleWithCameraIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44689C822C4E6E9300E307B4 /* ProfileCircleWithCameraIcon.swift */; };
 		44689C852C4E732E00E307B4 /* ProfileSettingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44689C842C4E732E00E307B4 /* ProfileSettingViewModel.swift */; };
 		44689C882C4E73AB00E307B4 /* Observable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44689C872C4E73AB00E307B4 /* Observable.swift */; };
+		447F21E52C4EA9EF0037D433 /* MBTICircleButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 447F21E42C4EA9EF0037D433 /* MBTICircleButtonView.swift */; };
+		447F22162C4FCEDE0037D433 /* UserDefaultsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 447F22152C4FCEDE0037D433 /* UserDefaultsManager.swift */; };
+		447F22182C4FDAE10037D433 /* ProfileImageSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 447F22172C4FDAE10037D433 /* ProfileImageSettingViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,6 +40,9 @@
 		44689C822C4E6E9300E307B4 /* ProfileCircleWithCameraIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCircleWithCameraIcon.swift; sourceTree = "<group>"; };
 		44689C842C4E732E00E307B4 /* ProfileSettingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSettingViewModel.swift; sourceTree = "<group>"; };
 		44689C872C4E73AB00E307B4 /* Observable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Observable.swift; sourceTree = "<group>"; };
+		447F21E42C4EA9EF0037D433 /* MBTICircleButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MBTICircleButtonView.swift; sourceTree = "<group>"; };
+		447F22152C4FCEDE0037D433 /* UserDefaultsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsManager.swift; sourceTree = "<group>"; };
+		447F22172C4FDAE10037D433 /* ProfileImageSettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileImageSettingViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,10 +107,11 @@
 		44689C712C4E571400E307B4 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
-				44689C742C4E582700E307B4 /* Constant.swift */,
-				44689C872C4E73AB00E307B4 /* Observable.swift */,
 				44689C7D2C4E673B00E307B4 /* CustomView */,
 				44689C7A2C4E5F7600E307B4 /* Base */,
+				44689C742C4E582700E307B4 /* Constant.swift */,
+				44689C872C4E73AB00E307B4 /* Observable.swift */,
+				447F22152C4FCEDE0037D433 /* UserDefaultsManager.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -114,6 +121,7 @@
 			children = (
 				44689C5D2C4E4D7A00E307B4 /* OnboardingViewController.swift */,
 				44689C862C4E738500E307B4 /* ProfileSetting */,
+				447F22172C4FDAE10037D433 /* ProfileImageSettingViewController.swift */,
 			);
 			path = Onboarding;
 			sourceTree = "<group>";
@@ -130,6 +138,7 @@
 			isa = PBXGroup;
 			children = (
 				44689C822C4E6E9300E307B4 /* ProfileCircleWithCameraIcon.swift */,
+				447F21E42C4EA9EF0037D433 /* MBTICircleButtonView.swift */,
 			);
 			path = CustomView;
 			sourceTree = "<group>";
@@ -224,9 +233,12 @@
 				44689C5E2C4E4D7A00E307B4 /* OnboardingViewController.swift in Sources */,
 				44689C832C4E6E9300E307B4 /* ProfileCircleWithCameraIcon.swift in Sources */,
 				44689C852C4E732E00E307B4 /* ProfileSettingViewModel.swift in Sources */,
+				447F22162C4FCEDE0037D433 /* UserDefaultsManager.swift in Sources */,
 				44689C882C4E73AB00E307B4 /* Observable.swift in Sources */,
 				44689C5A2C4E4D7A00E307B4 /* AppDelegate.swift in Sources */,
+				447F22182C4FDAE10037D433 /* ProfileImageSettingViewController.swift in Sources */,
 				44689C5C2C4E4D7A00E307B4 /* SceneDelegate.swift in Sources */,
+				447F21E52C4EA9EF0037D433 /* MBTICircleButtonView.swift in Sources */,
 				44689C752C4E582700E307B4 /* Constant.swift in Sources */,
 				44689C812C4E6D9A00E307B4 /* ProfileSettingViewController.swift in Sources */,
 			);

@@ -46,8 +46,70 @@ final class ProfileSettingViewController: BaseViewController {
     private let nicknameConditionLabel: UILabel = {
         let label = UILabel()
         label.font = Constant.Font.system13
-        label.textColor = Constant.Color.signatureColor
         return label
+    }()
+    
+    private let mbtiLabel: UILabel = {
+        let label = UILabel()
+        label.text = "MBTI"
+        label.font = .systemFont(ofSize: 18, weight: .bold)
+        return label
+    }()
+    
+    private lazy var eButton: MBTICircleButtonView = {
+        let view = MBTICircleButtonView(alphabetTitle: "E")
+        view.alphabetButton.addTarget(self, action: #selector(mbtiWordButtonTapped), for: .touchUpInside)
+        view.alphabetButton.tag = 0
+        return view
+    }()
+    
+    private lazy var iButton: MBTICircleButtonView = {
+        let view = MBTICircleButtonView(alphabetTitle: "I")
+        view.alphabetButton.addTarget(self, action: #selector(mbtiWordButtonTapped), for: .touchUpInside)
+        view.alphabetButton.tag = 1
+        return view
+    }()
+    
+    private lazy var sButton: MBTICircleButtonView = {
+        let view = MBTICircleButtonView(alphabetTitle: "S")
+        view.alphabetButton.addTarget(self, action: #selector(mbtiWordButtonTapped), for: .touchUpInside)
+        view.alphabetButton.tag = 2
+        return view
+    }()
+    
+    private lazy var nButton: MBTICircleButtonView = {
+        let view = MBTICircleButtonView(alphabetTitle: "N")
+        view.alphabetButton.addTarget(self, action: #selector(mbtiWordButtonTapped), for: .touchUpInside)
+        view.alphabetButton.tag = 3
+        return view
+    }()
+    
+    private lazy var tButton: MBTICircleButtonView = {
+        let view = MBTICircleButtonView(alphabetTitle: "T")
+        view.alphabetButton.addTarget(self, action: #selector(mbtiWordButtonTapped), for: .touchUpInside)
+        view.alphabetButton.tag = 4
+        return view
+    }()
+    
+    private lazy var fButton: MBTICircleButtonView = {
+        let view = MBTICircleButtonView(alphabetTitle: "F")
+        view.alphabetButton.addTarget(self, action: #selector(mbtiWordButtonTapped), for: .touchUpInside)
+        view.alphabetButton.tag = 5
+        return view
+    }()
+    
+    private lazy var jButton: MBTICircleButtonView = {
+        let view = MBTICircleButtonView(alphabetTitle: "J")
+        view.alphabetButton.addTarget(self, action: #selector(mbtiWordButtonTapped), for: .touchUpInside)
+        view.alphabetButton.tag = 6
+        return view
+    }()
+    
+    private lazy var pButton: MBTICircleButtonView = {
+        let view = MBTICircleButtonView(alphabetTitle: "P")
+        view.alphabetButton.addTarget(self, action: #selector(mbtiWordButtonTapped), for: .touchUpInside)
+        view.alphabetButton.tag = 7
+        return view
     }()
     
     private lazy var completeButton: UIButton = {
@@ -58,11 +120,21 @@ final class ProfileSettingViewController: BaseViewController {
         btn.layer.cornerRadius = 25
         btn.titleLabel?.font = Constant.Font.onboardingButtonTitleFont
         btn.addTarget(self, action: #selector(completeButtonTapped), for: .touchUpInside)
-        btn.isUserInteractionEnabled = false
+        btn.isEnabled = false
         return btn
     }()
     
     //MARK: - Life Cycle
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationItem.title = "PROFILE SETTING"
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        navigationItem.title = ""
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -75,10 +147,18 @@ final class ProfileSettingViewController: BaseViewController {
         viewModel.outputProfileImageName.bind { [weak self] imageName in
             self?.profileCircleWithCameraIconView.profileImageView.image = UIImage(named: imageName)
         }
-    }
-    
-    override func setupNavi() {
-        navigationItem.title = "PROFILE SETTING"
+        
+        viewModel.outputMBTIData.bind { [weak self] value in
+            self?.updateDisplayMBTIButton(mbti: value)
+        }
+        
+        viewModel.outputIsValid.bind { [weak self] values in
+            if values[0] && values[1] {
+                self?.changeDisplayCompleteButton(conditionsSatisfied: true)
+            } else {
+                self?.changeDisplayCompleteButton(conditionsSatisfied: false)
+            }
+        }
     }
     
     override func configureLayout() {
@@ -110,6 +190,68 @@ final class ProfileSettingViewController: BaseViewController {
             make.top.equalTo(separatorView.snp.bottom).offset(10)
         }
         
+        view.addSubview(mbtiLabel)
+        mbtiLabel.snp.makeConstraints { make in
+            make.top.equalTo(nicknameConditionLabel.snp.bottom).offset(20)
+            make.leading.equalTo(view.safeAreaLayoutGuide).inset(25)
+        }
+        
+        view.addSubview(eButton)
+        eButton.snp.makeConstraints { make in
+            make.top.equalTo(mbtiLabel.snp.top).offset(-3)
+            make.leading.equalTo(mbtiLabel.snp.trailing).offset(60)
+            make.size.equalTo(50)
+        }
+        
+        view.addSubview(iButton)
+        iButton.snp.makeConstraints { make in
+            make.top.equalTo(eButton.snp.bottom).offset(8)
+            make.leading.equalTo(mbtiLabel.snp.trailing).offset(60)
+            make.size.equalTo(50)
+        }
+        
+        view.addSubview(sButton)
+        sButton.snp.makeConstraints { make in
+            make.top.equalTo(eButton.snp.top)
+            make.leading.equalTo(eButton.snp.trailing).offset(10)
+            make.size.equalTo(50)
+        }
+        
+        view.addSubview(nButton)
+        nButton.snp.makeConstraints { make in
+            make.top.equalTo(iButton.snp.top)
+            make.leading.equalTo(iButton.snp.trailing).offset(10)
+            make.size.equalTo(50)
+        }
+        
+        view.addSubview(tButton)
+        tButton.snp.makeConstraints { make in
+            make.top.equalTo(eButton.snp.top)
+            make.leading.equalTo(sButton.snp.trailing).offset(10)
+            make.size.equalTo(50)
+        }
+        
+        view.addSubview(fButton)
+        fButton.snp.makeConstraints { make in
+            make.top.equalTo(iButton.snp.top)
+            make.leading.equalTo(nButton.snp.trailing).offset(10)
+            make.size.equalTo(50)
+        }
+        
+        view.addSubview(jButton)
+        jButton.snp.makeConstraints { make in
+            make.top.equalTo(eButton.snp.top)
+            make.leading.equalTo(tButton.snp.trailing).offset(10)
+            make.size.equalTo(50)
+        }
+        
+        view.addSubview(pButton)
+        pButton.snp.makeConstraints { make in
+            make.top.equalTo(iButton.snp.top)
+            make.leading.equalTo(fButton.snp.trailing).offset(10)
+            make.size.equalTo(50)
+        }
+        
         view.addSubview(completeButton)
         completeButton.snp.makeConstraints { make in
             make.horizontalEdges.bottom.equalTo(view.safeAreaLayoutGuide).inset(20)
@@ -124,19 +266,42 @@ final class ProfileSettingViewController: BaseViewController {
     //MARK: - Actions
     
     @objc private func profileImageViewTapped() {
-        
+        print(#function)
     }
     
-    @objc private func nicknameTextFieldChanged() {
-        print(#function)
+    @objc private func nicknameTextFieldChanged(sender: UITextField) {
+        guard let text = sender.text else { return }
+        viewModel.inputNicknameTextFieldChanged.value = text.trimmingCharacters(in: .whitespaces)
     }
     
     @objc private func completeButtonTapped() {
-        print(#function)
+        viewModel.inputCompleteButtonTapped.value = profileCircleWithCameraIconView.profileImageView.image
     }
     
+    @objc private func mbtiWordButtonTapped(sender: UIButton) {
+        viewModel.inputMBTIWordButtonTapped.value = sender.tag
+    }
     
     //MARK: - Methods
     
+    private func updateDisplayMBTIButton(mbti: [String: String]) {
+        [eButton, iButton, sButton, nButton, tButton, fButton, jButton, pButton].forEach { btn in
+            if btn.alphabetLabel.text == mbti["first"] || btn.alphabetLabel.text == mbti["second"] || btn.alphabetLabel.text == mbti["third"] || btn.alphabetLabel.text == mbti["fourth"] {
+                btn.updateAppearanceUI(isSelected: true)
+            } else {
+                btn.updateAppearanceUI(isSelected: false)
+            }
+        }
+    }
+    
+    private func changeDisplayCompleteButton(conditionsSatisfied: Bool) {
+        if conditionsSatisfied {
+            completeButton.isEnabled = true
+            completeButton.backgroundColor = Constant.Color.signatureColor
+        } else {
+            completeButton.isEnabled = false
+            completeButton.backgroundColor = Constant.Color.primaryMediumGray
+        }
+    }
 
 }
