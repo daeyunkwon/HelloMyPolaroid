@@ -18,7 +18,14 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
         guard let scene = (scene as? UIWindowScene) else { return }
         window = UIWindow(windowScene: scene)
-        window?.rootViewController = UINavigationController(rootViewController: OnboardingViewController())
+        
+        if UserDefaultsManager.shared.nickname != nil {
+            //계정 존재하는 경우
+            window?.rootViewController = TabBarController()
+        } else {
+            //계정 없음
+            window?.rootViewController = UINavigationController(rootViewController: OnboardingViewController())
+        }
         window?.makeKeyAndVisible()
     }
 
