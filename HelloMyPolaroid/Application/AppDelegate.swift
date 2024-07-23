@@ -19,15 +19,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UILabel.appearance().textColor = Constant.Color.primaryBlack
         
         //UINavigationBar Appearance 전역설정
-        let appearance = UINavigationBarAppearance()
-        appearance.backgroundColor = Constant.Color.primaryWhite
+        let naviBarAppearance = UINavigationBarAppearance()
+        naviBarAppearance.backgroundColor = Constant.Color.primaryWhite
         UINavigationBar.appearance().tintColor = Constant.Color.primaryBlack
-        UINavigationBar.appearance().standardAppearance = appearance
-        UINavigationBar.appearance().scrollEdgeAppearance = appearance
+        UINavigationBar.appearance().standardAppearance = naviBarAppearance
+        UINavigationBar.appearance().scrollEdgeAppearance = naviBarAppearance
         
         //UITabBar Appearance 전역설정
+        let tabBarAppearance = UITabBarAppearance()
+        tabBarAppearance.backgroundColor = Constant.Color.primaryWhite
+        UITabBar.appearance().standardAppearance = tabBarAppearance
+        UITabBar.appearance().scrollEdgeAppearance = tabBarAppearance
         UITabBar.appearance().tintColor = Constant.Color.primaryBlack
-        UITabBar.appearance().unselectedItemTintColor = Constant.Color.primaryLightGray
         
         sleep(2)
         return true
