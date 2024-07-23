@@ -179,9 +179,15 @@ final class ProfileSettingViewController: BaseViewController {
             self?.nicknameConditionLabel.text = text
         }
         
-        viewModel.outputCreateUserDataSucceed.bind { [weak self] value in
+        viewModel.outputCreateUserDataSucceed.bind { value in
             if value {
+                let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene
+                let sceneDelegate = windowScene?.delegate as? SceneDelegate
                 
+                let navigationController = TabBarController()
+                
+                sceneDelegate?.window?.rootViewController = navigationController
+                sceneDelegate?.window?.makeKeyAndVisible()
             }
         }
     }

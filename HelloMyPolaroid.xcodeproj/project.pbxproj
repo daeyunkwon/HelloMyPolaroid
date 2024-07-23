@@ -29,6 +29,7 @@
 		447F22222C4FDDD60037D433 /* BaseCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 447F22212C4FDDD60037D433 /* BaseCollectionViewCell.swift */; };
 		447F22242C4FDE020037D433 /* Reusable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 447F22232C4FDE020037D433 /* Reusable.swift */; };
 		447F22262C4FDF7B0037D433 /* ProfileImageSettingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 447F22252C4FDF7B0037D433 /* ProfileImageSettingViewModel.swift */; };
+		447F222C2C5007840037D433 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 447F222B2C5007840037D433 /* TabBarController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -55,6 +56,7 @@
 		447F22212C4FDDD60037D433 /* BaseCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCollectionViewCell.swift; sourceTree = "<group>"; };
 		447F22232C4FDE020037D433 /* Reusable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reusable.swift; sourceTree = "<group>"; };
 		447F22252C4FDF7B0037D433 /* ProfileImageSettingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileImageSettingViewModel.swift; sourceTree = "<group>"; };
+		447F222B2C5007840037D433 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,6 +94,7 @@
 				44689C6D2C4E4E1600E307B4 /* Application */,
 				44689C712C4E571400E307B4 /* Utils */,
 				44689C732C4E575700E307B4 /* Onboarding */,
+				447F222B2C5007840037D433 /* TabBarController.swift */,
 				44689C6E2C4E4E2100E307B4 /* Resource */,
 			);
 			path = HelloMyPolaroid;
@@ -305,6 +308,7 @@
 				44689C882C4E73AB00E307B4 /* Observable.swift in Sources */,
 				447F221B2C4FDC8D0037D433 /* UICollectionView+Extension.swift in Sources */,
 				44689C5A2C4E4D7A00E307B4 /* AppDelegate.swift in Sources */,
+				447F222C2C5007840037D433 /* TabBarController.swift in Sources */,
 				447F22222C4FDDD60037D433 /* BaseCollectionViewCell.swift in Sources */,
 				447F22182C4FDAE10037D433 /* ProfileImageSettingViewController.swift in Sources */,
 				44689C5C2C4E4D7A00E307B4 /* SceneDelegate.swift in Sources */,
