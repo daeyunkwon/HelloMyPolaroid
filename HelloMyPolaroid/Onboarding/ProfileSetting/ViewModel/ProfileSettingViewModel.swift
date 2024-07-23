@@ -73,7 +73,11 @@ final class ProfileSettingViewModel {
         }
         
         inputNicknameTextFieldChanged.bind { [weak self] text in
-            self?.validationNickname(text: text)
+            if text.count == 0 {
+                self?.outputValidationText.value = ""
+            } else {
+                self?.validationNickname(text: text)
+            }
         }
         
         inputMBTIWordButtonTapped.bind { [weak self] buttonTagValue in

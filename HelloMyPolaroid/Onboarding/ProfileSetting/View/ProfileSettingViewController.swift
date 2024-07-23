@@ -153,6 +153,12 @@ final class ProfileSettingViewController: BaseViewController {
         }
         
         viewModel.outputIsValid.bind { [weak self] values in
+            if values[0] {
+                self?.nicknameConditionLabel.textColor = Constant.Color.signatureColor
+            } else {
+                self?.nicknameConditionLabel.textColor = Constant.Color.primaryRed
+            }
+            
             if values[0] && values[1] {
                 self?.changeDisplayCompleteButton(conditionsSatisfied: true)
             } else {
@@ -167,6 +173,10 @@ final class ProfileSettingViewController: BaseViewController {
                 self?.profileCircleWithCameraIconView.profileImageView.image = sender
             }
             self?.pushViewController(vc)
+        }
+        
+        viewModel.outputValidationText.bind { [weak self] text in
+            self?.nicknameConditionLabel.text = text
         }
         
         viewModel.outputCreateUserDataSucceed.bind { [weak self] value in
