@@ -159,6 +159,21 @@ final class ProfileSettingViewController: BaseViewController {
                 self?.changeDisplayCompleteButton(conditionsSatisfied: false)
             }
         }
+        
+        viewModel.outputProfileImageViewTapped.bind { [weak self] _ in
+            let vc = ProfileImageSettingViewController()
+            vc.viewModel.selectedProfileImage = self?.profileCircleWithCameraIconView.profileImageView.image
+            vc.viewModel.closureForProfileImageSend = { [weak self] sender in
+                self?.profileCircleWithCameraIconView.profileImageView.image = sender
+            }
+            self?.pushViewController(vc)
+        }
+        
+        viewModel.outputCreateUserDataSucceed.bind { [weak self] value in
+            if value {
+                
+            }
+        }
     }
     
     override func configureLayout() {
@@ -266,7 +281,7 @@ final class ProfileSettingViewController: BaseViewController {
     //MARK: - Actions
     
     @objc private func profileImageViewTapped() {
-        print(#function)
+        viewModel.inputProfileImageViewTapped.value = ()
     }
     
     @objc private func nicknameTextFieldChanged(sender: UITextField) {

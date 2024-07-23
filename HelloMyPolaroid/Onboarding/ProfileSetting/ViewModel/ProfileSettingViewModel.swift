@@ -45,6 +45,8 @@ final class ProfileSettingViewModel {
     
     var inputCompleteButtonTapped = Observable<UIImage?>(nil)
     
+    var inputProfileImageViewTapped = Observable<Void?>(nil)
+    
     //MARK: - Outputs
     
     private(set) var outputProfileImageName = Observable<String>("")
@@ -56,6 +58,8 @@ final class ProfileSettingViewModel {
     private(set) var outputMBTIData = Observable<[String: String]>([:])
     
     private(set) var outputCreateUserDataSucceed = Observable<Bool>(false)
+    
+    private(set) var outputProfileImageViewTapped = Observable<Void?>(nil)
     
     //MARK: - Init
     
@@ -79,8 +83,14 @@ final class ProfileSettingViewModel {
             self?.outputMBTIData.value = self?.mbti ?? [:]
         }
         
-        inputCompleteButtonTapped.bind { [weak self] _ in
-            print("실행")
+        inputCompleteButtonTapped.bind { [weak self] image in
+            if image != nil {
+                self?.createUserData(profileImage: image)
+            }
+        }
+        
+        inputProfileImageViewTapped.bind { [weak self] _ in
+            self?.outputProfileImageViewTapped.value = ()
         }
     }
     
