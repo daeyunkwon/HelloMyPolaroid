@@ -43,6 +43,6 @@ struct User: Decodable {
     }
 }
 
-struct ProfileImage: Codable {
+struct ProfileImage: Decodable {
     let small, medium, large: String
 }
