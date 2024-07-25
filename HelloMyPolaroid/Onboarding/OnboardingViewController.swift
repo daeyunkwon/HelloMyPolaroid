@@ -99,7 +99,7 @@ final class OnboardingViewController: BaseViewController {
     //MARK: - Actions
     
     @objc private func startButtonTapped() {
-        self.pushViewController(ProfileSettingViewController())
+        self.pushViewController(ProfileSettingViewController(viewType: .setting))
     }
 }
 

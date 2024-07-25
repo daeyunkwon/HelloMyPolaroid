@@ -12,6 +12,15 @@ import Alamofire
 enum UnsplashNetworkError: Error {
     case failedToCreateURL
     case requestFailed(statusCode: Int)
+    
+    var errorDescription: String {
+        switch self {
+        case .failedToCreateURL:
+            return "Error: 유효하지 않은 주소로 인해 URL 생성 실패하였습니다."
+        case .requestFailed(let statusCode):
+            return "Error: 네트워크 요청 실패 | 상태코드: \(statusCode)"
+        }
+    }
 }
 
 final class NetworkManager {

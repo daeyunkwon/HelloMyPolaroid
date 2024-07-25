@@ -24,7 +24,7 @@ enum UnsplashAPIRouter {
     
     var parameter: Parameters {
         switch self {
-        case .topics(let topicID):
+        case .topics(_):
             return [
                 "page": "1",
                 "client_id": APIKey.apiKey

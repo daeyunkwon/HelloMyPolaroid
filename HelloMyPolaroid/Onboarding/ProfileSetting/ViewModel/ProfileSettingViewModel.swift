@@ -35,6 +35,12 @@ final class ProfileSettingViewModel {
         "fourth": "",
     ]
     
+    enum ViewType {
+        case setting
+        case edit
+    }
+    private var viewType: ViewType
+    
     //MARK: - Inputs
     
     var inputViewDidLoad = Observable<Void?>(nil)
@@ -46,6 +52,10 @@ final class ProfileSettingViewModel {
     var inputCompleteButtonTapped = Observable<UIImage?>(nil)
     
     var inputProfileImageViewTapped = Observable<Void?>(nil)
+    
+    var inputWithdrawalButtonTapped = Observable<Void?>(nil)
+    
+    var inputWithdrawalAlertOKButtonTapped = Observable<Void?>(nil)
     
     //MARK: - Outputs
     
@@ -61,15 +71,37 @@ final class ProfileSettingViewModel {
     
     private(set) var outputProfileImageViewTapped = Observable<Void?>(nil)
     
+    private(set) var outputUserNickname = Observable<String>("")
+    
+    private(set) var outputWithdrawalButtonTapped = Observable<Void?>(nil)
+    
+    private(set) var outputWithdrawalAlertOKButtonTapped = Observable<Bool>(false)
+    
     //MARK: - Init
     
-    init() {
+    init(viewType: ViewType) {
+        self.viewType = viewType
         transform()
     }
     
     private func transform() {
         inputViewDidLoad.bind { [weak self] _ in
-            self?.randomProfileImageName()
+            switch self?.viewType {
+            case .setting:
+                self?.randomProfileImageName()
+            
+            case .edit:
+                self?.fetchProfileImageName()
+                self?.mbti = UserDefaultsManager.shared.mbti ?? [:]
+                self?.outputMBTIData.value = self?.mbti ?? [:]
+                self?.validationMBTI()
+                
+                let nickname = UserDefaultsManager.shared.nickname ?? ""
+                self?.outputUserNickname.value = nickname
+                self?.validationNickname(text: nickname)
+            case .none:
+                break
+            }
         }
         
         inputNicknameTextFieldChanged.bind { [weak self] text in
@@ -96,12 +128,25 @@ final class ProfileSettingViewModel {
         inputProfileImageViewTapped.bind { [weak self] _ in
             self?.outputProfileImageViewTapped.value = ()
         }
+        
+        inputWithdrawalButtonTapped.bind { [weak self] _ in
+            self?.outputWithdrawalButtonTapped.value = ()
+        }
+        
+        inputWithdrawalAlertOKButtonTapped.bind { [weak self] _ in
+            self?.deleteUserData()
+        }
     }
     
     //MARK: - Methods
     
     private func randomProfileImageName() {
         let name = Constant.ProfileImage.allCases.randomElement()?.rawValue ?? "profile_0"
+        self.outputProfileImageName.value = name
+    }
+    
+    private func fetchProfileImageName() {
+        let name = UserDefaultsManager.shared.profile ?? "profile_0"
         self.outputProfileImageName.value = name
     }
     
@@ -223,6 +268,12 @@ final class ProfileSettingViewModel {
         UserDefaultsManager.shared.mbti = self.mbti
         
         self.outputCreateUserDataSucceed.value = true
+    }
+    
+    private func deleteUserData() {
+        UserDefaultsManager.shared.removeUserData {
+            self.outputWithdrawalAlertOKButtonTapped.value = true
+        }
     }
 
 }

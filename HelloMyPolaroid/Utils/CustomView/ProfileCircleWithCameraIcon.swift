@@ -30,6 +30,7 @@ final class ProfileCircleWithCameraIcon: UIView {
         btn.backgroundColor = Constant.Color.signatureColor
         btn.layer.cornerRadius = 20
         btn.clipsToBounds = true
+        btn.isUserInteractionEnabled = false
         return btn
     }()
     

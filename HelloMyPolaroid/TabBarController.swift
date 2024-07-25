@@ -19,8 +19,7 @@ final class TabBarController: UITabBarController {
     //MARK: - Configurations
     
     private func setupTabBar() {
-        let mainVC = UINavigationController(rootViewController: UIViewController())
-        mainVC.view.backgroundColor = .white
+        let mainVC = UINavigationController(rootViewController: TrendViewController())
         let likeVC = UINavigationController(rootViewController: UIViewController())
         likeVC.view.backgroundColor = .white
         let settingVC = UINavigationController(rootViewController: UIViewController())

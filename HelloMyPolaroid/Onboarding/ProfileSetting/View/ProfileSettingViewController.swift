@@ -13,7 +13,22 @@ final class ProfileSettingViewController: BaseViewController {
     
     //MARK: - Properties
     
-    private let viewModel = ProfileSettingViewModel()
+    enum ViewType {
+        case setting
+        case edit
+    }
+    var viewType: ViewType
+    
+    private lazy var viewModel = viewType == .setting ? ProfileSettingViewModel(viewType: .setting) : ProfileSettingViewModel(viewType: .edit)
+    
+    init(viewType: ViewType) {
+        self.viewType = viewType
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     //MARK: - UI Components
     
@@ -124,11 +139,26 @@ final class ProfileSettingViewController: BaseViewController {
         return btn
     }()
     
+    private lazy var withdrawalButton: UIButton = {
+        let btn = UIButton(type: .system)
+        let attributeString = NSMutableAttributedString(string: "회원탈퇴")
+        attributeString.addAttribute(.underlineStyle, value: NSUnderlineStyle.single.rawValue, range: NSRange(location: 0, length: attributeString.length))
+        btn.setAttributedTitle(attributeString, for: .normal)
+        btn.addTarget(self, action: #selector(withdrawalButtonTapped), for: .touchUpInside)
+        return btn
+    }()
+    
     //MARK: - Life Cycle
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        navigationItem.title = "PROFILE SETTING"
+        switch viewType {
+        case .setting:
+            navigationItem.title = "PROFILE SETTING"
+        case .edit:
+            navigationItem.title = "EDIT PROFILE"
+            tabBarController?.tabBar.isHidden = true
+        }
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -144,6 +174,11 @@ final class ProfileSettingViewController: BaseViewController {
     //MARK: - Configurations
     
     override func bindData() {
+        viewModel.outputUserNickname.bind { [weak self] nickname in
+            self?.nicknameTextField.text = nickname
+            self?.nicknameTextFieldChanged(sender: self?.nicknameTextField ?? UITextField())
+        }
+        
         viewModel.outputProfileImageName.bind { [weak self] imageName in
             self?.profileCircleWithCameraIconView.profileImageView.image = UIImage(named: imageName)
         }
@@ -159,10 +194,22 @@ final class ProfileSettingViewController: BaseViewController {
                 self?.nicknameConditionLabel.textColor = Constant.Color.primaryRed
             }
             
-            if values[0] && values[1] {
-                self?.changeDisplayCompleteButton(conditionsSatisfied: true)
-            } else {
-                self?.changeDisplayCompleteButton(conditionsSatisfied: false)
+            switch self?.viewType {
+            case .setting:
+                if values[0] && values[1] {
+                    self?.changeDisplayCompleteButton(conditionsSatisfied: true)
+                } else {
+                    self?.changeDisplayCompleteButton(conditionsSatisfied: false)
+                }
+                
+            case .edit:
+                if values[0] && values[1] {
+                    self?.navigationItem.rightBarButtonItem?.isEnabled = true
+                } else {
+                    self?.navigationItem.rightBarButtonItem?.isEnabled = false
+                }
+            default:
+                break
             }
         }
         
@@ -179,16 +226,40 @@ final class ProfileSettingViewController: BaseViewController {
             self?.nicknameConditionLabel.text = text
         }
         
-        viewModel.outputCreateUserDataSucceed.bind { value in
+        viewModel.outputCreateUserDataSucceed.bind { [weak self] value in
             if value {
-                let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene
-                let sceneDelegate = windowScene?.delegate as? SceneDelegate
+                switch self?.viewType {
+                case .setting:
+                    self?.setRootViewController(TabBarController())
                 
-                let navigationController = TabBarController()
-                
-                sceneDelegate?.window?.rootViewController = navigationController
-                sceneDelegate?.window?.makeKeyAndVisible()
+                case .edit:
+                    self?.popViewController()
+                    self?.tabBarController?.tabBar.isHidden = false
+                default:
+                    break
+                }
             }
+        }
+        
+        viewModel.outputWithdrawalButtonTapped.bind { [weak self] _ in
+            self?.showWithdrawalAlert()
+        }
+        
+        viewModel.outputWithdrawalAlertOKButtonTapped.bind { [weak self] isDeleted in
+            if isDeleted {
+                self?.setRootViewController(UINavigationController(rootViewController: OnboardingViewController()))
+            }
+        }
+    }
+    
+    override func setupNavi() {
+        switch viewType {
+        case .edit:
+            let right = UIBarButtonItem(title: "저장", style: .done, target: self, action: #selector(saveBarButtonTapped))
+            navigationItem.rightBarButtonItem = right
+            navigationItem.largeTitleDisplayMode = .never
+        default:
+            break
         }
     }
     
@@ -288,10 +359,26 @@ final class ProfileSettingViewController: BaseViewController {
             make.horizontalEdges.bottom.equalTo(view.safeAreaLayoutGuide).inset(20)
             make.height.equalTo(50)
         }
+        
+        view.addSubview(withdrawalButton)
+        withdrawalButton.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.bottom.equalTo(view.safeAreaLayoutGuide).inset(20)
+        }
     }
     
     override func configureUI() {
         super.configureUI()
+        
+        switch viewType {
+        case .setting:
+            completeButton.isHidden = false
+            withdrawalButton.isHidden = true
+        
+        case .edit:
+            completeButton.isHidden = true
+            withdrawalButton.isHidden = false
+        }
     }
     
     //MARK: - Actions
@@ -309,8 +396,16 @@ final class ProfileSettingViewController: BaseViewController {
         viewModel.inputCompleteButtonTapped.value = profileCircleWithCameraIconView.profileImageView.image
     }
     
+    @objc private func withdrawalButtonTapped() {
+        viewModel.inputWithdrawalButtonTapped.value = ()
+    }
+    
     @objc private func mbtiWordButtonTapped(sender: UIButton) {
         viewModel.inputMBTIWordButtonTapped.value = sender.tag
+    }
+    
+    @objc private func saveBarButtonTapped() {
+        viewModel.inputCompleteButtonTapped.value = profileCircleWithCameraIconView.profileImageView.image
     }
     
     //MARK: - Methods
@@ -332,6 +427,25 @@ final class ProfileSettingViewController: BaseViewController {
         } else {
             completeButton.isEnabled = false
             completeButton.backgroundColor = Constant.Color.primaryMediumGray
+        }
+    }
+    
+    private func showWithdrawalAlert() {
+        let alert = UIAlertController(title: "회원 탈퇴", message: "회원님의 계정 정보가 영구 삭제됩니다. 정말 탈퇴 하시겠습니까?", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "취소", style: .cancel))
+        alert.addAction(UIAlertAction(title: "탈퇴하기", style: .destructive, handler: { [weak self] okAction in
+            self?.viewModel.inputWithdrawalAlertOKButtonTapped.value = ()
+        }))
+        present(alert, animated: true)
+    }
+    
+    private func setRootViewController(_ viewController: UIViewController) {
+        if let scene = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate,
+        let window = scene.window {
+             
+            window.rootViewController = viewController
+            
+            UIView.transition(with: window, duration: 0.2, options: [.transitionCrossDissolve], animations: nil, completion: nil)
         }
     }
 
