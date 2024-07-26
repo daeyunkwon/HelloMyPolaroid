@@ -47,7 +47,26 @@
 		447F22962C5387940037D433 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 447F22952C5387940037D433 /* Color.swift */; };
 		447F22982C53AFDA0037D433 /* Search.swift in Sources */ = {isa = PBXBuildFile; fileRef = 447F22972C53AFDA0037D433 /* Search.swift */; };
 		447F229E2C53F3FE0037D433 /* PhotoCollectionViewCellDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 447F229D2C53F3FE0037D433 /* PhotoCollectionViewCellDelegate.swift */; };
+		447F22A22C5404190037D433 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 447F22A12C5404190037D433 /* RealmSwift */; };
+		447F22A32C5404240037D433 /* RealmSwift in Embed Frameworks */ = {isa = PBXBuildFile; productRef = 447F22A12C5404190037D433 /* RealmSwift */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		447F22A62C5406D00037D433 /* LikedPhoto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 447F22A52C5406D00037D433 /* LikedPhoto.swift */; };
+		447F22A82C540D920037D433 /* LikedPhotoRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 447F22A72C540D920037D433 /* LikedPhotoRepository.swift */; };
+		447F22AA2C540E150037D433 /* ImageFileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 447F22A92C540E150037D433 /* ImageFileManager.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		447F22A42C5404240037D433 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				447F22A32C5404240037D433 /* RealmSwift in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		44689C562C4E4D7A00E307B4 /* HelloMyPolaroid.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HelloMyPolaroid.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -89,6 +108,9 @@
 		447F22952C5387940037D433 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		447F22972C53AFDA0037D433 /* Search.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Search.swift; sourceTree = "<group>"; };
 		447F229D2C53F3FE0037D433 /* PhotoCollectionViewCellDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCollectionViewCellDelegate.swift; sourceTree = "<group>"; };
+		447F22A52C5406D00037D433 /* LikedPhoto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikedPhoto.swift; sourceTree = "<group>"; };
+		447F22A72C540D920037D433 /* LikedPhotoRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikedPhotoRepository.swift; sourceTree = "<group>"; };
+		447F22A92C540E150037D433 /* ImageFileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageFileManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,6 +118,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				447F22A22C5404190037D433 /* RealmSwift in Frameworks */,
 				447F22742C51567C0037D433 /* Kingfisher in Frameworks */,
 				44689C782C4E5C9E00E307B4 /* SnapKit in Frameworks */,
 				447F226B2C513E660037D433 /* Alamofire in Frameworks */,
@@ -170,6 +193,7 @@
 				44689C872C4E73AB00E307B4 /* Observable.swift */,
 				447F22152C4FCEDE0037D433 /* UserDefaultsManager.swift */,
 				447F22232C4FDE020037D433 /* Reusable.swift */,
+				447F22A92C540E150037D433 /* ImageFileManager.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -311,6 +335,7 @@
 		447F22652C513DA60037D433 /* Service */ = {
 			isa = PBXGroup;
 			children = (
+				447F229F2C54037B0037D433 /* Database */,
 				447F22662C513DC70037D433 /* Network */,
 			);
 			path = Service;
@@ -334,6 +359,15 @@
 			path = Protocol;
 			sourceTree = "<group>";
 		};
+		447F229F2C54037B0037D433 /* Database */ = {
+			isa = PBXGroup;
+			children = (
+				447F22A52C5406D00037D433 /* LikedPhoto.swift */,
+				447F22A72C540D920037D433 /* LikedPhotoRepository.swift */,
+			);
+			path = Database;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -344,6 +378,7 @@
 				44689C522C4E4D7A00E307B4 /* Sources */,
 				44689C532C4E4D7A00E307B4 /* Frameworks */,
 				44689C542C4E4D7A00E307B4 /* Resources */,
+				447F22A42C5404240037D433 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -354,6 +389,7 @@
 				44689C772C4E5C9E00E307B4 /* SnapKit */,
 				447F226A2C513E660037D433 /* Alamofire */,
 				447F22732C51567C0037D433 /* Kingfisher */,
+				447F22A12C5404190037D433 /* RealmSwift */,
 			);
 			productName = HelloMyPoraroid;
 			productReference = 44689C562C4E4D7A00E307B4 /* HelloMyPolaroid.app */;
@@ -387,6 +423,7 @@
 				44689C762C4E5C9E00E307B4 /* XCRemoteSwiftPackageReference "SnapKit" */,
 				447F22692C513E660037D433 /* XCRemoteSwiftPackageReference "Alamofire" */,
 				447F22722C51567C0037D433 /* XCRemoteSwiftPackageReference "Kingfisher" */,
+				447F22A02C5404190037D433 /* XCRemoteSwiftPackageReference "realm-swift" */,
 			);
 			productRefGroup = 44689C572C4E4D7A00E307B4 /* Products */;
 			projectDirPath = "";
@@ -415,6 +452,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				447F22A62C5406D00037D433 /* LikedPhoto.swift in Sources */,
 				447F22982C53AFDA0037D433 /* Search.swift in Sources */,
 				447F22642C5100050037D433 /* Photo.swift in Sources */,
 				447F22242C4FDE020037D433 /* Reusable.swift in Sources */,
@@ -426,6 +464,7 @@
 				447F229E2C53F3FE0037D433 /* PhotoCollectionViewCellDelegate.swift in Sources */,
 				447F226D2C513ED30037D433 /* UnsplashAPIRouter.swift in Sources */,
 				447F221E2C4FDD7A0037D433 /* ProfileCircle.swift in Sources */,
+				447F22A82C540D920037D433 /* LikedPhotoRepository.swift in Sources */,
 				447F22942C537F720037D433 /* ColorOptionCollectionViewCell.swift in Sources */,
 				447F226F2C513EED0037D433 /* APIKey.swift in Sources */,
 				44689C852C4E732E00E307B4 /* ProfileSettingViewModel.swift in Sources */,
@@ -435,6 +474,7 @@
 				44689C882C4E73AB00E307B4 /* Observable.swift in Sources */,
 				447F22612C50EF530037D433 /* PhotoCollectionViewCell.swift in Sources */,
 				447F221B2C4FDC8D0037D433 /* UICollectionView+Extension.swift in Sources */,
+				447F22AA2C540E150037D433 /* ImageFileManager.swift in Sources */,
 				44689C5A2C4E4D7A00E307B4 /* AppDelegate.swift in Sources */,
 				447F222C2C5007840037D433 /* TabBarController.swift in Sources */,
 				447F22222C4FDDD60037D433 /* BaseCollectionViewCell.swift in Sources */,
@@ -697,6 +737,14 @@
 				minimumVersion = 7.12.0;
 			};
 		};
+		447F22A02C5404190037D433 /* XCRemoteSwiftPackageReference "realm-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/realm/realm-swift";
+			requirement = {
+				kind = exactVersion;
+				version = 10.52.1;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -714,6 +762,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 447F22722C51567C0037D433 /* XCRemoteSwiftPackageReference "Kingfisher" */;
 			productName = Kingfisher;
+		};
+		447F22A12C5404190037D433 /* RealmSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 447F22A02C5404190037D433 /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = RealmSwift;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

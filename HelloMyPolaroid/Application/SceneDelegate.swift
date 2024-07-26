@@ -7,6 +7,8 @@
 
 import UIKit
 
+import RealmSwift
+
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
@@ -27,6 +29,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             window?.rootViewController = UINavigationController(rootViewController: OnboardingViewController())
         }
         window?.makeKeyAndVisible()
+        
+        print(Realm.Configuration.defaultConfiguration.fileURL ?? "Realm Not Found")
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {

@@ -144,12 +144,11 @@ final class SearchPhotoViewController: BaseViewController {
             case .success(let value):
                 self.photos.append(contentsOf: value.results)
                 self.photoView.photoCollectionView.reloadData()
-                print("작업 실행됨")
+                print("fetch 작업 실행됨")
                 
                 if !isPrefetch && !self.photos.isEmpty {
                     self.photoView.photoCollectionView.scrollToItem(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
                 }
-                
                 
             case .failure(let error):
                 print(error.errorDescription)
