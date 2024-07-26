@@ -21,6 +21,8 @@ final class ProfileSettingViewController: BaseViewController {
     
     private lazy var viewModel = viewType == .setting ? ProfileSettingViewModel(viewType: .setting) : ProfileSettingViewModel(viewType: .edit)
     
+    //MARK: - Init
+    
     init(viewType: ViewType) {
         self.viewType = viewType
         super.init(nibName: nil, bundle: nil)
@@ -49,6 +51,21 @@ final class ProfileSettingViewController: BaseViewController {
         tf.keyboardType = .default
         tf.returnKeyType = .done
         tf.addTarget(self, action: #selector(nicknameTextFieldChanged), for: .editingChanged)
+        
+        let accessory = UIView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 50))
+        lazy var doneButton = UIButton(type: .system)
+        doneButton.addTarget(self, action: #selector(doneButtonInsideAccessoryTapped), for: .touchUpInside)
+        doneButton.setTitle("완료", for: .normal)
+        accessory.addSubview(doneButton)
+        doneButton.snp.makeConstraints { make in
+            make.centerY.equalToSuperview()
+            make.trailing.equalTo(accessory.snp.trailing).offset(-20)
+            make.width.equalTo(50)
+            make.height.equalTo(20)
+        }
+        accessory.backgroundColor = .systemGroupedBackground
+        tf.inputAccessoryView = accessory
+        
         return tf
     }()
     
@@ -406,6 +423,10 @@ final class ProfileSettingViewController: BaseViewController {
     
     @objc private func saveBarButtonTapped() {
         viewModel.inputCompleteButtonTapped.value = profileCircleWithCameraIconView.profileImageView.image
+    }
+    
+    @objc private func doneButtonInsideAccessoryTapped() {
+        nicknameTextField.resignFirstResponder()
     }
     
     //MARK: - Methods
