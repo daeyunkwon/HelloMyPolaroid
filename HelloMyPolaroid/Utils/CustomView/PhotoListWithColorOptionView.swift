@@ -23,14 +23,12 @@ final class PhotoListWithColorOptionView: UIView {
     
     let colorOptionCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
-        let sectionSpacing: CGFloat = 10
-        let cellSpacing: CGFloat = 5
-        layout.itemSize = CGSize(width: 100, height: 50)
         layout.scrollDirection = .horizontal
-        layout.minimumInteritemSpacing = cellSpacing
-        layout.sectionInset = UIEdgeInsets(top: sectionSpacing, left: sectionSpacing, bottom: sectionSpacing, right: sectionSpacing)
+        layout.minimumInteritemSpacing = 5
+        layout.sectionInset = UIEdgeInsets(top: 0, left: 5, bottom: 0, right: 90)
         
         let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        cv.showsHorizontalScrollIndicator = false
         return cv
     }()
     
@@ -53,6 +51,10 @@ final class PhotoListWithColorOptionView: UIView {
         view.backgroundColor = Constant.Color.primaryWhite
         view.layer.borderColor = Constant.Color.primaryLightGray.cgColor
         view.layer.borderWidth = 1
+        view.layer.shadowColor = Constant.Color.primaryLightGray.cgColor
+        view.layer.shadowOpacity = 1
+        view.layer.shadowRadius = 3
+        view.layer.shadowOffset = CGSize(width: 0, height: 1)
         return view
     }()
     
