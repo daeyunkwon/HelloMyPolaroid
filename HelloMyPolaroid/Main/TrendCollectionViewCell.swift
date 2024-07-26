@@ -25,9 +25,11 @@ final class TrendCollectionViewCell: BaseCollectionViewCell {
             switch cellType {
             case .trend:
                 photoImageView.layer.cornerRadius = 10
+                likeButton.isHidden = true
             
             case .searchAndLike:
                 photoImageView.layer.cornerRadius = 0
+                likeButton.isHidden = false
             }
         }
     }
@@ -62,6 +64,14 @@ final class TrendCollectionViewCell: BaseCollectionViewCell {
         return view
     }()
     
+    private lazy var likeButton: UIButton = {
+        let btn = UIButton(type: .system)
+        btn.setImage(UIImage(named: "like_circle_inactive")?.withRenderingMode(.alwaysOriginal), for: .normal)
+        btn.addTarget(self, action: #selector(likeButtonTapped), for: .touchUpInside)
+        btn.isUserInteractionEnabled = true
+        return btn
+    }()
+    
     //MARK: - Configurations
     
     override func configureLayout() {
@@ -89,9 +99,23 @@ final class TrendCollectionViewCell: BaseCollectionViewCell {
             make.trailing.equalToSuperview().inset(10)
         }
         
+        contentView.addSubview(likeButton)
+        likeButton.snp.makeConstraints { make in
+            make.trailing.bottom.equalTo(photoImageView).inset(10)
+            make.size.equalTo(30)
+        }
+    }
+    
+    override func configureUI() {
         DispatchQueue.main.async {
             self.capsuleBackView.layer.cornerRadius = self.capsuleBackView.frame.height / 2
         }
+    }
+    
+    //MARK: - Actions
+    
+    @objc func likeButtonTapped() {
+        likeButton.setImage(UIImage(named: "like_circle")?.withRenderingMode(.alwaysOriginal), for: .normal)
     }
     
     //MARK: - Methods
