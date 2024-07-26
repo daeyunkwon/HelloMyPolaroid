@@ -10,14 +10,19 @@ import Foundation
 import Alamofire
 
 enum UnsplashAPIRouter {
-    
     case topics(topicID: String)
-    
-    
+    case search(keyword: String, page: Int, order: String, color: String?)
+}
+
+extension UnsplashAPIRouter {
     var endpoint: URL? {
         switch self {
         case .topics(let topicID):
             let url = URL(string: APIURL.baseURL + "topics/\(topicID)/photos")
+            return url
+            
+        case .search(_, _, _, _):
+            let url = URL(string: APIURL.baseURL + "search/photos")
             return url
         }
     }
@@ -29,6 +34,26 @@ enum UnsplashAPIRouter {
                 "page": "1",
                 "client_id": APIKey.apiKey
             ]
+        
+        case .search(let keyword, let page, let order, let color):
+            if let safeColor = color {
+                return [
+                    "page": "\(page)",
+                    "client_id": APIKey.apiKey,
+                    "query": keyword,
+                    "order_by": order,
+                    "color": safeColor,
+                    "pre_page": "20"
+                ]
+            } else {
+                return [
+                    "page": "\(page)",
+                    "client_id": APIKey.apiKey,
+                    "query": keyword,
+                    "order_by": order,
+                    "pre_page": "20"
+                ]
+            }
         }
     }
 }
