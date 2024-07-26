@@ -92,7 +92,7 @@ extension TrendCollectionTableViewCell: UICollectionViewDataSource, UICollection
             print("Failed to dequeue a TrendCollectionViewCell. Using default UICollectionViewCell.")
             return UICollectionViewCell()
         }
-        
+        cell.cellType = .trend
         cell.cellConfig(photo: self.photoList[indexPath.row])
         return cell
     }

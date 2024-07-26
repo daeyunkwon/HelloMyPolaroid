@@ -11,13 +11,32 @@ import Kingfisher
 import SnapKit
 
 final class TrendCollectionViewCell: BaseCollectionViewCell {
+     
+    //MARK: - Properties
+    
+    enum CellType {
+        case trend
+        case searchAndLike
+    }
+    var cellType: CellType? {
+        didSet {
+            guard let cellType = self.cellType else { return }
+            
+            switch cellType {
+            case .trend:
+                photoImageView.layer.cornerRadius = 10
+            
+            case .searchAndLike:
+                photoImageView.layer.cornerRadius = 0
+            }
+        }
+    }
     
     //MARK: - UI Components
     
     private let photoImageView: UIImageView = {
         let iv = UIImageView()
         iv.contentMode = .scaleAspectFill
-        iv.layer.cornerRadius = 10
         iv.clipsToBounds = true
         iv.backgroundColor = .lightGray
         return iv
