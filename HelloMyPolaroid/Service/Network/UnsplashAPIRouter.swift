@@ -43,7 +43,7 @@ extension UnsplashAPIRouter {
                     "query": keyword,
                     "order_by": order,
                     "color": safeColor,
-                    "pre_page": "20"
+                    "per_page": "20"
                 ]
             } else {
                 return [
@@ -51,7 +51,7 @@ extension UnsplashAPIRouter {
                     "client_id": APIKey.apiKey,
                     "query": keyword,
                     "order_by": order,
-                    "pre_page": "20"
+                    "per_page": "20"
                 ]
             }
         }
