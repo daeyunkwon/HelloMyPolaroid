@@ -34,6 +34,14 @@ final class PhotoCollectionViewCell: BaseCollectionViewCell {
         }
     }
     
+    var isLikeButtonSelected = false {
+        didSet {
+            updateLikeButtonAppearance()
+        }
+    }
+    
+    weak var delegate: PhotoCollectionViewCellDelegate?
+    
     //MARK: - UI Components
     
     private let photoImageView: UIImageView = {
@@ -68,7 +76,6 @@ final class PhotoCollectionViewCell: BaseCollectionViewCell {
         let btn = UIButton(type: .system)
         btn.setImage(UIImage(named: "like_circle_inactive")?.withRenderingMode(.alwaysOriginal), for: .normal)
         btn.addTarget(self, action: #selector(likeButtonTapped), for: .touchUpInside)
-        btn.isUserInteractionEnabled = true
         return btn
     }()
     
@@ -114,11 +121,19 @@ final class PhotoCollectionViewCell: BaseCollectionViewCell {
     
     //MARK: - Actions
     
-    @objc func likeButtonTapped() {
-        likeButton.setImage(UIImage(named: "like_circle")?.withRenderingMode(.alwaysOriginal), for: .normal)
+    @objc private func likeButtonTapped() {
+        self.delegate?.likeButtonTapped(senderCell: self)
     }
     
     //MARK: - Methods
+    
+    private func updateLikeButtonAppearance() {
+        if isLikeButtonSelected {
+            likeButton.setImage(UIImage(named: "like_circle")?.withRenderingMode(.alwaysOriginal), for: .normal)
+        } else {
+            likeButton.setImage(UIImage(named: "like_circle_inactive")?.withRenderingMode(.alwaysOriginal), for: .normal)
+        }
+    }
     
     func cellConfig(photo: Photo) {
         let url = URL(string: photo.urls.small)

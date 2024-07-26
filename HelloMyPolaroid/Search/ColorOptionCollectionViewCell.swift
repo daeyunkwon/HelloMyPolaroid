@@ -29,6 +29,7 @@ final class ColorOptionCollectionViewCell: BaseCollectionViewCell {
     private let colorNameLabel: UILabel = {
         let label = UILabel()
         label.textColor = Constant.Color.primaryBlack
+        label.font = Constant.Font.system14
         return label
     }()
     
@@ -37,20 +38,21 @@ final class ColorOptionCollectionViewCell: BaseCollectionViewCell {
     override func configureLayout() {
         contentView.addSubview(backView)
         backView.snp.makeConstraints { make in
-            make.center.equalToSuperview()
+            make.horizontalEdges.equalToSuperview()
+            make.centerY.equalToSuperview()
         }
         
         backView.addSubview(colorCircleView)
         colorCircleView.snp.makeConstraints { make in
             make.top.leading.bottom.equalToSuperview().inset(5)
-            make.width.equalTo(30)
+            make.size.equalTo(30)
         }
         
         backView.addSubview(colorNameLabel)
         colorNameLabel.snp.makeConstraints { make in
             make.centerY.equalTo(colorCircleView.snp.centerY)
             make.leading.equalTo(colorCircleView.snp.trailing).offset(5)
-            make.trailing.equalToSuperview().inset(10)
+            make.trailing.equalTo(backView.snp.trailing).offset(-15)
         }
     }
     
@@ -59,6 +61,7 @@ final class ColorOptionCollectionViewCell: BaseCollectionViewCell {
         
         DispatchQueue.main.async {
             self.backView.layer.cornerRadius = self.backView.frame.height / 2
+            self.colorCircleView.layer.cornerRadius = self.colorCircleView.frame.height / 2
         }
     }
     

@@ -59,7 +59,7 @@ final class TrendCollectionTableViewCell: BaseTableViewCell {
         let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
         cv.delegate = self
         cv.dataSource = self
-        cv.register(TrendCollectionViewCell.self, forCellWithReuseIdentifier: TrendCollectionViewCell.identifier)
+        cv.register(PhotoCollectionViewCell.self, forCellWithReuseIdentifier: PhotoCollectionViewCell.identifier)
         cv.showsHorizontalScrollIndicator = false
         return cv
     }()
@@ -83,12 +83,13 @@ final class TrendCollectionTableViewCell: BaseTableViewCell {
 //MARK: - UICollectionViewDataSource, UICollectionViewDelegate
 
 extension TrendCollectionTableViewCell: UICollectionViewDataSource, UICollectionViewDelegate {
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return self.photoList.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TrendCollectionViewCell.identifier, for: indexPath) as? TrendCollectionViewCell else {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PhotoCollectionViewCell.identifier, for: indexPath) as? PhotoCollectionViewCell else {
             print("Failed to dequeue a TrendCollectionViewCell. Using default UICollectionViewCell.")
             return UICollectionViewCell()
         }
@@ -101,6 +102,7 @@ extension TrendCollectionTableViewCell: UICollectionViewDataSource, UICollection
 //MARK: - UICollectionViewDelegateFlowLayout
 
 extension TrendCollectionTableViewCell: UICollectionViewDelegateFlowLayout {
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let width = contentView.bounds.width / 1.9 - 10
         return CGSize(width: width, height: contentView.bounds.height - 50)

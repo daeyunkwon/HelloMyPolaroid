@@ -35,9 +35,6 @@ final class PhotoListWithColorOptionView: UIView {
     let photoCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         let cellSpacing: CGFloat = 3
-        let cellCount: CGFloat = 2
-        let width = UIScreen.main.bounds.width - ((cellSpacing * (cellCount - 1)))
-        layout.itemSize = CGSize(width: width / cellCount, height: width / cellCount * 1.5)
         layout.scrollDirection = .vertical
         layout.minimumInteritemSpacing = cellSpacing
         layout.minimumLineSpacing = cellSpacing
@@ -62,7 +59,7 @@ final class PhotoListWithColorOptionView: UIView {
         let btn = UIButton(type: .system)
         btn.setImage(UIImage(named: "sort"), for: .normal)
         btn.tintColor = Constant.Color.primaryBlack
-        let attribute = NSAttributedString(string: "정렬순", attributes: [.foregroundColor: Constant.Color.primaryBlack, .backgroundColor: UIColor.clear, .font: UIFont.boldSystemFont(ofSize: 15)])
+        let attribute = NSAttributedString(string: " 관련순", attributes: [.foregroundColor: Constant.Color.primaryBlack, .backgroundColor: UIColor.clear, .font: UIFont.boldSystemFont(ofSize: 15)])
         btn.setAttributedTitle(attribute, for: .normal)
         return btn
     }()
@@ -101,7 +98,7 @@ final class PhotoListWithColorOptionView: UIView {
         
         self.addSubview(photoCollectionView)
         photoCollectionView.snp.makeConstraints { make in
-            make.top.equalTo(colorOptionCollectionView.snp.bottom).offset(5)
+            make.top.equalTo(colorOptionCollectionView.snp.bottom)
             make.horizontalEdges.bottom.equalTo(self.safeAreaLayoutGuide)
         }
     }
@@ -114,11 +111,11 @@ final class PhotoListWithColorOptionView: UIView {
     
     private func updateSortToggleButtonAppearance() {
         if isSortButtonSelected {
-            let attribute = NSAttributedString(string: "최신순", attributes: [.foregroundColor: Constant.Color.primaryBlack, .backgroundColor: UIColor.clear, .font: UIFont.boldSystemFont(ofSize: 15)])
+            let attribute = NSAttributedString(string: " 최신순", attributes: [.foregroundColor: Constant.Color.primaryBlack, .backgroundColor: UIColor.clear, .font: UIFont.boldSystemFont(ofSize: 15)])
             sortToggleButton.setAttributedTitle(attribute, for: .normal)
             
         } else {
-            let attribute = NSAttributedString(string: "정렬순", attributes: [.foregroundColor: Constant.Color.primaryBlack, .backgroundColor: UIColor.clear, .font: UIFont.boldSystemFont(ofSize: 15)])
+            let attribute = NSAttributedString(string: " 관련순", attributes: [.foregroundColor: Constant.Color.primaryBlack, .backgroundColor: UIColor.clear, .font: UIFont.boldSystemFont(ofSize: 15)])
             sortToggleButton.setAttributedTitle(attribute, for: .normal)
         }
     }

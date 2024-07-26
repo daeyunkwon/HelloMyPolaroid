@@ -33,7 +33,7 @@
 		447F22322C5076E60037D433 /* TrendViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 447F22312C5076E60037D433 /* TrendViewController.swift */; };
 		447F225D2C50ECB20037D433 /* TrendCollectionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 447F225C2C50ECB20037D433 /* TrendCollectionTableViewCell.swift */; };
 		447F225F2C50ECF80037D433 /* BaseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 447F225E2C50ECF80037D433 /* BaseTableViewCell.swift */; };
-		447F22612C50EF530037D433 /* TrendCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 447F22602C50EF530037D433 /* TrendCollectionViewCell.swift */; };
+		447F22612C50EF530037D433 /* PhotoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 447F22602C50EF530037D433 /* PhotoCollectionViewCell.swift */; };
 		447F22642C5100050037D433 /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 447F22632C5100050037D433 /* Photo.swift */; };
 		447F22682C513DD40037D433 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 447F22672C513DD40037D433 /* NetworkManager.swift */; };
 		447F226B2C513E660037D433 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 447F226A2C513E660037D433 /* Alamofire */; };
@@ -41,6 +41,12 @@
 		447F226F2C513EED0037D433 /* APIKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 447F226E2C513EED0037D433 /* APIKey.swift */; };
 		447F22712C514DA50037D433 /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 447F22702C514DA50037D433 /* UIViewController+Extension.swift */; };
 		447F22742C51567C0037D433 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 447F22732C51567C0037D433 /* Kingfisher */; };
+		447F22902C52929D0037D433 /* SearchPhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 447F228F2C52929D0037D433 /* SearchPhotoViewController.swift */; };
+		447F22922C5332740037D433 /* PhotoListWithColorOptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 447F22912C5332740037D433 /* PhotoListWithColorOptionView.swift */; };
+		447F22942C537F720037D433 /* ColorOptionCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 447F22932C537F720037D433 /* ColorOptionCollectionViewCell.swift */; };
+		447F22962C5387940037D433 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 447F22952C5387940037D433 /* Color.swift */; };
+		447F22982C53AFDA0037D433 /* Search.swift in Sources */ = {isa = PBXBuildFile; fileRef = 447F22972C53AFDA0037D433 /* Search.swift */; };
+		447F229E2C53F3FE0037D433 /* PhotoCollectionViewCellDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 447F229D2C53F3FE0037D433 /* PhotoCollectionViewCellDelegate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -71,12 +77,18 @@
 		447F22312C5076E60037D433 /* TrendViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendViewController.swift; sourceTree = "<group>"; };
 		447F225C2C50ECB20037D433 /* TrendCollectionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendCollectionTableViewCell.swift; sourceTree = "<group>"; };
 		447F225E2C50ECF80037D433 /* BaseTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTableViewCell.swift; sourceTree = "<group>"; };
-		447F22602C50EF530037D433 /* TrendCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendCollectionViewCell.swift; sourceTree = "<group>"; };
+		447F22602C50EF530037D433 /* PhotoCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCollectionViewCell.swift; sourceTree = "<group>"; };
 		447F22632C5100050037D433 /* Photo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Photo.swift; sourceTree = "<group>"; };
 		447F22672C513DD40037D433 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		447F226C2C513ED30037D433 /* UnsplashAPIRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnsplashAPIRouter.swift; sourceTree = "<group>"; };
 		447F226E2C513EED0037D433 /* APIKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIKey.swift; sourceTree = "<group>"; };
 		447F22702C514DA50037D433 /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
+		447F228F2C52929D0037D433 /* SearchPhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPhotoViewController.swift; sourceTree = "<group>"; };
+		447F22912C5332740037D433 /* PhotoListWithColorOptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoListWithColorOptionView.swift; sourceTree = "<group>"; };
+		447F22932C537F720037D433 /* ColorOptionCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorOptionCollectionViewCell.swift; sourceTree = "<group>"; };
+		447F22952C5387940037D433 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
+		447F22972C53AFDA0037D433 /* Search.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Search.swift; sourceTree = "<group>"; };
+		447F229D2C53F3FE0037D433 /* PhotoCollectionViewCellDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCollectionViewCellDelegate.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -150,6 +162,7 @@
 		44689C712C4E571400E307B4 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				447F229C2C53F3F40037D433 /* Protocol */,
 				447F22192C4FDC730037D433 /* Extension */,
 				44689C7D2C4E673B00E307B4 /* CustomView */,
 				44689C7A2C4E5F7600E307B4 /* Base */,
@@ -187,6 +200,7 @@
 				44689C822C4E6E9300E307B4 /* ProfileCircleWithCameraIcon.swift */,
 				447F21E42C4EA9EF0037D433 /* MBTICircleButtonView.swift */,
 				447F221D2C4FDD7A0037D433 /* ProfileCircle.swift */,
+				447F22912C5332740037D433 /* PhotoListWithColorOptionView.swift */,
 			);
 			path = CustomView;
 			sourceTree = "<group>";
@@ -256,7 +270,7 @@
 			children = (
 				447F22312C5076E60037D433 /* TrendViewController.swift */,
 				447F225C2C50ECB20037D433 /* TrendCollectionTableViewCell.swift */,
-				447F22602C50EF530037D433 /* TrendCollectionViewCell.swift */,
+				447F22602C50EF530037D433 /* PhotoCollectionViewCell.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -271,6 +285,8 @@
 		447F222F2C5076A10037D433 /* Search */ = {
 			isa = PBXGroup;
 			children = (
+				447F228F2C52929D0037D433 /* SearchPhotoViewController.swift */,
+				447F22932C537F720037D433 /* ColorOptionCollectionViewCell.swift */,
 			);
 			path = Search;
 			sourceTree = "<group>";
@@ -285,7 +301,9 @@
 		447F22622C50FFF20037D433 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				447F22952C5387940037D433 /* Color.swift */,
 				447F22632C5100050037D433 /* Photo.swift */,
+				447F22972C53AFDA0037D433 /* Search.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -306,6 +324,14 @@
 				447F22672C513DD40037D433 /* NetworkManager.swift */,
 			);
 			path = Network;
+			sourceTree = "<group>";
+		};
+		447F229C2C53F3F40037D433 /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				447F229D2C53F3FE0037D433 /* PhotoCollectionViewCellDelegate.swift */,
+			);
+			path = Protocol;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -389,26 +415,32 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				447F22982C53AFDA0037D433 /* Search.swift in Sources */,
 				447F22642C5100050037D433 /* Photo.swift in Sources */,
 				447F22242C4FDE020037D433 /* Reusable.swift in Sources */,
 				44689C7C2C4E5F8400E307B4 /* BaseViewController.swift in Sources */,
 				44689C5E2C4E4D7A00E307B4 /* OnboardingViewController.swift in Sources */,
 				447F22712C514DA50037D433 /* UIViewController+Extension.swift in Sources */,
+				447F22962C5387940037D433 /* Color.swift in Sources */,
 				44689C832C4E6E9300E307B4 /* ProfileCircleWithCameraIcon.swift in Sources */,
+				447F229E2C53F3FE0037D433 /* PhotoCollectionViewCellDelegate.swift in Sources */,
 				447F226D2C513ED30037D433 /* UnsplashAPIRouter.swift in Sources */,
 				447F221E2C4FDD7A0037D433 /* ProfileCircle.swift in Sources */,
+				447F22942C537F720037D433 /* ColorOptionCollectionViewCell.swift in Sources */,
 				447F226F2C513EED0037D433 /* APIKey.swift in Sources */,
 				44689C852C4E732E00E307B4 /* ProfileSettingViewModel.swift in Sources */,
 				447F22162C4FCEDE0037D433 /* UserDefaultsManager.swift in Sources */,
 				447F225D2C50ECB20037D433 /* TrendCollectionTableViewCell.swift in Sources */,
+				447F22922C5332740037D433 /* PhotoListWithColorOptionView.swift in Sources */,
 				44689C882C4E73AB00E307B4 /* Observable.swift in Sources */,
-				447F22612C50EF530037D433 /* TrendCollectionViewCell.swift in Sources */,
+				447F22612C50EF530037D433 /* PhotoCollectionViewCell.swift in Sources */,
 				447F221B2C4FDC8D0037D433 /* UICollectionView+Extension.swift in Sources */,
 				44689C5A2C4E4D7A00E307B4 /* AppDelegate.swift in Sources */,
 				447F222C2C5007840037D433 /* TabBarController.swift in Sources */,
 				447F22222C4FDDD60037D433 /* BaseCollectionViewCell.swift in Sources */,
 				447F22322C5076E60037D433 /* TrendViewController.swift in Sources */,
 				447F22182C4FDAE10037D433 /* ProfileImageSettingViewController.swift in Sources */,
+				447F22902C52929D0037D433 /* SearchPhotoViewController.swift in Sources */,
 				44689C5C2C4E4D7A00E307B4 /* SceneDelegate.swift in Sources */,
 				447F225F2C50ECF80037D433 /* BaseTableViewCell.swift in Sources */,
 				447F21E52C4EA9EF0037D433 /* MBTICircleButtonView.swift in Sources */,
