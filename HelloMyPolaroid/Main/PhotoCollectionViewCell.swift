@@ -10,7 +10,7 @@ import UIKit
 import Kingfisher
 import SnapKit
 
-final class TrendCollectionViewCell: BaseCollectionViewCell {
+final class PhotoCollectionViewCell: BaseCollectionViewCell {
      
     //MARK: - Properties
     
