@@ -48,7 +48,7 @@ final class SearchPhotoViewController: BaseViewController {
     
     private var photos: [Photo] = []
     
-    let repository = LikedPhotoRepository()
+    private let repository = LikedPhotoRepository()
     
     //MARK: - UI Components
     

@@ -45,6 +45,8 @@ final class PhotoCollectionViewCell: BaseCollectionViewCell {
     
     weak var delegate: PhotoCollectionViewCellDelegate?
     
+    private let repository = LikedPhotoRepository()
+    
     //MARK: - UI Components
     
     private let photoImageView: UIImageView = {
@@ -150,6 +152,10 @@ final class PhotoCollectionViewCell: BaseCollectionViewCell {
         }
         self.likeCountLabel.text = photo.likes.formatted()
         
-        
+        if repository.isSaved(photoID: photo.id) {
+            self.isLikeButtonSelected = true
+        } else {
+            self.isLikeButtonSelected = false
+        }
     }
 }
