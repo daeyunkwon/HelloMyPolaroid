@@ -53,6 +53,7 @@ final class TrendViewController: BaseViewController {
         super.viewWillAppear(animated)
         navigationItem.title = "OUR TOPIC"
         fetchProfileImage()
+        self.tabBarController?.tabBar.isHidden = false
     }
     
     override func viewWillDisappear(_ animated: Bool) {
