@@ -34,6 +34,9 @@ final class PhotoCollectionViewCell: BaseCollectionViewCell {
         }
     }
     
+    var photo: Photo?
+    var photoImage: UIImage?
+    
     var isLikeButtonSelected = false {
         didSet {
             updateLikeButtonAppearance()
@@ -137,7 +140,16 @@ final class PhotoCollectionViewCell: BaseCollectionViewCell {
     
     func cellConfig(photo: Photo) {
         let url = URL(string: photo.urls.small)
-        self.photoImageView.kf.setImage(with: url)
+        self.photoImageView.kf.setImage(with: url) { result in
+            switch result {
+            case .success(_):
+                self.photoImage = self.photoImageView.image
+            case .failure(_):
+                self.photoImage = nil
+            }
+        }
         self.likeCountLabel.text = photo.likes.formatted()
+        
+        
     }
 }

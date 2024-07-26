@@ -47,15 +47,31 @@ class LikedPhotoRepository {
         }
     }
     
+    func isSaved(photoID: String) -> Bool {
+        let result = realm.objects(LikedPhoto.self).where {
+            $0.photoID == photoID
+        }
+        
+        if result.isEmpty {
+            return false
+        } else {
+            return true
+        }
+    }
+    
     func fetchAllItemSorted(key: LikedPhoto.Key, ascending: Bool) -> Results<LikedPhoto> {
         return realm.objects(LikedPhoto.self).sorted(byKeyPath: key.rawValue, ascending: ascending)
     }
     
-    func deleteItem(data: LikedPhoto, completionHandler: @escaping (Result<String, RealmError>) -> Void) {
+    func deleteItem(photoID: String, completionHandler: @escaping (Result<String, RealmError>) -> Void) {
+        
+        let targetData = realm.objects(LikedPhoto.self).where({
+            $0.photoID == photoID
+        })
+        
         do {
             try realm.write {
-                ImageFileManager.shared.removeImageFromDocument(filename: data.photoID)
-                realm.delete(data)
+                realm.delete(targetData)
                 completionHandler(.success("Realm Delete Succeed"))
             }
         } catch {

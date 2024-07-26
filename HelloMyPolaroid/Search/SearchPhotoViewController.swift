@@ -48,6 +48,8 @@ final class SearchPhotoViewController: BaseViewController {
     
     private var photos: [Photo] = []
     
+    let repository = LikedPhotoRepository()
+    
     //MARK: - UI Components
     
     private let photoView = PhotoListWithColorOptionView()
@@ -205,6 +207,7 @@ extension SearchPhotoViewController: UICollectionViewDataSource, UICollectionVie
             
             cell.delegate = self
             cell.cellType = .searchAndLike
+            cell.photo = self.photos[indexPath.row]
             cell.cellConfig(photo: self.photos[indexPath.row])
             
             return cell
@@ -277,6 +280,40 @@ extension SearchPhotoViewController: UISearchBarDelegate {
 extension SearchPhotoViewController: PhotoCollectionViewCellDelegate {
     
     func likeButtonTapped(senderCell: PhotoCollectionViewCell) {
+        guard let photo = senderCell.photo else { return }
+        guard let image = senderCell.photoImage else { return }
+        
+        let data = LikedPhoto(photoID: photo.id)
+        
         senderCell.isLikeButtonSelected.toggle()
+        
+        if senderCell.isLikeButtonSelected {
+            //좋아요한 경우
+            self.repository.create(data: data) { result in
+                switch result {
+                case .success(_):
+                    ImageFileManager.shared.saveImageToDocument(image: image, filename: photo.id)
+                
+                case .failure(let error):
+                    print(error)
+                    self.showRealmErrorAlert(type: error)
+                    senderCell.isLikeButtonSelected.toggle() //버튼 상태 복귀
+                }
+            }
+        } else { 
+            //좋아요 취소한 경우
+            self.repository.deleteItem(photoID: photo.id) { result in
+                switch result {
+                case .success(let success):
+                    print(success)
+                    ImageFileManager.shared.removeImageFromDocument(filename: photo.id)
+                    
+                case .failure(let error):
+                    print(error)
+                    self.showRealmErrorAlert(type: error)
+                    senderCell.isLikeButtonSelected.toggle() //버튼 상태 복귀
+                }
+            }
+        }
     }
 }
