@@ -157,6 +157,12 @@ final class SearchPhotoViewController: BaseViewController {
             }
             
             self.isFetchExecuted = false
+            
+            if self.photos.isEmpty {
+                self.photoView.showEmptySearchResultLabel()
+            } else {
+                self.photoView.hideEmptySearchResultLabel()
+            }
         }
     }
     

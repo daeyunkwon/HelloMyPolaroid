@@ -64,6 +64,15 @@ final class PhotoListWithColorOptionView: UIView {
         return btn
     }()
     
+    private let emptySearchResultLabel: UILabel = {
+        let label = UILabel()
+        label.text = "검색 결과가 없습니다"
+        label.textAlignment = .center
+        label.font = .systemFont(ofSize: 16, weight: .heavy)
+        label.isHidden = true
+        return label
+    }()
+    
     //MARK: - Init
     
     override init(frame: CGRect) {
@@ -101,6 +110,12 @@ final class PhotoListWithColorOptionView: UIView {
             make.top.equalTo(colorOptionCollectionView.snp.bottom)
             make.horizontalEdges.bottom.equalTo(self.safeAreaLayoutGuide)
         }
+        
+        self.addSubview(emptySearchResultLabel)
+        emptySearchResultLabel.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.centerY.equalToSuperview().offset(50)
+        }
     }
     
     private func configureUI() {
@@ -118,6 +133,14 @@ final class PhotoListWithColorOptionView: UIView {
             let attribute = NSAttributedString(string: " 관련순", attributes: [.foregroundColor: Constant.Color.primaryBlack, .backgroundColor: UIColor.clear, .font: UIFont.boldSystemFont(ofSize: 15)])
             sortToggleButton.setAttributedTitle(attribute, for: .normal)
         }
+    }
+    
+    func showEmptySearchResultLabel() {
+        self.emptySearchResultLabel.isHidden = false
+    }
+    
+    func hideEmptySearchResultLabel() {
+        self.emptySearchResultLabel.isHidden = true
     }
     
 }
