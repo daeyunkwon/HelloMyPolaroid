@@ -89,7 +89,7 @@ final class PhotoListWithColorOptionView: UIView {
         self.addSubview(colorOptionCollectionView)
         colorOptionCollectionView.snp.makeConstraints { make in
             make.top.horizontalEdges.equalTo(self.safeAreaLayoutGuide)
-            make.height.equalTo(60)
+            make.height.equalTo(50)
         }
         
         self.addSubview(backView)

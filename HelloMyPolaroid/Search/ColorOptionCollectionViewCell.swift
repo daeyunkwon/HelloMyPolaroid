@@ -45,7 +45,7 @@ final class ColorOptionCollectionViewCell: BaseCollectionViewCell {
         backView.addSubview(colorCircleView)
         colorCircleView.snp.makeConstraints { make in
             make.top.leading.bottom.equalToSuperview().inset(5)
-            make.size.equalTo(30)
+            make.size.equalTo(25)
         }
         
         backView.addSubview(colorNameLabel)
