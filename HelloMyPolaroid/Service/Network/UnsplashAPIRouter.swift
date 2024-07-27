@@ -12,6 +12,7 @@ import Alamofire
 enum UnsplashAPIRouter {
     case topics(topicID: String)
     case search(keyword: String, page: Int, order: String, color: String?)
+    case statistics(photoID: String)
 }
 
 extension UnsplashAPIRouter {
@@ -23,6 +24,10 @@ extension UnsplashAPIRouter {
             
         case .search(_, _, _, _):
             let url = URL(string: APIURL.baseURL + "search/photos")
+            return url
+            
+        case .statistics(let photoID):
+            let url = URL(string: APIURL.baseURL + "photos/\(photoID)/statistics")
             return url
         }
     }
@@ -54,6 +59,12 @@ extension UnsplashAPIRouter {
                     "per_page": "20"
                 ]
             }
+        
+        case .statistics(_):
+            return [
+                "client_id": APIKey.apiKey
+            ]
         }
     }
+    
 }
