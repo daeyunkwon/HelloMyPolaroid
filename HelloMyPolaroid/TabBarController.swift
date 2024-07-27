@@ -20,17 +20,17 @@ final class TabBarController: UITabBarController {
     
     private func setupTabBar() {
         let mainVC = UINavigationController(rootViewController: TrendViewController())
-        let likeVC = UINavigationController(rootViewController: UIViewController())
-        likeVC.view.backgroundColor = .white
+        let randomVC = UINavigationController(rootViewController: UIViewController())
+        randomVC.view.backgroundColor = .white
         let searchVC = UINavigationController(rootViewController: SearchPhotoViewController())
-        let heartVC = UINavigationController(rootViewController: UIViewController())
-        heartVC.view.backgroundColor = .white
+        let likeVC = UINavigationController(rootViewController: LikePhotoViewController())
+        likeVC.view.backgroundColor = .white
         
         mainVC.tabBarItem = UITabBarItem(title: nil, image: UIImage(named: "tab_trend_inactive"), selectedImage: UIImage(named: "tab_trend"))
-        likeVC.tabBarItem = UITabBarItem(title: nil, image: UIImage(named: "tab_random_inactive"), selectedImage: UIImage(named: "tab_random"))
+        randomVC.tabBarItem = UITabBarItem(title: nil, image: UIImage(named: "tab_random_inactive"), selectedImage: UIImage(named: "tab_random"))
         searchVC.tabBarItem = UITabBarItem(title: nil, image: UIImage(named: "tab_search_inactive"), selectedImage: UIImage(named: "tab_search"))
-        heartVC.tabBarItem = UITabBarItem(title: nil, image: UIImage(named: "tab_like_inactive"), selectedImage: UIImage(named: "tab_like"))
+        likeVC.tabBarItem = UITabBarItem(title: nil, image: UIImage(named: "tab_like_inactive"), selectedImage: UIImage(named: "tab_like"))
         
-        self.setViewControllers([mainVC, likeVC, searchVC, heartVC], animated: false)
+        self.setViewControllers([mainVC, randomVC, searchVC, likeVC], animated: false)
     }
 }

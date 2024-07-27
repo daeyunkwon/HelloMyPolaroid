@@ -16,7 +16,8 @@ final class PhotoCollectionViewCell: BaseCollectionViewCell {
     
     enum CellType {
         case trend
-        case searchAndLike
+        case search
+        case like
     }
     var cellType: CellType? {
         didSet {
@@ -27,14 +28,21 @@ final class PhotoCollectionViewCell: BaseCollectionViewCell {
                 photoImageView.layer.cornerRadius = 10
                 likeButton.isHidden = true
             
-            case .searchAndLike:
+            case .search:
                 photoImageView.layer.cornerRadius = 0
                 likeButton.isHidden = false
+                
+            case .like:
+                photoImageView.layer.cornerRadius = 0
+                likeButton.isHidden = false
+                starImageView.isHidden = true
+                likeCountLabel.isHidden = true
+                capsuleBackView.isHidden = true
             }
         }
     }
     
-    var photo: Photo?
+    var photoID: String?
     var photoImage: UIImage?
     
     var isLikeButtonSelected = false {
@@ -157,5 +165,12 @@ final class PhotoCollectionViewCell: BaseCollectionViewCell {
         } else {
             self.isLikeButtonSelected = false
         }
+    }
+    
+    func cellConfig(likedPhoto: LikedPhoto) {
+        self.photoImageView.image = ImageFileManager.shared.loadImageToDocument(filename: likedPhoto.photoID)
+        self.photoImage = self.photoImageView.image
+        
+        self.isLikeButtonSelected = true
     }
 }

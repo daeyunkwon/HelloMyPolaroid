@@ -19,6 +19,17 @@ final class PhotoListWithColorOptionView: UIView {
         }
     }
     
+    enum ViewType {
+        case search
+        case like
+    }
+    var viewType: ViewType = .search {
+        didSet {
+            self.updateSortToggleButtonAppearance()
+            self.setupEmptyLabelText()
+        }
+    }
+    
     //MARK: - UI Components
     
     let colorOptionCollectionView: UICollectionView = {
@@ -124,14 +135,38 @@ final class PhotoListWithColorOptionView: UIView {
     
     //MARK: - Methods
     
+    private func setupEmptyLabelText() {
+        switch viewType {
+        case .search:
+            self.emptySearchResultLabel.text = "검색 결과가 없습니다"
+        case .like:
+            self.emptySearchResultLabel.text = "저장된 사진이 없어요"
+        }
+    }
+    
     private func updateSortToggleButtonAppearance() {
-        if isSortButtonSelected {
-            let attribute = NSAttributedString(string: " 최신순", attributes: [.foregroundColor: Constant.Color.primaryBlack, .backgroundColor: UIColor.clear, .font: UIFont.boldSystemFont(ofSize: 15)])
-            sortToggleButton.setAttributedTitle(attribute, for: .normal)
+        switch viewType {
+        case .search:
+            if isSortButtonSelected {
+                let attribute = NSAttributedString(string: " 최신순", attributes: [.foregroundColor: Constant.Color.primaryBlack, .backgroundColor: UIColor.clear, .font: UIFont.boldSystemFont(ofSize: 15)])
+                sortToggleButton.setAttributedTitle(attribute, for: .normal)
+                
+            } else {
+                //디폴트
+                let attribute = NSAttributedString(string: " 관련순", attributes: [.foregroundColor: Constant.Color.primaryBlack, .backgroundColor: UIColor.clear, .font: UIFont.boldSystemFont(ofSize: 15)])
+                sortToggleButton.setAttributedTitle(attribute, for: .normal)
+            }
             
-        } else {
-            let attribute = NSAttributedString(string: " 관련순", attributes: [.foregroundColor: Constant.Color.primaryBlack, .backgroundColor: UIColor.clear, .font: UIFont.boldSystemFont(ofSize: 15)])
-            sortToggleButton.setAttributedTitle(attribute, for: .normal)
+        case .like:
+            if isSortButtonSelected {
+                let attribute = NSAttributedString(string: " 과거순", attributes: [.foregroundColor: Constant.Color.primaryBlack, .backgroundColor: UIColor.clear, .font: UIFont.boldSystemFont(ofSize: 15)])
+                sortToggleButton.setAttributedTitle(attribute, for: .normal)
+                
+            } else {
+                //디폴트
+                let attribute = NSAttributedString(string: " 최신순", attributes: [.foregroundColor: Constant.Color.primaryBlack, .backgroundColor: UIColor.clear, .font: UIFont.boldSystemFont(ofSize: 15)])
+                sortToggleButton.setAttributedTitle(attribute, for: .normal)
+            }
         }
     }
     

@@ -9,7 +9,7 @@ import UIKit
 
 import SnapKit
 
-final class SearchPhotoViewController: BaseViewController {
+final class SearchPhotoViewController: BasePhotoListViewController {
     
     //MARK: - Properties
     
@@ -30,29 +30,16 @@ final class SearchPhotoViewController: BaseViewController {
         case green
         case blue
     }
-    private var colorType: ColorType?
     
     private var recentSearchKeyword: String = "" //검색한 상태에서 관련순&최신순 정렬 기능용으로 사용
     
     private var isFetchExecuted = false //과도한 prefetch 작업 실행 방지용으로 사용
-    
-    private let colorOptions: [Color] = [
-        Color(name: "블랙", uiColor: .black),
-        Color(name: "화이트", uiColor: .white),
-        Color(name: "옐로우", uiColor: .yellow),
-        Color(name: "레드", uiColor: .red),
-        Color(name: "퍼플", uiColor: .purple),
-        Color(name: "그린", uiColor: .green),
-        Color(name: "블루", uiColor: .blue),
-    ]
     
     private var photos: [Photo] = []
     
     private let repository = LikedPhotoRepository()
     
     //MARK: - UI Components
-    
-    private let photoView = PhotoListWithColorOptionView()
     
     private lazy var searchController: UISearchController = {
         let sc = UISearchController()
@@ -69,6 +56,11 @@ final class SearchPhotoViewController: BaseViewController {
         view = self.photoView
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        photoView.photoCollectionView.reloadData()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupCollectionView()
@@ -82,22 +74,17 @@ final class SearchPhotoViewController: BaseViewController {
         setupPhotoCollectionView()
     }
     
-    private func setupColorOptionCollectionView() {
+    override func setupColorOptionCollectionView() {
+        super.setupColorOptionCollectionView()
         photoView.colorOptionCollectionView.dataSource = self
         photoView.colorOptionCollectionView.delegate = self
-        photoView.colorOptionCollectionView.register(ColorOptionCollectionViewCell.self, forCellWithReuseIdentifier: ColorOptionCollectionViewCell.identifier)
     }
     
-    private func setupPhotoCollectionView() {
-        photoView.photoCollectionView.keyboardDismissMode = .onDrag
+    override func setupPhotoCollectionView() {
+        super.setupPhotoCollectionView()
         photoView.photoCollectionView.prefetchDataSource = self
         photoView.photoCollectionView.dataSource = self
         photoView.photoCollectionView.delegate = self
-        photoView.photoCollectionView.register(PhotoCollectionViewCell.self, forCellWithReuseIdentifier: PhotoCollectionViewCell.identifier)
-    }
-    
-    private func setupAction() {
-        photoView.sortToggleButton.addTarget(self, action: #selector(sortToggleButtonTapped), for: .touchUpInside)
     }
     
     override func setupNavi() {
@@ -107,15 +94,12 @@ final class SearchPhotoViewController: BaseViewController {
     
     override func configureUI() {
         super.configureUI()
-        
-        DispatchQueue.main.async {
-            self.photoView.backView.layer.cornerRadius = self.photoView.backView.frame.size.height / 2
-        }
+        photoView.viewType = .search
     }
     
     //MARK: - Actions
     
-    @objc private func sortToggleButtonTapped() {
+    @objc override func sortToggleButtonTapped() {
         photoView.isSortButtonSelected.toggle()
         
         if photoView.isSortButtonSelected {
@@ -171,7 +155,7 @@ final class SearchPhotoViewController: BaseViewController {
 
 //MARK: - UICollectionViewDataSource, UICollectionViewDelegate
 
-extension SearchPhotoViewController: UICollectionViewDataSource, UICollectionViewDelegate {
+extension SearchPhotoViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         switch collectionView {
@@ -206,40 +190,14 @@ extension SearchPhotoViewController: UICollectionViewDataSource, UICollectionVie
             }
             
             cell.delegate = self
-            cell.cellType = .searchAndLike
-            cell.photo = self.photos[indexPath.row]
+            cell.cellType = .search
+            cell.photoID = self.photos[indexPath.row].id
             cell.cellConfig(photo: self.photos[indexPath.row])
             
             return cell
         default:
             return UICollectionViewCell()
          }
-    }
-}
-
-//MARK: - UICollectionViewDelegateFlowLayout
-
-extension SearchPhotoViewController: UICollectionViewDelegateFlowLayout {
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        
-        if collectionView == photoView.colorOptionCollectionView {
-            let text = colorOptions[indexPath.item].name
-            let label = UILabel()
-            label.font = UIFont.systemFont(ofSize: 14)
-            label.text = text
-            let size = label.sizeThatFits(CGSize(width: CGFloat.greatestFiniteMagnitude, height: CGFloat.greatestFiniteMagnitude))
-            return CGSize(width: size.width + 55, height: 50)
-        }
-        
-        if collectionView == photoView.photoCollectionView {
-            let cellSpacing: CGFloat = 3
-            let cellCount: CGFloat = 2
-            let width = UIScreen.main.bounds.width - ((cellSpacing * (cellCount - 1)))
-            return CGSize(width: width / cellCount, height: width / cellCount * 1.3)
-        }
-        
-        return CGSize(width: 0, height: 0)
     }
 }
 
@@ -280,10 +238,10 @@ extension SearchPhotoViewController: UISearchBarDelegate {
 extension SearchPhotoViewController: PhotoCollectionViewCellDelegate {
     
     func likeButtonTapped(senderCell: PhotoCollectionViewCell) {
-        guard let photo = senderCell.photo else { return }
+        guard let photoID = senderCell.photoID, !photoID.isEmpty else { return }
         guard let image = senderCell.photoImage else { return }
         
-        let data = LikedPhoto(photoID: photo.id)
+        let data = LikedPhoto(photoID: photoID)
         
         senderCell.isLikeButtonSelected.toggle()
         
@@ -292,7 +250,7 @@ extension SearchPhotoViewController: PhotoCollectionViewCellDelegate {
             self.repository.create(data: data) { result in
                 switch result {
                 case .success(_):
-                    ImageFileManager.shared.saveImageToDocument(image: image, filename: photo.id)
+                    ImageFileManager.shared.saveImageToDocument(image: image, filename: photoID)
                 
                 case .failure(let error):
                     print(error)
@@ -302,11 +260,11 @@ extension SearchPhotoViewController: PhotoCollectionViewCellDelegate {
             }
         } else { 
             //좋아요 취소한 경우
-            self.repository.deleteItem(photoID: photo.id) { result in
+            self.repository.deleteItem(photoID: photoID) { result in
                 switch result {
                 case .success(let success):
                     print(success)
-                    ImageFileManager.shared.removeImageFromDocument(filename: photo.id)
+                    ImageFileManager.shared.removeImageFromDocument(filename: photoID)
                     
                 case .failure(let error):
                     print(error)
