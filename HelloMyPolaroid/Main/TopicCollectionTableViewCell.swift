@@ -9,7 +9,7 @@ import UIKit
 
 import SnapKit
 
-final class TrendCollectionTableViewCell: BaseTableViewCell {
+final class TopicCollectionTableViewCell: BaseTableViewCell {
     
     //MARK: - Properties
     
@@ -68,7 +68,7 @@ final class TrendCollectionTableViewCell: BaseTableViewCell {
 
 //MARK: - UICollectionViewDataSource, UICollectionViewDelegate
 
-extension TrendCollectionTableViewCell: UICollectionViewDataSource, UICollectionViewDelegate {
+extension TopicCollectionTableViewCell: UICollectionViewDataSource, UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return self.photoList.count
@@ -91,7 +91,7 @@ extension TrendCollectionTableViewCell: UICollectionViewDataSource, UICollection
 
 //MARK: - UICollectionViewDelegateFlowLayout
 
-extension TrendCollectionTableViewCell: UICollectionViewDelegateFlowLayout {
+extension TopicCollectionTableViewCell: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let width = contentView.bounds.width / 1.9 - 10

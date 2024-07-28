@@ -9,7 +9,7 @@ import UIKit
 
 import SnapKit
 
-final class TrendViewController: BaseViewController {
+final class TopicViewController: BaseViewController {
     
     //MARK: - Properties
     
@@ -41,7 +41,7 @@ final class TrendViewController: BaseViewController {
         tableView.separatorStyle = .none
         tableView.dataSource = self
         tableView.delegate = self
-        tableView.register(TrendCollectionTableViewCell.self, forCellReuseIdentifier: TrendCollectionTableViewCell.identifier)
+        tableView.register(TopicCollectionTableViewCell.self, forCellReuseIdentifier: TopicCollectionTableViewCell.identifier)
         return tableView
     }()
     
@@ -182,7 +182,7 @@ final class TrendViewController: BaseViewController {
 
 //MARK: - UITableViewDelegate, UITableViewDataSource
 
-extension TrendViewController: UITableViewDelegate, UITableViewDataSource {
+extension TopicViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return UIScreen.main.bounds.height / 2.9
@@ -197,7 +197,7 @@ extension TrendViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: TrendCollectionTableViewCell.identifier, for: indexPath) as? TrendCollectionTableViewCell else {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: TopicCollectionTableViewCell.identifier, for: indexPath) as? TopicCollectionTableViewCell else {
             print("Failed to dequeue a TrendCollectionTableViewCell. Using default UITableViewCell.")
             return UITableViewCell()
         }

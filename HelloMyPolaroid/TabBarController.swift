@@ -19,7 +19,7 @@ final class TabBarController: UITabBarController {
     //MARK: - Configurations
     
     private func setupTabBar() {
-        let mainVC = UINavigationController(rootViewController: TrendViewController())
+        let mainVC = UINavigationController(rootViewController: TopicViewController())
         let randomVC = UINavigationController(rootViewController: UIViewController())
         randomVC.view.backgroundColor = .white
         let searchVC = UINavigationController(rootViewController: SearchPhotoViewController())

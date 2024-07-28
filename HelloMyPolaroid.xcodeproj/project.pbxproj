@@ -30,8 +30,8 @@
 		447F22242C4FDE020037D433 /* Reusable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 447F22232C4FDE020037D433 /* Reusable.swift */; };
 		447F22262C4FDF7B0037D433 /* ProfileImageSettingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 447F22252C4FDF7B0037D433 /* ProfileImageSettingViewModel.swift */; };
 		447F222C2C5007840037D433 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 447F222B2C5007840037D433 /* TabBarController.swift */; };
-		447F22322C5076E60037D433 /* TrendViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 447F22312C5076E60037D433 /* TrendViewController.swift */; };
-		447F225D2C50ECB20037D433 /* TrendCollectionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 447F225C2C50ECB20037D433 /* TrendCollectionTableViewCell.swift */; };
+		447F22322C5076E60037D433 /* TopicViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 447F22312C5076E60037D433 /* TopicViewController.swift */; };
+		447F225D2C50ECB20037D433 /* TopicCollectionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 447F225C2C50ECB20037D433 /* TopicCollectionTableViewCell.swift */; };
 		447F225F2C50ECF80037D433 /* BaseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 447F225E2C50ECF80037D433 /* BaseTableViewCell.swift */; };
 		447F22612C50EF530037D433 /* PhotoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 447F22602C50EF530037D433 /* PhotoCollectionViewCell.swift */; };
 		447F22642C5100050037D433 /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 447F22632C5100050037D433 /* Photo.swift */; };
@@ -99,8 +99,8 @@
 		447F22232C4FDE020037D433 /* Reusable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reusable.swift; sourceTree = "<group>"; };
 		447F22252C4FDF7B0037D433 /* ProfileImageSettingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileImageSettingViewModel.swift; sourceTree = "<group>"; };
 		447F222B2C5007840037D433 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
-		447F22312C5076E60037D433 /* TrendViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendViewController.swift; sourceTree = "<group>"; };
-		447F225C2C50ECB20037D433 /* TrendCollectionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendCollectionTableViewCell.swift; sourceTree = "<group>"; };
+		447F22312C5076E60037D433 /* TopicViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicViewController.swift; sourceTree = "<group>"; };
+		447F225C2C50ECB20037D433 /* TopicCollectionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicCollectionTableViewCell.swift; sourceTree = "<group>"; };
 		447F225E2C50ECF80037D433 /* BaseTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTableViewCell.swift; sourceTree = "<group>"; };
 		447F22602C50EF530037D433 /* PhotoCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCollectionViewCell.swift; sourceTree = "<group>"; };
 		447F22632C5100050037D433 /* Photo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Photo.swift; sourceTree = "<group>"; };
@@ -306,8 +306,8 @@
 		447F222D2C5076900037D433 /* Main */ = {
 			isa = PBXGroup;
 			children = (
-				447F22312C5076E60037D433 /* TrendViewController.swift */,
-				447F225C2C50ECB20037D433 /* TrendCollectionTableViewCell.swift */,
+				447F22312C5076E60037D433 /* TopicViewController.swift */,
+				447F225C2C50ECB20037D433 /* TopicCollectionTableViewCell.swift */,
 				447F22602C50EF530037D433 /* PhotoCollectionViewCell.swift */,
 			);
 			path = Main;
@@ -512,7 +512,7 @@
 				447F226F2C513EED0037D433 /* APIKey.swift in Sources */,
 				44689C852C4E732E00E307B4 /* ProfileSettingViewModel.swift in Sources */,
 				447F22162C4FCEDE0037D433 /* UserDefaultsManager.swift in Sources */,
-				447F225D2C50ECB20037D433 /* TrendCollectionTableViewCell.swift in Sources */,
+				447F225D2C50ECB20037D433 /* TopicCollectionTableViewCell.swift in Sources */,
 				447F22922C5332740037D433 /* PhotoListWithColorOptionView.swift in Sources */,
 				44689C882C4E73AB00E307B4 /* Observable.swift in Sources */,
 				447F22612C50EF530037D433 /* PhotoCollectionViewCell.swift in Sources */,
@@ -523,7 +523,7 @@
 				44689C5A2C4E4D7A00E307B4 /* AppDelegate.swift in Sources */,
 				447F222C2C5007840037D433 /* TabBarController.swift in Sources */,
 				447F22222C4FDDD60037D433 /* BaseCollectionViewCell.swift in Sources */,
-				447F22322C5076E60037D433 /* TrendViewController.swift in Sources */,
+				447F22322C5076E60037D433 /* TopicViewController.swift in Sources */,
 				447F22182C4FDAE10037D433 /* ProfileImageSettingViewController.swift in Sources */,
 				447F22902C52929D0037D433 /* SearchPhotoViewController.swift in Sources */,
 				447F22B92C555CEB0037D433 /* Statistics.swift in Sources */,
