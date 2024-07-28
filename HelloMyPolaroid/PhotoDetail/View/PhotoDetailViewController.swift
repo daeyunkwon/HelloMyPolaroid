@@ -32,6 +32,11 @@ final class PhotoDetailViewController: BaseViewController {
         navigationItem.largeTitleDisplayMode = .never
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        tabBarController?.tabBar.isHidden = false
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupAction()
