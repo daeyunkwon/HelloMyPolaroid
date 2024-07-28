@@ -51,6 +51,7 @@ final class ProfileSettingViewController: BaseViewController {
         tf.keyboardType = .default
         tf.returnKeyType = .done
         tf.addTarget(self, action: #selector(nicknameTextFieldChanged), for: .editingChanged)
+        tf.addTarget(self, action: #selector(nicknameTextFieldReturnKeyTapped), for: .editingDidEndOnExit)
         
         let accessory = UIView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 50))
         lazy var doneButton = UIButton(type: .system)
@@ -427,6 +428,10 @@ final class ProfileSettingViewController: BaseViewController {
     
     @objc private func doneButtonInsideAccessoryTapped() {
         nicknameTextField.resignFirstResponder()
+    }
+    
+    @objc private func nicknameTextFieldReturnKeyTapped() {
+        nicknameTextField.endEditing(true)
     }
     
     //MARK: - Methods
