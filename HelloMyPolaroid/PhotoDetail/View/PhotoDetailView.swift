@@ -54,11 +54,11 @@ final class PhotoDetailView: UIView {
     
     let photoImageView: UIImageView = {
         let iv = UIImageView()
-        iv.contentMode = .scaleAspectFit
+        iv.contentMode = .scaleAspectFill
         iv.backgroundColor = .clear
         iv.image = UIImage(systemName: "photo")?.applyingSymbolConfiguration(.init(font: UIFont.systemFont(ofSize: 300)))
         iv.tintColor = .lightGray
-        iv.clipsToBounds = false
+        iv.clipsToBounds = true
         return iv
     }()
     
