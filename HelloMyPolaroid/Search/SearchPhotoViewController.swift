@@ -199,6 +199,12 @@ extension SearchPhotoViewController: UICollectionViewDataSource {
             return UICollectionViewCell()
          }
     }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let vc = PhotoDetailViewController()
+        vc.photo = self.photos[indexPath.row]
+        self.pushViewController(vc)
+    }
 }
 
 //MARK: - UICollectionViewDataSourcePrefetching
