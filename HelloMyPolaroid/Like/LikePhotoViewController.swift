@@ -38,6 +38,7 @@ final class LikePhotoViewController: BasePhotoListViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        navigationItem.title = "MY POLAROID"
         fetchData()
     }
     
@@ -51,10 +52,6 @@ final class LikePhotoViewController: BasePhotoListViewController {
     }
     
     //MARK: - Configurations
-    
-    override func setupNavi() {
-        navigationItem.title = "MY POLAROID"
-    }
     
     override func setupColorOptionCollectionView() {
         super.setupColorOptionCollectionView()
