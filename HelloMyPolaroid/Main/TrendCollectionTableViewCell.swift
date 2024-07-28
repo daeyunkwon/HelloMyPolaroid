@@ -13,27 +13,11 @@ final class TrendCollectionTableViewCell: BaseTableViewCell {
     
     //MARK: - Properties
     
-    enum CellType: Int, CaseIterable {
-        case goldenhour
-        case business
-        case architecture
-        
-        var titleString: String {
-            switch self {
-            case .goldenhour:
-                "골든 아워"
-            case .business:
-                "비즈니스 및 업무"
-            case .architecture:
-                "건축 및 인테리어"
-            }
-        }
-    }
-    var cellType: CellType? {
+    var cellType: TopicID? {
         didSet {
             guard let cellType = self.cellType else { return }
             
-            self.sectionTitleLabel.text = cellType.titleString
+            self.sectionTitleLabel.text = cellType.description
         }
     }
     

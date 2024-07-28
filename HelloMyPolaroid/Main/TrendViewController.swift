@@ -13,15 +13,13 @@ final class TrendViewController: BaseViewController {
     
     //MARK: - Properties
     
-    enum Section: Int, CaseIterable {
-        case goldenhour
-        case business
-        case architecture
-    }
+    private var firstRandomTopic: TopicID?
+    private var secondRandomTopic: TopicID?
+    private var thirdRandomTopic: TopicID?
     
-    private var goldenhourList: [Photo] = []
-    private var businessList: [Photo] = []
-    private var architectureList: [Photo] = []
+    private var firstTopicList: [Photo] = []
+    private var secondTopicList: [Photo] = []
+    private var thirdTopicList: [Photo] = []
     
     //MARK: - UI Components
     
@@ -106,14 +104,20 @@ final class TrendViewController: BaseViewController {
     //MARK: - Methods
     
     private func fetchData() {
+        self.setupRandomTopics()
+        
+        guard let firstRandomTopic = self.firstRandomTopic else { return }
+        guard let secondRandomTopic = self.secondRandomTopic else { return }
+        guard let thirdRandomTopic = self.thirdRandomTopic else { return }
+        
         let group = DispatchGroup()
         
         group.enter()
         DispatchQueue.global().async(group: group) {
-            NetworkManager.shared.fetchData(api: .topics(topicID: TopicID.goldenhour.rawValue), model: [Photo].self) { result in
+            NetworkManager.shared.fetchData(api: .topics(topicID: firstRandomTopic.rawValue), model: [Photo].self) { result in
                 switch result {
                 case .success(let data):
-                    self.goldenhourList = data
+                    self.firstTopicList = data
                     group.leave()
                     
                 case .failure(let error):
@@ -126,10 +130,10 @@ final class TrendViewController: BaseViewController {
         
         group.enter()
         DispatchQueue.global().async(group: group) {
-            NetworkManager.shared.fetchData(api: .topics(topicID: TopicID.business.rawValue), model: [Photo].self) { result in
+            NetworkManager.shared.fetchData(api: .topics(topicID: secondRandomTopic.rawValue), model: [Photo].self) { result in
                 switch result {
                 case .success(let data):
-                    self.businessList = data
+                    self.secondTopicList = data
                     group.leave()
                     
                 case .failure(let error):
@@ -142,10 +146,10 @@ final class TrendViewController: BaseViewController {
         
         group.enter()
         DispatchQueue.global().async(group: group) {
-            NetworkManager.shared.fetchData(api: .topics(topicID: TopicID.architecture.rawValue), model: [Photo].self) { result in
+            NetworkManager.shared.fetchData(api: .topics(topicID: thirdRandomTopic.rawValue), model: [Photo].self) { result in
                 switch result {
                 case .success(let data):
-                    self.architectureList = data
+                    self.thirdTopicList = data
                     group.leave()
                     
                 case .failure(let error):
@@ -165,6 +169,14 @@ final class TrendViewController: BaseViewController {
         let name = UserDefaultsManager.shared.profile ?? "profile_0"
         self.profileView.image = UIImage(named: name)
     }
+    
+    private func setupRandomTopics() {
+        var list = TopicID.allCases
+        list.shuffle()
+        self.firstRandomTopic = list[0]
+        self.secondRandomTopic = list[1]
+        self.thirdRandomTopic = list[2]
+    }
 
 }
 
@@ -177,7 +189,7 @@ extension TrendViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return Section.allCases.count
+        return 3
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -198,16 +210,16 @@ extension TrendViewController: UITableViewDelegate, UITableViewDataSource {
         
         switch indexPath.section {
         case 0: 
-            cell.cellType = .goldenhour
-            cell.photoList = self.goldenhourList
+            cell.cellType = self.firstRandomTopic
+            cell.photoList = self.firstTopicList
         
         case 1: 
-            cell.cellType = .business
-            cell.photoList = self.businessList
+            cell.cellType = self.secondRandomTopic
+            cell.photoList = self.secondTopicList
         
         case 2: 
-            cell.cellType = .architecture
-            cell.photoList = self.architectureList
+            cell.cellType = self.thirdRandomTopic
+            cell.photoList = self.thirdTopicList
         default:
             break
         }
