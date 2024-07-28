@@ -20,11 +20,9 @@ final class TabBarController: UITabBarController {
     
     private func setupTabBar() {
         let mainVC = UINavigationController(rootViewController: TrendViewController())
-        let randomVC = UINavigationController(rootViewController: UIViewController())
-        randomVC.view.backgroundColor = .white
+        let randomVC = UINavigationController(rootViewController: PhotoDetailViewController())
         let searchVC = UINavigationController(rootViewController: SearchPhotoViewController())
         let likeVC = UINavigationController(rootViewController: LikePhotoViewController())
-        likeVC.view.backgroundColor = .white
         
         mainVC.tabBarItem = UITabBarItem(title: nil, image: UIImage(named: "tab_trend_inactive"), selectedImage: UIImage(named: "tab_trend"))
         randomVC.tabBarItem = UITabBarItem(title: nil, image: UIImage(named: "tab_random_inactive"), selectedImage: UIImage(named: "tab_random"))

@@ -7,7 +7,7 @@
 
 import UIKit
 
-import SnapKit
+import Kingfisher
 
 final class SearchPhotoViewController: BasePhotoListViewController {
     
@@ -94,7 +94,6 @@ final class SearchPhotoViewController: BasePhotoListViewController {
     
     override func configureUI() {
         super.configureUI()
-        photoView.viewType = .search
     }
     
     //MARK: - Actions
@@ -144,6 +143,7 @@ final class SearchPhotoViewController: BasePhotoListViewController {
             self.isFetchExecuted = false
             
             if self.photos.isEmpty {
+                self.photoView.viewType = .search
                 self.photoView.showEmptySearchResultLabel()
             } else {
                 self.photoView.hideEmptySearchResultLabel()
@@ -191,7 +191,7 @@ extension SearchPhotoViewController: UICollectionViewDataSource {
             
             cell.delegate = self
             cell.cellType = .search
-            cell.photoID = self.photos[indexPath.row].id
+            cell.photo = self.photos[indexPath.row]
             cell.cellConfig(photo: self.photos[indexPath.row])
             
             return cell
@@ -238,10 +238,10 @@ extension SearchPhotoViewController: UISearchBarDelegate {
 extension SearchPhotoViewController: PhotoCollectionViewCellDelegate {
     
     func likeButtonTapped(senderCell: PhotoCollectionViewCell) {
-        guard let photoID = senderCell.photoID, !photoID.isEmpty else { return }
+        guard let photo = senderCell.photo else { return }
         guard let image = senderCell.photoImage else { return }
         
-        let data = LikedPhoto(photoID: photoID)
+        let data = LikedPhoto(photoID: photo.id, created: photo.createdAt, width: photo.width, height: photo.height, photoImageURLRaw: photo.urls.raw, photoImageURLSmall: photo.urls.small, userProfileImageURLSmall: photo.user.profileImage.small, userProfileImageURLMedium: photo.user.profileImage.medium, userProfileImageURLLarge: photo.user.profileImage.large, username: photo.user.name, likeCount: photo.likes)
         
         senderCell.isLikeButtonSelected.toggle()
         
@@ -250,8 +250,21 @@ extension SearchPhotoViewController: PhotoCollectionViewCellDelegate {
             self.repository.create(data: data) { result in
                 switch result {
                 case .success(_):
-                    ImageFileManager.shared.saveImageToDocument(image: image, filename: photoID)
-                
+                    //사진 이미지를 파일에 저장
+                    ImageFileManager.shared.saveImageToDocument(image: image, filename: data.photoID)
+                    
+                    //유저 프로필 이미지를 파일에 저장
+                    if let url = URL(string: data.userProfileImageURLLarge) {
+                        ImageDownloader.default.downloadImage(with: url) { result in
+                            switch result {
+                            case .success(let value):
+                                ImageFileManager.shared.saveImageToDocument(image: value.image, filename: data.userProfileID)
+                            case .failure(let error):
+                                print(error)
+                            }
+                        }
+                    }
+                    
                 case .failure(let error):
                     print(error)
                     self.showRealmErrorAlert(type: error)
@@ -260,11 +273,12 @@ extension SearchPhotoViewController: PhotoCollectionViewCellDelegate {
             }
         } else { 
             //좋아요 취소한 경우
-            self.repository.deleteItem(photoID: photoID) { result in
+            self.repository.deleteItem(photoID: data.photoID) { result in
                 switch result {
                 case .success(let success):
                     print(success)
-                    ImageFileManager.shared.removeImageFromDocument(filename: photoID)
+                    ImageFileManager.shared.removeImageFromDocument(filename: data.photoID)
+                    ImageFileManager.shared.removeImageFromDocument(filename: data.userProfileID)
                     
                 case .failure(let error):
                     print(error)

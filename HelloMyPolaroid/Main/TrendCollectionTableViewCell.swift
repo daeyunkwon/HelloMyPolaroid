@@ -43,6 +43,8 @@ final class TrendCollectionTableViewCell: BaseTableViewCell {
         }
     }
     
+    var closureForDidSelected: (Photo) -> Void = { sender in }
+    
     //MARK: - UI Components
     
     private let sectionTitleLabel: UILabel = {
@@ -96,6 +98,10 @@ extension TrendCollectionTableViewCell: UICollectionViewDataSource, UICollection
         cell.cellType = .trend
         cell.cellConfig(photo: self.photoList[indexPath.row])
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        self.closureForDidSelected(self.photoList[indexPath.row])
     }
 }
 

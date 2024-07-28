@@ -8,7 +8,6 @@
 import Foundation
 
 struct Photo: Decodable {
-    
     let id: String
     let createdAt: String
     let width: Int
@@ -25,6 +24,11 @@ struct Photo: Decodable {
         case urls
         case likes
         case user
+    }
+    
+    var userProfileID: String {
+        let text = self.id + self.user.name.replacingOccurrences(of: " ", with: "_")
+        return text.trimmingCharacters(in: .whitespaces)
     }
 }
 

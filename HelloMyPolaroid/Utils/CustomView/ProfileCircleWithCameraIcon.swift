@@ -11,6 +11,8 @@ import SnapKit
 
 final class ProfileCircleWithCameraIcon: UIView {
     
+    //MARK: - UI Components
+    
     let profileImageView: UIImageView = {
         let iv = UIImageView()
         iv.contentMode = .scaleAspectFill
@@ -34,6 +36,8 @@ final class ProfileCircleWithCameraIcon: UIView {
         return btn
     }()
     
+    //MARK: - Init
+    
     init() {
         super.init(frame: .zero)
         configureUI()
@@ -42,6 +46,8 @@ final class ProfileCircleWithCameraIcon: UIView {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    //MARK: - Configurations
     
     private func configureUI() {
         addSubview(profileImageView)

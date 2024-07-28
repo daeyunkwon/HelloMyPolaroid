@@ -7,8 +7,8 @@
 
 import UIKit
 
+import Kingfisher
 import RealmSwift
-import SnapKit
 
 final class LikePhotoViewController: BasePhotoListViewController {
     
@@ -140,7 +140,8 @@ extension LikePhotoViewController: UICollectionViewDataSource {
             cell.cellType = .like
             cell.cellConfig(likedPhoto: self.likedPhotos[indexPath.row])
             
-            cell.photoID = self.likedPhotos[indexPath.row].photoID
+            let data = self.likedPhotos[indexPath.row]
+            cell.photo = Photo(id: data.photoID, createdAt: data.created, width: data.width, height: data.height, urls: Urls(raw: data.photoImageURLRaw, small: data.photoImageURLSmall), likes: data.likeCount, user: User(name: data.username, profileImage: ProfileImage(small: data.userProfileImageURLSmall, medium: data.userProfileImageURLMedium, large: data.userProfileImageURLLarge)))
             
             return cell
         default:
@@ -155,10 +156,10 @@ extension LikePhotoViewController: UICollectionViewDataSource {
 extension LikePhotoViewController: PhotoCollectionViewCellDelegate {
     
     func likeButtonTapped(senderCell: PhotoCollectionViewCell) {
-        guard let photoID = senderCell.photoID, !photoID.isEmpty else { return }
+        guard let photo = senderCell.photo else { return }
         guard let image = senderCell.photoImage else { return }
         
-        let data = LikedPhoto(photoID: photoID)
+        let data = LikedPhoto(photoID: photo.id, created: photo.createdAt, width: photo.width, height: photo.height, photoImageURLRaw: photo.urls.raw, photoImageURLSmall: photo.urls.small, userProfileImageURLSmall: photo.user.profileImage.small, userProfileImageURLMedium: photo.user.profileImage.medium, userProfileImageURLLarge: photo.user.profileImage.large, username: photo.user.name, likeCount: photo.likes)
         
         senderCell.isLikeButtonSelected.toggle()
         
@@ -167,7 +168,20 @@ extension LikePhotoViewController: PhotoCollectionViewCellDelegate {
             self.repository.create(data: data) { result in
                 switch result {
                 case .success(_):
-                    ImageFileManager.shared.saveImageToDocument(image: image, filename: photoID)
+                    //사진 이미지를 파일에 저장
+                    ImageFileManager.shared.saveImageToDocument(image: image, filename: data.photoID)
+                    
+                    //유저 프로필 이미지를 파일에 저장
+                    if let url = URL(string: data.userProfileImageURLLarge) {
+                        ImageDownloader.default.downloadImage(with: url) { result in
+                            switch result {
+                            case .success(let value):
+                                ImageFileManager.shared.saveImageToDocument(image: value.image, filename: data.userProfileID)
+                            case .failure(let error):
+                                print(error)
+                            }
+                        }
+                    }
                 
                 case .failure(let error):
                     print(error)
@@ -177,11 +191,12 @@ extension LikePhotoViewController: PhotoCollectionViewCellDelegate {
             }
         } else {
             //좋아요 취소한 경우
-            self.repository.deleteItem(photoID: photoID) { result in
+            self.repository.deleteItem(photoID: data.photoID) { result in
                 switch result {
                 case .success(let success):
                     print(success)
-                    ImageFileManager.shared.removeImageFromDocument(filename: photoID)
+                    ImageFileManager.shared.removeImageFromDocument(filename: data.photoID)
+                    ImageFileManager.shared.removeImageFromDocument(filename: data.userProfileID)
                     
                 case .failure(let error):
                     print(error)

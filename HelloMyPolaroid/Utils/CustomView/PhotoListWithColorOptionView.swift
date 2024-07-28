@@ -77,10 +77,10 @@ final class PhotoListWithColorOptionView: UIView {
     
     private let emptySearchResultLabel: UILabel = {
         let label = UILabel()
-        label.text = "검색 결과가 없습니다"
+        label.text = "사진을 검색해보세요."
         label.textAlignment = .center
         label.font = .systemFont(ofSize: 16, weight: .heavy)
-        label.isHidden = true
+        label.isHidden = false
         return label
     }()
     
@@ -95,6 +95,8 @@ final class PhotoListWithColorOptionView: UIView {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    //MARK: - Configurations
     
     private func configureLayout() {
         self.addSubview(colorOptionCollectionView)
@@ -138,9 +140,9 @@ final class PhotoListWithColorOptionView: UIView {
     private func setupEmptyLabelText() {
         switch viewType {
         case .search:
-            self.emptySearchResultLabel.text = "검색 결과가 없습니다"
+            self.emptySearchResultLabel.text = "검색 결과가 없습니다."
         case .like:
-            self.emptySearchResultLabel.text = "저장된 사진이 없어요"
+            self.emptySearchResultLabel.text = "저장된 사진이 없어요."
         }
     }
     

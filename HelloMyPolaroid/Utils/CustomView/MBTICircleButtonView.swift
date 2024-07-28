@@ -11,6 +11,8 @@ import SnapKit
 
 final class MBTICircleButtonView: UIView {
     
+    //MARK: - UI Components
+    
     let alphabetButton: UIButton = {
         let btn = UIButton(type: .system)
         btn.backgroundColor = Constant.Color.primaryWhite
@@ -27,6 +29,8 @@ final class MBTICircleButtonView: UIView {
         return label
     }()
     
+    //MARK: - Init
+    
     init(alphabetTitle: String) {
         super.init(frame: .zero)
         configureLayout()
@@ -36,6 +40,8 @@ final class MBTICircleButtonView: UIView {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    //MARK: - Configurations
     
     private func configureLayout() {
         self.addSubview(alphabetButton)
@@ -48,6 +54,8 @@ final class MBTICircleButtonView: UIView {
             make.center.equalTo(alphabetButton.snp.center)
         }
     }
+    
+    //MARK: - Methods
     
     func updateAppearanceUI(isSelected: Bool) {
         if isSelected {

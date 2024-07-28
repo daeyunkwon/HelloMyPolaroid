@@ -13,7 +13,11 @@ final class PhotoDetailView: UIView {
     
     //MARK: - Properties
     
-    
+    var isLiked: Bool = false {
+        didSet {
+            self.updateLikeButtonAppearance()
+        }
+    }
     
     //MARK: - UI Components
     
@@ -21,7 +25,7 @@ final class PhotoDetailView: UIView {
     
     private let contentView = UIView()
     
-    private let profileImageView: UIImageView = {
+    let profileImageView: UIImageView = {
         let iv = UIImageView()
         iv.contentMode = .scaleAspectFill
         iv.backgroundColor = .lightGray
@@ -30,30 +34,33 @@ final class PhotoDetailView: UIView {
         return iv
     }()
     
-    private let userNameLabel: UILabel = {
+    let userNameLabel: UILabel = {
         let label = UILabel()
         label.font = Constant.Font.system14
         label.text = "Daeyun Kwon"
         return label
     }()
     
-    private let dateLabel: UILabel = {
+    let dateLabel: UILabel = {
         let label = UILabel()
         label.font = .boldSystemFont(ofSize: 11)
         label.text = "2024년 7월 3일 게시됨"
         return label
     }()
     
-    private let likeButton: UIButton = {
+    let likeButton: UIButton = {
         let btn = UIButton(type: .system)
         btn.setImage(UIImage(named: "like_inactive"), for: .normal)
         return btn
     }()
     
-    private let photoImageView: UIImageView = {
+    let photoImageView: UIImageView = {
         let iv = UIImageView()
-        iv.contentMode = .scaleAspectFill
-        iv.backgroundColor = .lightGray
+        iv.contentMode = .scaleAspectFit
+        iv.backgroundColor = .clear
+        iv.image = UIImage(systemName: "photo")?.applyingSymbolConfiguration(.init(font: UIFont.systemFont(ofSize: 300)))
+        iv.tintColor = .lightGray
+        iv.clipsToBounds = false
         return iv
     }()
     
@@ -71,7 +78,7 @@ final class PhotoDetailView: UIView {
         return label
     }()
     
-    private let sizeLabel: UILabel = {
+    let sizeLabel: UILabel = {
         let label = UILabel()
         label.text = "3098 X 3872"
         label.font = .boldSystemFont(ofSize: 14)
@@ -85,7 +92,7 @@ final class PhotoDetailView: UIView {
         return label
     }()
     
-    private let viewCountLabel: UILabel = {
+    let viewCountLabel: UILabel = {
         let label = UILabel()
         label.text = "1,548,623"
         label.font = .boldSystemFont(ofSize: 14)
@@ -99,7 +106,7 @@ final class PhotoDetailView: UIView {
         return label
     }()
     
-    private let downloadLabel: UILabel = {
+    let downloadLabel: UILabel = {
         let label = UILabel()
         label.text = "388,966"
         label.font = .boldSystemFont(ofSize: 14)
@@ -132,7 +139,6 @@ final class PhotoDetailView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         configureLayout()
-        configureUI()
     }
     
     required init?(coder: NSCoder) {
@@ -144,7 +150,8 @@ final class PhotoDetailView: UIView {
     private func configureLayout() {
         self.addSubview(scrollView)
         scrollView.snp.makeConstraints { make in
-            make.verticalEdges.horizontalEdges.equalTo(self.safeAreaLayoutGuide)
+            make.top.horizontalEdges.equalTo(self.safeAreaLayoutGuide)
+            make.bottom.equalToSuperview()
         }
         
         scrollView.addSubview(contentView)
@@ -182,7 +189,6 @@ final class PhotoDetailView: UIView {
         photoImageView.snp.makeConstraints { make in
             make.top.equalTo(profileImageView.snp.bottom).offset(15)
             make.width.equalToSuperview()
-            make.height.equalTo(300) //임시 고정
         }
         
         contentView.addSubview(descriptionTitleLabel)
@@ -241,15 +247,14 @@ final class PhotoDetailView: UIView {
         }
     }
     
-    private func configureUI() {
-        
-    }
-    
-    //MARK: - Actions
-    
-    
-    
     //MARK: - Methods
     
+    private func updateLikeButtonAppearance() {
+        if self.isLiked {
+            self.likeButton.setImage(UIImage(named: "like"), for: .normal)
+        } else {
+            self.likeButton.setImage(UIImage(named: "like_inactive"), for: .normal)
+        }
+    }
     
 }

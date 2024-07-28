@@ -15,10 +15,16 @@ final class PhotoDetailViewModel {
     
     private let repository = LikedPhotoRepository()
     
+    private var photo: Photo?
+    
+    private var likedPhoto: LikedPhoto?
+    
     //MARK: - Inputs
     
     var inputPhoto = Observable<Photo?>(nil)
     var inputLikedPhoto = Observable<LikedPhoto?>(nil)
+    
+    var inputLikeButtonTapped = Observable<Bool?>(nil)
     
     //MARK: - Outputs
     
@@ -49,26 +55,42 @@ final class PhotoDetailViewModel {
     private func transform() {
         inputPhoto.bind { [weak self] value in
             guard let photo = value else { return }
+            self?.photo = photo
             
             self?.fetchData(with: photo.id)
             self?.setupPhotoData(username: photo.user.name, created: photo.createdAt, width: photo.width, height: photo.height, photoID: photo.id)
             
-            var tempImageView = UIImageView(frame: .zero)
-            tempImageView.kf.setImage(with: URL(string: photo.user.profileImage.medium))
-            self?.outputUserProfileImage.value = tempImageView.image
+            self?.downloadImage(url: photo.user.profileImage.large, completionHandler: { image in
+                if image != nil {
+                    self?.outputUserProfileImage.value = image
+                }
+            })
             
-            tempImageView.kf.setImage(with: URL(string: photo.urls.raw))
-            self?.outputPhotoImage.value = tempImageView.image
+            self?.downloadImage(url: photo.urls.small, completionHandler: { image in
+                if image != nil {
+                    self?.outputPhotoImage.value = image
+                }
+            })
         }
         
         inputLikedPhoto.bind { [weak self] value in
             guard let likedPhoto = value else { return }
+            self?.likedPhoto = likedPhoto
             
             self?.fetchData(with: likedPhoto.photoID)
             self?.setupPhotoData(username: likedPhoto.username, created: likedPhoto.created, width: likedPhoto.width, height: likedPhoto.height, photoID: likedPhoto.photoID)
             
-            //self?.outputUserProfileImageURL.value = userProfileImageURL
+            self?.outputUserProfileImage.value = ImageFileManager.shared.loadImageToDocument(filename: likedPhoto.photoID + likedPhoto.username)
             self?.outputPhotoImage.value = ImageFileManager.shared.loadImageToDocument(filename: likedPhoto.photoID)
+        }
+        
+        inputLikeButtonTapped.bind { [weak self] value in
+            guard let value = value else { return }
+            if value {
+                self?.saveItemToRealm()
+            } else {
+                self?.deleteItemFromRealm()
+            }
         }
     }
     
@@ -80,6 +102,7 @@ final class PhotoDetailViewModel {
             case .success(let value):
                 self?.setupStatisticsData(data: value)
             case .failure(let error):
+                print(error)
                 self?.outputShowNetworkErrorAlert.value = ()
             }
         }
@@ -113,6 +136,130 @@ final class PhotoDetailViewModel {
         return dateFormatter.string(from: date ?? Date())
     }
     
+    private func downloadImage(url: String, completionHandler: @escaping (UIImage?) -> Void) {
+        let imageView = UIImageView()
+        let urlString = url
+        if let url = URL(string: urlString) {
+            imageView.kf.setImage(with: url) { result in
+                switch result {
+                case .success(let value):
+                    completionHandler(value.image)
+                    
+                case .failure(let error):
+                    print("Error: \(error.localizedDescription)")
+                    completionHandler(nil)
+                }
+            }
+        }
+    }
     
+    private func saveItemToRealm() {
+        
+        if self.photo != nil && self.likedPhoto == nil {
+            
+            if let photo = self.photo {
+                
+                let data = LikedPhoto(photoID: photo.id, created: photo.createdAt, width: photo.width, height: photo.height, photoImageURLRaw: photo.urls.raw, photoImageURLSmall: photo.urls.small, userProfileImageURLSmall: photo.user.profileImage.small, userProfileImageURLMedium: photo.user.profileImage.medium, userProfileImageURLLarge: photo.user.profileImage.large, username: photo.user.name, likeCount: photo.likes)
+                
+                self.repository.create(data: data) { [weak self] result in
+                    switch result {
+                    case .success(_):
+                        //사진 이미지를 파일에 저장
+                        self?.downloadImage(url: photo.urls.small) { image in
+                            if let image = image {
+                                ImageFileManager.shared.saveImageToDocument(image: image, filename: data.photoID)
+                            }
+                        }
+                        
+                        //유저 프로필 이미지를 파일에 저장
+                        self?.downloadImage(url: photo.user.profileImage.large) { image in
+                            if let image = image {
+                                ImageFileManager.shared.saveImageToDocument(image: image, filename: photo.userProfileID)
+                            }
+                        }
+                        
+                        self?.outputIsLiked.value = true
+                        
+                    case .failure(let error):
+                        print(error)
+                        self?.outputIsLiked.value = false
+                    }
+                }
+            }
+        } else {
+            
+            if let likedPhoto = self.likedPhoto {
+                
+                self.repository.create(data: likedPhoto) { [weak self] result in
+                    switch result {
+                    case .success(_):
+                        //사진 이미지를 파일에 저장
+                        self?.downloadImage(url: likedPhoto.photoImageURLSmall) { image in
+                            if let image = image {
+                                ImageFileManager.shared.saveImageToDocument(image: image, filename: likedPhoto.photoID)
+                            }
+                        }
+                        
+                        //유저 프로필 이미지를 파일에 저장
+                        self?.downloadImage(url: likedPhoto.userProfileImageURLLarge) { image in
+                            if let image = image {
+                                ImageFileManager.shared.saveImageToDocument(image: image, filename: likedPhoto.userProfileID)
+                            }
+                        }
+                        
+                        self?.outputIsLiked.value = true
+                        
+                    case .failure(let error):
+                        print(error)
+                        self?.outputIsLiked.value = false
+                    }
+                }
+            }
+        }
+    }
+    
+    private func deleteItemFromRealm() {
+        
+        if self.photo != nil && self.likedPhoto == nil {
+            
+            if let photo = self.photo {
+                
+                self.repository.deleteItem(photoID: photo.id) { [weak self] result in
+                    switch result {
+                    case .success(let success):
+                        print(success)
+                        ImageFileManager.shared.removeImageFromDocument(filename: photo.id)
+                        ImageFileManager.shared.removeImageFromDocument(filename: photo.userProfileID)
+                        
+                        self?.outputIsLiked.value = false
+                        
+                    case .failure(let error):
+                        print(error)
+                        
+                        self?.outputIsLiked.value = true
+                    }
+                }
+            }
+        } else {
+            if let likedPhoto = self.likedPhoto {
+                
+                self.repository.deleteItem(photoID: likedPhoto.photoID) { [weak self] result in
+                    switch result {
+                    case .success(let success):
+                        print(success)
+                        ImageFileManager.shared.removeImageFromDocument(filename: likedPhoto.photoID)
+                        ImageFileManager.shared.removeImageFromDocument(filename: likedPhoto.userProfileID)
+                        
+                        self?.outputIsLiked.value = false
+                        
+                    case .failure(let error):
+                        print(error)
+                        
+                        self?.outputIsLiked.value = true
+                    }
+                }
+            }
+        }
+    }
     
 }

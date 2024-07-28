@@ -42,7 +42,7 @@ final class PhotoCollectionViewCell: BaseCollectionViewCell {
         }
     }
     
-    var photoID: String?
+    var photo: Photo?
     var photoImage: UIImage?
     
     var isLikeButtonSelected = false {
