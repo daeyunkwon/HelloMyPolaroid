@@ -18,6 +18,7 @@ final class PhotoDetailViewModel {
     private var photo: Photo?
     
     private var likedPhoto: LikedPhoto?
+    private var backupLikedPhotoData: LikedPhoto?
     
     //MARK: - Inputs
     
@@ -188,7 +189,7 @@ final class PhotoDetailViewModel {
             }
         } else {
             
-            if let likedPhoto = self.likedPhoto {
+            if let likedPhoto = self.backupLikedPhotoData {
                 
                 self.repository.create(data: likedPhoto) { [weak self] result in
                     switch result {
@@ -207,6 +208,7 @@ final class PhotoDetailViewModel {
                             }
                         }
                         
+                        self?.likedPhoto = likedPhoto //데이터 다시 채워두기
                         self?.outputIsLiked.value = true
                         
                     case .failure(let error):
@@ -243,19 +245,24 @@ final class PhotoDetailViewModel {
         } else {
             if let likedPhoto = self.likedPhoto {
                 
-                self.repository.deleteItem(photoID: likedPhoto.photoID) { [weak self] result in
-                    switch result {
-                    case .success(let success):
-                        print(success)
-                        ImageFileManager.shared.removeImageFromDocument(filename: likedPhoto.photoID)
-                        ImageFileManager.shared.removeImageFromDocument(filename: likedPhoto.userProfileID)
-                        
-                        self?.outputIsLiked.value = false
-                        
-                    case .failure(let error):
-                        print(error)
-                        
-                        self?.outputIsLiked.value = true
+                self.backupLikedPhotoData = LikedPhoto(value: likedPhoto)
+                
+                if let backupData = self.backupLikedPhotoData {
+                    
+                    self.repository.deleteItem(photoID: likedPhoto.photoID) { [weak self] result in
+                        switch result {
+                        case .success(let success):
+                            print(success)
+                            ImageFileManager.shared.removeImageFromDocument(filename: backupData.photoID)
+                            ImageFileManager.shared.removeImageFromDocument(filename: backupData.userProfileID)
+                            
+                            self?.outputIsLiked.value = false
+                            
+                        case .failure(let error):
+                            print(error)
+                            
+                            self?.outputIsLiked.value = true
+                        }
                     }
                 }
             }
