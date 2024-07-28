@@ -41,6 +41,11 @@ final class LikePhotoViewController: BasePhotoListViewController {
         fetchData()
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        navigationItem.title = ""
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     }
@@ -147,6 +152,12 @@ extension LikePhotoViewController: UICollectionViewDataSource {
         default:
             return UICollectionViewCell()
          }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let vc = PhotoDetailViewController()
+        vc.likedPhoto = self.likedPhotos[indexPath.row]
+        pushViewController(vc)
     }
     
 }

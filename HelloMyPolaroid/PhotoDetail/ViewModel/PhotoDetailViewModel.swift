@@ -80,7 +80,7 @@ final class PhotoDetailViewModel {
             self?.fetchData(with: likedPhoto.photoID)
             self?.setupPhotoData(username: likedPhoto.username, created: likedPhoto.created, width: likedPhoto.width, height: likedPhoto.height, photoID: likedPhoto.photoID)
             
-            self?.outputUserProfileImage.value = ImageFileManager.shared.loadImageToDocument(filename: likedPhoto.photoID + likedPhoto.username)
+            self?.outputUserProfileImage.value = ImageFileManager.shared.loadImageToDocument(filename: likedPhoto.userProfileID)
             self?.outputPhotoImage.value = ImageFileManager.shared.loadImageToDocument(filename: likedPhoto.photoID)
         }
         

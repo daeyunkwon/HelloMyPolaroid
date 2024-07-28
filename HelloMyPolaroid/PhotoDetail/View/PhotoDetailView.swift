@@ -37,14 +37,12 @@ final class PhotoDetailView: UIView {
     let userNameLabel: UILabel = {
         let label = UILabel()
         label.font = Constant.Font.system14
-        label.text = "Daeyun Kwon"
         return label
     }()
     
     let dateLabel: UILabel = {
         let label = UILabel()
         label.font = .boldSystemFont(ofSize: 11)
-        label.text = "2024년 7월 3일 게시됨"
         return label
     }()
     
@@ -80,7 +78,6 @@ final class PhotoDetailView: UIView {
     
     let sizeLabel: UILabel = {
         let label = UILabel()
-        label.text = "3098 X 3872"
         label.font = .boldSystemFont(ofSize: 14)
         return label
     }()
@@ -94,7 +91,6 @@ final class PhotoDetailView: UIView {
     
     let viewCountLabel: UILabel = {
         let label = UILabel()
-        label.text = "1,548,623"
         label.font = .boldSystemFont(ofSize: 14)
         return label
     }()
@@ -108,7 +104,6 @@ final class PhotoDetailView: UIView {
     
     let downloadLabel: UILabel = {
         let label = UILabel()
-        label.text = "388,966"
         label.font = .boldSystemFont(ofSize: 14)
         return label
     }()
