@@ -41,39 +41,39 @@ extension UnsplashAPIRouter {
         switch self {
         case .topics(_):
             return [
-                "page": "1",
-                "client_id": APIKey.apiKey
+                ParameterKey.page.rawValue: "1",
+                ParameterKey.client_id.rawValue: APIKey.apiKey
             ]
         
         case .search(let keyword, let page, let order, let color):
             if let safeColor = color {
                 return [
-                    "page": "\(page)",
-                    "client_id": APIKey.apiKey,
-                    "query": keyword,
-                    "order_by": order,
-                    "color": safeColor,
-                    "per_page": "20"
+                    ParameterKey.page.rawValue: "\(page)",
+                    ParameterKey.client_id.rawValue: APIKey.apiKey,
+                    ParameterKey.query.rawValue: keyword,
+                    ParameterKey.order_by.rawValue: order,
+                    ParameterKey.color.rawValue: safeColor,
+                    ParameterKey.per_page.rawValue: "20"
                 ]
             } else {
                 return [
-                    "page": "\(page)",
-                    "client_id": APIKey.apiKey,
-                    "query": keyword,
-                    "order_by": order,
-                    "per_page": "20"
+                    ParameterKey.page.rawValue: "\(page)",
+                    ParameterKey.client_id.rawValue: APIKey.apiKey,
+                    ParameterKey.query.rawValue: keyword,
+                    ParameterKey.order_by.rawValue: order,
+                    ParameterKey.per_page.rawValue: "20"
                 ]
             }
         
         case .statistics(_):
             return [
-                "client_id": APIKey.apiKey
+                ParameterKey.client_id.rawValue: APIKey.apiKey
             ]
             
         case .random:
             return [
-                "client_id": APIKey.apiKey,
-                "count": "10"
+                ParameterKey.client_id.rawValue: APIKey.apiKey,
+                ParameterKey.count.rawValue: "10"
             ]
         }
     }
