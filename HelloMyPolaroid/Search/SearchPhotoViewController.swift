@@ -129,7 +129,8 @@ final class SearchPhotoViewController: BasePhotoListViewController {
             return
         }
         
-        NetworkManager.shared.fetchData(api: .search(keyword: keyword, page: self.page, order: self.orderType.rawValue, color: self.colorType?.rawValue), model: Search.self) { result in
+        NetworkManager.shared.fetchData(api: .search(keyword: keyword, page: self.page, order: self.orderType.rawValue, color: self.colorType?.rawValue), model: Search.self) { [weak self] result in
+            guard let self else { return }
             switch result {
             case .success(let value):
                 self.photos.append(contentsOf: value.results)

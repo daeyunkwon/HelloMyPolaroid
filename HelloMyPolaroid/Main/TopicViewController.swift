@@ -144,15 +144,15 @@ final class TopicViewController: BaseViewController {
         
         group.enter()
         DispatchQueue.global().async(group: group) {
-            NetworkManager.shared.fetchData(api: .topics(topicID: firstRandomTopic.rawValue), model: [Photo].self) { result in
+            NetworkManager.shared.fetchData(api: .topics(topicID: firstRandomTopic.rawValue), model: [Photo].self) { [weak self] result in
                 switch result {
                 case .success(let data):
-                    self.firstTopicList = data
+                    self?.firstTopicList = data
                     group.leave()
                     
                 case .failure(let error):
                     print(error.errorDescription)
-                    self.showNetworkResponseFailAlert()
+                    self?.showNetworkResponseFailAlert()
                     group.leave()
                 }
             }
@@ -160,15 +160,15 @@ final class TopicViewController: BaseViewController {
         
         group.enter()
         DispatchQueue.global().async(group: group) {
-            NetworkManager.shared.fetchData(api: .topics(topicID: secondRandomTopic.rawValue), model: [Photo].self) { result in
+            NetworkManager.shared.fetchData(api: .topics(topicID: secondRandomTopic.rawValue), model: [Photo].self) { [weak self] result in
                 switch result {
                 case .success(let data):
-                    self.secondTopicList = data
+                    self?.secondTopicList = data
                     group.leave()
                     
                 case .failure(let error):
                     print(error.errorDescription)
-                    self.showNetworkResponseFailAlert()
+                    self?.showNetworkResponseFailAlert()
                     group.leave()
                 }
             }
@@ -176,15 +176,15 @@ final class TopicViewController: BaseViewController {
         
         group.enter()
         DispatchQueue.global().async(group: group) {
-            NetworkManager.shared.fetchData(api: .topics(topicID: thirdRandomTopic.rawValue), model: [Photo].self) { result in
+            NetworkManager.shared.fetchData(api: .topics(topicID: thirdRandomTopic.rawValue), model: [Photo].self) { [weak self] result in
                 switch result {
                 case .success(let data):
-                    self.thirdTopicList = data
+                    self?.thirdTopicList = data
                     group.leave()
                     
                 case .failure(let error):
                     print(error.errorDescription)
-                    self.showNetworkResponseFailAlert()
+                    self?.showNetworkResponseFailAlert()
                     group.leave()
                 }
             }

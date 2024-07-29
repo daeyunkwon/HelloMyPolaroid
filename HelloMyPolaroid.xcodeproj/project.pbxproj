@@ -60,8 +60,8 @@
 		447F22B92C555CEB0037D433 /* Statistics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 447F22B82C555CEB0037D433 /* Statistics.swift */; };
 		447F22BD2C576EF60037D433 /* RandomPhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 447F22BC2C576EF60037D433 /* RandomPhotoViewController.swift */; };
 		447F22BF2C5771E10037D433 /* ParameterKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 447F22BE2C5771E10037D433 /* ParameterKey.swift */; };
-		447F22C12C57744E0037D433 /* RandomPhotoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 447F22C02C57744E0037D433 /* RandomPhotoView.swift */; };
 		447F22C32C5775C30037D433 /* UserProfileAndLikeButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 447F22C22C5775C30037D433 /* UserProfileAndLikeButtonView.swift */; };
+		447F22C52C57823A0037D433 /* RandomPhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 447F22C42C57823A0037D433 /* RandomPhotoCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -129,8 +129,8 @@
 		447F22B82C555CEB0037D433 /* Statistics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Statistics.swift; sourceTree = "<group>"; };
 		447F22BC2C576EF60037D433 /* RandomPhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomPhotoViewController.swift; sourceTree = "<group>"; };
 		447F22BE2C5771E10037D433 /* ParameterKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParameterKey.swift; sourceTree = "<group>"; };
-		447F22C02C57744E0037D433 /* RandomPhotoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomPhotoView.swift; sourceTree = "<group>"; };
 		447F22C22C5775C30037D433 /* UserProfileAndLikeButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileAndLikeButtonView.swift; sourceTree = "<group>"; };
+		447F22C42C57823A0037D433 /* RandomPhotoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomPhotoCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -325,8 +325,8 @@
 		447F222E2C5076970037D433 /* Random */ = {
 			isa = PBXGroup;
 			children = (
-				447F22C02C57744E0037D433 /* RandomPhotoView.swift */,
 				447F22BC2C576EF60037D433 /* RandomPhotoViewController.swift */,
+				447F22C42C57823A0037D433 /* RandomPhotoCell.swift */,
 			);
 			path = Random;
 			sourceTree = "<group>";
@@ -514,9 +514,9 @@
 				44689C7C2C4E5F8400E307B4 /* BaseViewController.swift in Sources */,
 				44689C5E2C4E4D7A00E307B4 /* OnboardingViewController.swift in Sources */,
 				447F22712C514DA50037D433 /* UIViewController+Extension.swift in Sources */,
-				447F22C12C57744E0037D433 /* RandomPhotoView.swift in Sources */,
 				447F22BF2C5771E10037D433 /* ParameterKey.swift in Sources */,
 				447F22962C5387940037D433 /* Color.swift in Sources */,
+				447F22C52C57823A0037D433 /* RandomPhotoCell.swift in Sources */,
 				44689C832C4E6E9300E307B4 /* ProfileCircleWithCameraIcon.swift in Sources */,
 				447F229E2C53F3FE0037D433 /* PhotoCollectionViewCellDelegate.swift in Sources */,
 				447F226D2C513ED30037D433 /* UnsplashAPIRouter.swift in Sources */,

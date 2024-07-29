@@ -50,6 +50,7 @@ final class UserProfileAndLikeButtonView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         configureLayout()
+        configureUI()
     }
     
     required init?(coder: NSCoder) {
@@ -84,6 +85,10 @@ final class UserProfileAndLikeButtonView: UIView {
             make.centerY.equalTo(profileImageView)
             make.size.equalTo(30)
         }
+    }
+    
+    private func configureUI() {
+        backgroundColor = .clear
     }
     
 }

@@ -20,8 +20,7 @@ final class TabBarController: UITabBarController {
     
     private func setupTabBar() {
         let mainVC = UINavigationController(rootViewController: TopicViewController())
-        let randomVC = UINavigationController(rootViewController: UIViewController())
-        randomVC.view.backgroundColor = .white
+        let randomVC = UINavigationController(rootViewController: RandomPhotoViewController())
         let searchVC = UINavigationController(rootViewController: SearchPhotoViewController())
         let likeVC = UINavigationController(rootViewController: LikePhotoViewController())
         
