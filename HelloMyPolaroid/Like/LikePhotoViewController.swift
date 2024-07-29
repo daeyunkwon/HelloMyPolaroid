@@ -175,6 +175,9 @@ extension LikePhotoViewController: PhotoCollectionViewCellDelegate {
             //좋아요한 경우
             self.repository.create(data: data) { [weak self] result in
                 guard let self else { return }
+                
+                senderCell.likeButton.isEnabled = false
+                
                 switch result {
                 case .success(_):
                     //사진 이미지를 파일에 저장
@@ -187,13 +190,14 @@ extension LikePhotoViewController: PhotoCollectionViewCellDelegate {
                             case .success(let value):
                                 ImageFileManager.shared.saveImageToDocument(image: value.image, filename: data.userProfileID)
                                 self.showLikeAddedToast()
+                                senderCell.likeButton.isEnabled = true
                                 
                             case .failure(let error):
                                 print(error)
                             }
                         }
                     }
-                
+                    
                 case .failure(let error):
                     print(error)
                     self.showRealmErrorAlert(type: error)

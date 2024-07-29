@@ -85,7 +85,7 @@ final class PhotoCollectionViewCell: BaseCollectionViewCell {
         return view
     }()
     
-    private lazy var likeButton: UIButton = {
+    lazy var likeButton: UIButton = {
         let btn = UIButton(type: .system)
         btn.setImage(UIImage(named: "like_circle_inactive")?.withRenderingMode(.alwaysOriginal), for: .normal)
         btn.addTarget(self, action: #selector(likeButtonTapped), for: .touchUpInside)
