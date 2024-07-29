@@ -36,7 +36,6 @@
 		447F22612C50EF530037D433 /* PhotoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 447F22602C50EF530037D433 /* PhotoCollectionViewCell.swift */; };
 		447F22642C5100050037D433 /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 447F22632C5100050037D433 /* Photo.swift */; };
 		447F22682C513DD40037D433 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 447F22672C513DD40037D433 /* NetworkManager.swift */; };
-		447F226B2C513E660037D433 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 447F226A2C513E660037D433 /* Alamofire */; };
 		447F226D2C513ED30037D433 /* UnsplashAPIRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 447F226C2C513ED30037D433 /* UnsplashAPIRouter.swift */; };
 		447F226F2C513EED0037D433 /* APIKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 447F226E2C513EED0037D433 /* APIKey.swift */; };
 		447F22712C514DA50037D433 /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 447F22702C514DA50037D433 /* UIViewController+Extension.swift */; };
@@ -63,6 +62,7 @@
 		447F22C32C5775C30037D433 /* UserProfileAndLikeButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 447F22C22C5775C30037D433 /* UserProfileAndLikeButtonView.swift */; };
 		447F22C52C57823A0037D433 /* RandomPhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 447F22C42C57823A0037D433 /* RandomPhotoCell.swift */; };
 		447F22C82C57AB800037D433 /* Toast in Frameworks */ = {isa = PBXBuildFile; productRef = 447F22C72C57AB800037D433 /* Toast */; };
+		447F22CE2C57C8330037D433 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 447F22CD2C57C8330037D433 /* Alamofire */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -139,11 +139,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				447F22CE2C57C8330037D433 /* Alamofire in Frameworks */,
 				447F22A22C5404190037D433 /* RealmSwift in Frameworks */,
 				447F22742C51567C0037D433 /* Kingfisher in Frameworks */,
 				44689C782C4E5C9E00E307B4 /* SnapKit in Frameworks */,
 				447F22C82C57AB800037D433 /* Toast in Frameworks */,
-				447F226B2C513E660037D433 /* Alamofire in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -443,10 +443,10 @@
 			name = HelloMyPolaroid;
 			packageProductDependencies = (
 				44689C772C4E5C9E00E307B4 /* SnapKit */,
-				447F226A2C513E660037D433 /* Alamofire */,
 				447F22732C51567C0037D433 /* Kingfisher */,
 				447F22A12C5404190037D433 /* RealmSwift */,
 				447F22C72C57AB800037D433 /* Toast */,
+				447F22CD2C57C8330037D433 /* Alamofire */,
 			);
 			productName = HelloMyPoraroid;
 			productReference = 44689C562C4E4D7A00E307B4 /* HelloMyPolaroid.app */;
@@ -478,10 +478,10 @@
 			mainGroup = 44689C4D2C4E4D7A00E307B4;
 			packageReferences = (
 				44689C762C4E5C9E00E307B4 /* XCRemoteSwiftPackageReference "SnapKit" */,
-				447F22692C513E660037D433 /* XCRemoteSwiftPackageReference "Alamofire" */,
 				447F22722C51567C0037D433 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 				447F22A02C5404190037D433 /* XCRemoteSwiftPackageReference "realm-swift" */,
 				447F22C62C57AB800037D433 /* XCRemoteSwiftPackageReference "Toast-Swift" */,
+				447F22CC2C57C8330037D433 /* XCRemoteSwiftPackageReference "Alamofire" */,
 			);
 			productRefGroup = 44689C572C4E4D7A00E307B4 /* Products */;
 			projectDirPath = "";
@@ -791,14 +791,6 @@
 				minimumVersion = 5.7.1;
 			};
 		};
-		447F22692C513E660037D433 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/Alamofire/Alamofire";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 5.9.1;
-			};
-		};
 		447F22722C51567C0037D433 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/onevcat/Kingfisher";
@@ -823,6 +815,14 @@
 				minimumVersion = 5.1.1;
 			};
 		};
+		447F22CC2C57C8330037D433 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.9.1;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -830,11 +830,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 44689C762C4E5C9E00E307B4 /* XCRemoteSwiftPackageReference "SnapKit" */;
 			productName = SnapKit;
-		};
-		447F226A2C513E660037D433 /* Alamofire */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 447F22692C513E660037D433 /* XCRemoteSwiftPackageReference "Alamofire" */;
-			productName = Alamofire;
 		};
 		447F22732C51567C0037D433 /* Kingfisher */ = {
 			isa = XCSwiftPackageProductDependency;
@@ -850,6 +845,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 447F22C62C57AB800037D433 /* XCRemoteSwiftPackageReference "Toast-Swift" */;
 			productName = Toast;
+		};
+		447F22CD2C57C8330037D433 /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 447F22CC2C57C8330037D433 /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
