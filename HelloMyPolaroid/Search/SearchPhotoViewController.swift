@@ -258,11 +258,10 @@ extension SearchPhotoViewController: PhotoCollectionViewCellDelegate {
         senderCell.isLikeButtonSelected.toggle()
         
         if senderCell.isLikeButtonSelected {
+            senderCell.likeButton.isEnabled = false
             //좋아요한 경우
             self.repository.create(data: data) { [weak self] result in
                 guard let self else { return }
-                
-                senderCell.likeButton.isEnabled = false
                 
                 switch result {
                 case .success(_):
