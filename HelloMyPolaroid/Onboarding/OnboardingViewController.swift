@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  OnboardingViewController.swift
 //  HelloMyPoraroid
 //
 //  Created by 권대윤 on 7/22/24.

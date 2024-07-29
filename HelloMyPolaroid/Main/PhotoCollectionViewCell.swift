@@ -1,5 +1,5 @@
 //
-//  TrendCollectionViewCell.swift
+//  PhotoCollectionViewCell.swift
 //  HelloMyPolaroid
 //
 //  Created by 권대윤 on 7/24/24.

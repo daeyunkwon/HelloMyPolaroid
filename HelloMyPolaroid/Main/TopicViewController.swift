@@ -1,5 +1,5 @@
 //
-//  TrendViewController.swift
+//  TopicViewController.swift
 //  HelloMyPolaroid
 //
 //  Created by 권대윤 on 7/24/24.
@@ -9,7 +9,6 @@ import UIKit
 
 import SnapKit
 
-//TODO: - 타이머 기능 구현 아직 커밋 안함
 final class TopicViewController: BaseViewController {
     
     //MARK: - Properties
