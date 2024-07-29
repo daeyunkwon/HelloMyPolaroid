@@ -13,6 +13,7 @@ enum UnsplashAPIRouter {
     case topics(topicID: String)
     case search(keyword: String, page: Int, order: String, color: String?)
     case statistics(photoID: String)
+    case random
 }
 
 extension UnsplashAPIRouter {
@@ -28,6 +29,10 @@ extension UnsplashAPIRouter {
             
         case .statistics(let photoID):
             let url = URL(string: APIURL.baseURL + "photos/\(photoID)/statistics")
+            return url
+            
+        case .random:
+            let url = URL(string: APIURL.baseURL + "photos/random")
             return url
         }
     }
@@ -63,6 +68,12 @@ extension UnsplashAPIRouter {
         case .statistics(_):
             return [
                 "client_id": APIKey.apiKey
+            ]
+            
+        case .random:
+            return [
+                "client_id": APIKey.apiKey,
+                "count": "10"
             ]
         }
     }
