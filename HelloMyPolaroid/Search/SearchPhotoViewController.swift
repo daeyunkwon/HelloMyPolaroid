@@ -58,6 +58,7 @@ final class SearchPhotoViewController: BasePhotoListViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        navigationItem.title = "SEARCH PHOTO"
         photoView.photoCollectionView.reloadData()
     }
     
@@ -93,7 +94,6 @@ final class SearchPhotoViewController: BasePhotoListViewController {
     }
     
     override func setupNavi() {
-        navigationItem.title = "SEARCH PHOTO"
         navigationItem.searchController = searchController
     }
     
