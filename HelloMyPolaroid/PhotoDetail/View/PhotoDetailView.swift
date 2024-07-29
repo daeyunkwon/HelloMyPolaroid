@@ -25,32 +25,34 @@ final class PhotoDetailView: UIView {
     
     private let contentView = UIView()
     
-    let profileImageView: UIImageView = {
-        let iv = UIImageView()
-        iv.contentMode = .scaleAspectFill
-        iv.backgroundColor = .lightGray
-        iv.layer.cornerRadius = 17.5
-        iv.clipsToBounds = true
-        return iv
-    }()
+    let userProfileAndLikeButtonView = UserProfileAndLikeButtonView()
     
-    let userNameLabel: UILabel = {
-        let label = UILabel()
-        label.font = Constant.Font.system14
-        return label
-    }()
-    
-    let dateLabel: UILabel = {
-        let label = UILabel()
-        label.font = .boldSystemFont(ofSize: 11)
-        return label
-    }()
-    
-    let likeButton: UIButton = {
-        let btn = UIButton(type: .system)
-        btn.setImage(UIImage(named: "like_inactive"), for: .normal)
-        return btn
-    }()
+//    let profileImageView: UIImageView = {
+//        let iv = UIImageView()
+//        iv.contentMode = .scaleAspectFill
+//        iv.backgroundColor = .lightGray
+//        iv.layer.cornerRadius = 17.5
+//        iv.clipsToBounds = true
+//        return iv
+//    }()
+//    
+//    let userNameLabel: UILabel = {
+//        let label = UILabel()
+//        label.font = Constant.Font.system14
+//        return label
+//    }()
+//    
+//    let dateLabel: UILabel = {
+//        let label = UILabel()
+//        label.font = .boldSystemFont(ofSize: 11)
+//        return label
+//    }()
+//    
+//    let likeButton: UIButton = {
+//        let btn = UIButton(type: .system)
+//        btn.setImage(UIImage(named: "like_inactive"), for: .normal)
+//        return btn
+//    }()
     
     let photoImageView: UIImageView = {
         let iv = UIImageView()
@@ -155,34 +157,15 @@ final class PhotoDetailView: UIView {
             make.verticalEdges.equalToSuperview()
         }
         
-        contentView.addSubview(profileImageView)
-        profileImageView.snp.makeConstraints { make in
-            make.top.leading.equalToSuperview().inset(20)
-            make.size.equalTo(35)
-        }
-        
-        contentView.addSubview(userNameLabel)
-        userNameLabel.snp.makeConstraints { make in
-            make.leading.equalTo(profileImageView.snp.trailing).offset(10)
-            make.centerY.equalTo(profileImageView).offset(-6)
-        }
-        
-        contentView.addSubview(dateLabel)
-        dateLabel.snp.makeConstraints { make in
-            make.top.equalTo(userNameLabel.snp.bottom).offset(1)
-            make.leading.equalTo(profileImageView.snp.trailing).offset(10)
-        }
-        
-        contentView.addSubview(likeButton)
-        likeButton.snp.makeConstraints { make in
-            make.trailing.equalToSuperview().inset(20)
-            make.centerY.equalTo(profileImageView)
-            make.size.equalTo(30)
+        contentView.addSubview(userProfileAndLikeButtonView)
+        userProfileAndLikeButtonView.snp.makeConstraints { make in
+            make.top.equalToSuperview()
+            make.width.equalToSuperview()
         }
         
         contentView.addSubview(photoImageView)
         photoImageView.snp.makeConstraints { make in
-            make.top.equalTo(profileImageView.snp.bottom).offset(15)
+            make.top.equalTo(userProfileAndLikeButtonView.snp.bottom).offset(3)
             make.width.equalToSuperview()
         }
         
@@ -246,9 +229,9 @@ final class PhotoDetailView: UIView {
     
     private func updateLikeButtonAppearance() {
         if self.isLiked {
-            self.likeButton.setImage(UIImage(named: "like"), for: .normal)
+            self.userProfileAndLikeButtonView.likeButton.setImage(UIImage(named: "like"), for: .normal)
         } else {
-            self.likeButton.setImage(UIImage(named: "like_inactive"), for: .normal)
+            self.userProfileAndLikeButtonView.likeButton.setImage(UIImage(named: "like_inactive"), for: .normal)
         }
     }
     

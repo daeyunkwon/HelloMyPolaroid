@@ -58,6 +58,10 @@
 		447F22B32C5538FE0037D433 /* PhotoDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 447F22B22C5538FE0037D433 /* PhotoDetailViewModel.swift */; };
 		447F22B72C55407A0037D433 /* PhotoDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 447F22B62C55407A0037D433 /* PhotoDetailView.swift */; };
 		447F22B92C555CEB0037D433 /* Statistics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 447F22B82C555CEB0037D433 /* Statistics.swift */; };
+		447F22BD2C576EF60037D433 /* RandomPhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 447F22BC2C576EF60037D433 /* RandomPhotoViewController.swift */; };
+		447F22BF2C5771E10037D433 /* ParameterKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 447F22BE2C5771E10037D433 /* ParameterKey.swift */; };
+		447F22C12C57744E0037D433 /* RandomPhotoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 447F22C02C57744E0037D433 /* RandomPhotoView.swift */; };
+		447F22C32C5775C30037D433 /* UserProfileAndLikeButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 447F22C22C5775C30037D433 /* UserProfileAndLikeButtonView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -123,6 +127,10 @@
 		447F22B22C5538FE0037D433 /* PhotoDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoDetailViewModel.swift; sourceTree = "<group>"; };
 		447F22B62C55407A0037D433 /* PhotoDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoDetailView.swift; sourceTree = "<group>"; };
 		447F22B82C555CEB0037D433 /* Statistics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Statistics.swift; sourceTree = "<group>"; };
+		447F22BC2C576EF60037D433 /* RandomPhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomPhotoViewController.swift; sourceTree = "<group>"; };
+		447F22BE2C5771E10037D433 /* ParameterKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParameterKey.swift; sourceTree = "<group>"; };
+		447F22C02C57744E0037D433 /* RandomPhotoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomPhotoView.swift; sourceTree = "<group>"; };
+		447F22C22C5775C30037D433 /* UserProfileAndLikeButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileAndLikeButtonView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -239,6 +247,7 @@
 				447F21E42C4EA9EF0037D433 /* MBTICircleButtonView.swift */,
 				447F221D2C4FDD7A0037D433 /* ProfileCircle.swift */,
 				447F22912C5332740037D433 /* PhotoListWithColorOptionView.swift */,
+				447F22C22C5775C30037D433 /* UserProfileAndLikeButtonView.swift */,
 			);
 			path = CustomView;
 			sourceTree = "<group>";
@@ -316,6 +325,8 @@
 		447F222E2C5076970037D433 /* Random */ = {
 			isa = PBXGroup;
 			children = (
+				447F22C02C57744E0037D433 /* RandomPhotoView.swift */,
+				447F22BC2C576EF60037D433 /* RandomPhotoViewController.swift */,
 			);
 			path = Random;
 			sourceTree = "<group>";
@@ -361,6 +372,7 @@
 			isa = PBXGroup;
 			children = (
 				447F226E2C513EED0037D433 /* APIKey.swift */,
+				447F22BE2C5771E10037D433 /* ParameterKey.swift */,
 				447F226C2C513ED30037D433 /* UnsplashAPIRouter.swift */,
 				447F22672C513DD40037D433 /* NetworkManager.swift */,
 			);
@@ -502,10 +514,13 @@
 				44689C7C2C4E5F8400E307B4 /* BaseViewController.swift in Sources */,
 				44689C5E2C4E4D7A00E307B4 /* OnboardingViewController.swift in Sources */,
 				447F22712C514DA50037D433 /* UIViewController+Extension.swift in Sources */,
+				447F22C12C57744E0037D433 /* RandomPhotoView.swift in Sources */,
+				447F22BF2C5771E10037D433 /* ParameterKey.swift in Sources */,
 				447F22962C5387940037D433 /* Color.swift in Sources */,
 				44689C832C4E6E9300E307B4 /* ProfileCircleWithCameraIcon.swift in Sources */,
 				447F229E2C53F3FE0037D433 /* PhotoCollectionViewCellDelegate.swift in Sources */,
 				447F226D2C513ED30037D433 /* UnsplashAPIRouter.swift in Sources */,
+				447F22BD2C576EF60037D433 /* RandomPhotoViewController.swift in Sources */,
 				447F221E2C4FDD7A0037D433 /* ProfileCircle.swift in Sources */,
 				447F22A82C540D920037D433 /* LikedPhotoRepository.swift in Sources */,
 				447F22942C537F720037D433 /* ColorOptionCollectionViewCell.swift in Sources */,
@@ -517,6 +532,7 @@
 				44689C882C4E73AB00E307B4 /* Observable.swift in Sources */,
 				447F22612C50EF530037D433 /* PhotoCollectionViewCell.swift in Sources */,
 				447F22B32C5538FE0037D433 /* PhotoDetailViewModel.swift in Sources */,
+				447F22C32C5775C30037D433 /* UserProfileAndLikeButtonView.swift in Sources */,
 				447F221B2C4FDC8D0037D433 /* UICollectionView+Extension.swift in Sources */,
 				447F22AA2C540E150037D433 /* ImageFileManager.swift in Sources */,
 				447F22AE2C54D7960037D433 /* BasePhotoListViewController.swift in Sources */,

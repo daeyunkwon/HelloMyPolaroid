@@ -57,15 +57,15 @@ final class PhotoDetailViewController: BaseViewController {
         
         viewModel.outputUserProfileImage.bind { [weak self] value in
             guard let value = value else { return }
-            self?.photoDetailView.profileImageView.image = value
+            self?.photoDetailView.userProfileAndLikeButtonView.profileImageView.image = value
         }
         
         viewModel.outputUsername.bind { [weak self] value in
-            self?.photoDetailView.userNameLabel.text = value
+            self?.photoDetailView.userProfileAndLikeButtonView.userNameLabel.text = value
         }
         
         viewModel.outputCreated.bind { [weak self] value in
-            self?.photoDetailView.dateLabel.text = value
+            self?.photoDetailView.userProfileAndLikeButtonView.dateLabel.text = value
         }
         
         viewModel.outputIsLiked.bind { [weak self] value in
@@ -91,7 +91,7 @@ final class PhotoDetailViewController: BaseViewController {
     }
     
     private func setupAction() {
-        self.photoDetailView.likeButton.addTarget(self, action: #selector(likeButtonTapped), for: .touchUpInside)
+        self.photoDetailView.userProfileAndLikeButtonView.likeButton.addTarget(self, action: #selector(likeButtonTapped), for: .touchUpInside)
     }
     
     override func configureUI() {
