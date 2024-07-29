@@ -259,7 +259,8 @@ extension SearchPhotoViewController: PhotoCollectionViewCellDelegate {
         
         if senderCell.isLikeButtonSelected {
             //좋아요한 경우
-            self.repository.create(data: data) { result in
+            self.repository.create(data: data) { [weak self] result in
+                guard let self else { return }
                 switch result {
                 case .success(_):
                     //사진 이미지를 파일에 저장
@@ -271,6 +272,8 @@ extension SearchPhotoViewController: PhotoCollectionViewCellDelegate {
                             switch result {
                             case .success(let value):
                                 ImageFileManager.shared.saveImageToDocument(image: value.image, filename: data.userProfileID)
+                                self.showLikeAddedToast()
+                                
                             case .failure(let error):
                                 print(error)
                             }
@@ -285,12 +288,14 @@ extension SearchPhotoViewController: PhotoCollectionViewCellDelegate {
             }
         } else { 
             //좋아요 취소한 경우
-            self.repository.deleteItem(photoID: data.photoID) { result in
+            self.repository.deleteItem(photoID: data.photoID) { [weak self] result in
+                guard let self else { return }
                 switch result {
                 case .success(let success):
                     print(success)
                     ImageFileManager.shared.removeImageFromDocument(filename: data.photoID)
                     ImageFileManager.shared.removeImageFromDocument(filename: data.userProfileID)
+                    self.showLikeRemovedToast()
                     
                 case .failure(let error):
                     print(error)

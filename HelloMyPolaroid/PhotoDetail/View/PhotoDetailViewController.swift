@@ -7,6 +7,8 @@
 
 import UIKit
 
+import Toast
+
 final class PhotoDetailViewController: BaseViewController {
     
     //MARK: - Properties
@@ -70,6 +72,12 @@ final class PhotoDetailViewController: BaseViewController {
         
         viewModel.outputIsLiked.bind { [weak self] value in
             self?.photoDetailView.isLiked = value
+            
+            if value {
+                self?.showLikeAddedToast()
+            } else {
+                self?.showLikeRemovedToast()
+            }
         }
         
         viewModel.outputPhotoImage.bind { [weak self] value in

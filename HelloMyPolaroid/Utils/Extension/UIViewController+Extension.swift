@@ -7,6 +7,8 @@
 
 import UIKit
 
+import Toast
+
 extension UIViewController {
     
     func showNetworkResponseFailAlert() {
@@ -30,6 +32,14 @@ extension UIViewController {
         let alert = UIAlertController(title: "시스템 알림", message: message, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "확인", style: .cancel))
         present(alert, animated: true)
+    }
+    
+    func showLikeAddedToast() {
+        view.makeToast("좋아요가 설정되었습니다.")
+    }
+    
+    func showLikeRemovedToast() {
+        view.makeToast("좋아요가 해제되었습니다.")
     }
     
 }
