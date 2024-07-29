@@ -9,6 +9,7 @@ import UIKit
 
 import SnapKit
 
+//TODO: - 타이머 기능 구현 아직 커밋 안함
 final class TopicViewController: BaseViewController {
     
     //MARK: - Properties
@@ -20,6 +21,17 @@ final class TopicViewController: BaseViewController {
     private var firstTopicList: [Photo] = []
     private var secondTopicList: [Photo] = []
     private var thirdTopicList: [Photo] = []
+    
+    private lazy var refrechControl: UIRefreshControl = {
+        let refresh = UIRefreshControl()
+        refresh.addTarget(self, action: #selector(executeRefresh), for: .valueChanged)
+        return refresh
+    }()
+    
+    private var timer: Timer?
+    private var fetchTimer: Timer?
+    
+    private var shouldExecuteFetch = true
     
     //MARK: - UI Components
     
@@ -42,6 +54,7 @@ final class TopicViewController: BaseViewController {
         tableView.dataSource = self
         tableView.delegate = self
         tableView.register(TopicCollectionTableViewCell.self, forCellReuseIdentifier: TopicCollectionTableViewCell.identifier)
+        tableView.refreshControl = self.refrechControl
         return tableView
     }()
     
@@ -86,7 +99,8 @@ final class TopicViewController: BaseViewController {
         
         view.addSubview(tableView)
         tableView.snp.makeConstraints { make in
-            make.edges.equalTo(view.safeAreaLayoutGuide)
+            make.horizontalEdges.bottom.equalTo(view.safeAreaLayoutGuide)
+            make.top.equalToSuperview()
         }
     }
     
@@ -101,9 +115,26 @@ final class TopicViewController: BaseViewController {
         pushViewController(vc)
     }
     
+    @objc private func executeRefresh() {
+        
+        self.fetchTimer = Timer(timeInterval: 1.5, repeats: false, block: { [weak self] _ in
+            self?.fetchTimer = nil
+        })
+        
+        self.fetchData()
+        self.startTimer60seconds()
+    }
+    
     //MARK: - Methods
     
     private func fetchData() {
+        if !shouldExecuteFetch {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) { [weak self] in
+                self?.refrechControl.endRefreshing()
+            }
+            return
+        }
+        
         self.setupRandomTopics()
         
         guard let firstRandomTopic = self.firstRandomTopic else { return }
@@ -161,7 +192,16 @@ final class TopicViewController: BaseViewController {
         }
         
         group.notify(queue: .main) {
-            self.tableView.reloadData()
+            if self.fetchTimer != nil {
+                //새로고침 시 네트워크 작업이 1.5초도 안걸리고 빨리 끝낸 경우 딜레이 주기
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) { [weak self] in
+                    self?.tableView.reloadData()
+                    self?.refrechControl.endRefreshing()
+                }
+            } else {
+                self.tableView.reloadData()
+                self.refrechControl.endRefreshing()
+            }
         }
     }
     
@@ -176,6 +216,16 @@ final class TopicViewController: BaseViewController {
         self.firstRandomTopic = list[0]
         self.secondRandomTopic = list[1]
         self.thirdRandomTopic = list[2]
+    }
+    
+    private func startTimer60seconds() {
+        if timer == nil {
+            shouldExecuteFetch = false
+            timer = Timer.scheduledTimer(withTimeInterval: 60, repeats: false, block: { [weak self] _ in
+                self?.shouldExecuteFetch = true
+                self?.timer = nil
+            })
+        }
     }
 
 }
@@ -224,6 +274,7 @@ extension TopicViewController: UITableViewDelegate, UITableViewDataSource {
             break
         }
         
+        cell.selectionStyle = .none
         return cell
     }
 }
