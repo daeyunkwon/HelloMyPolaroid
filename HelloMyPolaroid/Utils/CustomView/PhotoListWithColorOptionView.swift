@@ -107,7 +107,7 @@ final class PhotoListWithColorOptionView: UIView {
         
         self.addSubview(backView)
         backView.snp.makeConstraints { make in
-            make.top.equalTo(self.safeAreaLayoutGuide).offset(10)
+            make.top.equalTo(self.safeAreaLayoutGuide).offset(7)
             make.leading.equalTo(self.safeAreaLayoutGuide.snp.trailing).offset(-85)
         }
         
