@@ -55,6 +55,7 @@ final class RandomPhotoViewController: BaseViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.navigationBar.isHidden = true
+        self.collectionView.reloadData()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -68,6 +69,10 @@ final class RandomPhotoViewController: BaseViewController {
     }
     
     //MARK: - Configurations
+    
+    override func setupNavi() {
+        navigationItem.title = ""
+    }
     
     override func configureLayout() {
         view.addSubview(collectionView)
@@ -131,7 +136,6 @@ extension RandomPhotoViewController: UICollectionViewDataSource, UICollectionVie
                 print(error)
                 self.activityIndicatorView.stopAnimating()
             }
-            
         }
         
         cell.photo = data
@@ -198,6 +202,12 @@ extension RandomPhotoViewController: UICollectionViewDataSource, UICollectionVie
         }
         
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let vc = PhotoDetailViewController()
+        vc.photo = self.photoList[indexPath.row]
+        pushViewController(vc)
     }
     
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
