@@ -27,33 +27,6 @@ final class PhotoDetailView: UIView {
     
     let userProfileAndLikeButtonView = UserProfileAndLikeButtonView()
     
-//    let profileImageView: UIImageView = {
-//        let iv = UIImageView()
-//        iv.contentMode = .scaleAspectFill
-//        iv.backgroundColor = .lightGray
-//        iv.layer.cornerRadius = 17.5
-//        iv.clipsToBounds = true
-//        return iv
-//    }()
-//    
-//    let userNameLabel: UILabel = {
-//        let label = UILabel()
-//        label.font = Constant.Font.system14
-//        return label
-//    }()
-//    
-//    let dateLabel: UILabel = {
-//        let label = UILabel()
-//        label.font = .boldSystemFont(ofSize: 11)
-//        return label
-//    }()
-//    
-//    let likeButton: UIButton = {
-//        let btn = UIButton(type: .system)
-//        btn.setImage(UIImage(named: "like_inactive"), for: .normal)
-//        return btn
-//    }()
-    
     let photoImageView: UIImageView = {
         let iv = UIImageView()
         iv.contentMode = .scaleAspectFill

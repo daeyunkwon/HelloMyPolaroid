@@ -11,6 +11,14 @@ import SnapKit
 
 final class UserProfileAndLikeButtonView: UIView {
     
+    //MARK: - Properties
+    
+    var isLikeButtonSelected = false {
+        didSet {
+            updateLikeButtonAppearance()
+        }
+    }
+    
     //MARK: - UI Components
     
     private let contentView: UIView = {
@@ -89,6 +97,14 @@ final class UserProfileAndLikeButtonView: UIView {
     
     private func configureUI() {
         backgroundColor = .clear
+    }
+    
+    private func updateLikeButtonAppearance() {
+        if isLikeButtonSelected {
+            likeButton.setImage(UIImage(named: "like")?.withRenderingMode(.alwaysOriginal), for: .normal)
+        } else {
+            likeButton.setImage(UIImage(named: "like_inactive")?.withRenderingMode(.alwaysOriginal), for: .normal)
+        }
     }
     
 }

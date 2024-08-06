@@ -15,11 +15,16 @@
 
 import UIKit
 
+import Kingfisher
+import Toast
+
 final class RandomPhotoViewController: BaseViewController {
     
     //MARK: - Properties
     
     private var photoList: [Photo] = []
+    
+    private let repository = LikedPhotoRepository()
     
     //MARK: - UI Components
     
@@ -34,9 +39,7 @@ final class RandomPhotoViewController: BaseViewController {
         cv.dataSource = self
         cv.delegate = self
         cv.backgroundColor = Constant.Color.primaryMediumGray
-        cv.backgroundColor = .red
         cv.bounces = false
-        print(UIScreen.main.bounds.height)
         return cv
     }()
     
@@ -68,12 +71,6 @@ final class RandomPhotoViewController: BaseViewController {
     
     override func configureUI() {
         super.configureUI()
-    }
-    
-    //MARK: - Actions
-    
-    @objc private func likeButtonTapped() {
-        print(#function)
     }
     
     //MARK: - Methods
@@ -108,7 +105,68 @@ extension RandomPhotoViewController: UICollectionViewDataSource, UICollectionVie
             return UICollectionViewCell()
         }
         
-        cell.cellConfig(data: self.photoList[indexPath.row])
+        let data = self.photoList[indexPath.row]
+        cell.photo = data
+        cell.cellConfig(data: data)
+        cell.userProfileAndLikeButtonView.isLikeButtonSelected = repository.isSaved(photoID: data.id)
+        
+        cell.closureForDataSend = { [weak self] sender in
+            guard let self else { return }
+            if !cell.userProfileAndLikeButtonView.isLikeButtonSelected {
+                cell.userProfileAndLikeButtonView.likeButton.isEnabled = false
+                let data = LikedPhoto(photoID: sender.id, created: sender.createdAt, width: sender.width, height: sender.height, photoImageURLRaw: sender.urls.raw, photoImageURLSmall: sender.urls.small, userProfileImageURLSmall: sender.user.profileImage.small, userProfileImageURLMedium: sender.user.profileImage.medium, userProfileImageURLLarge: sender.user.profileImage.large, username: sender.user.name, likeCount: sender.likes)
+                self.repository.create(data: data, completionHandler: { result in
+                    switch result {
+                    case .success(_):
+                        
+                        if let url = URL(string: data.photoImageURLSmall) {
+                            ImageDownloader.default.downloadImage(with: url) { result in
+                                switch result {
+                                case .success(let value):
+                                    ImageFileManager.shared.saveImageToDocument(image: value.image, filename: data.photoID)
+                                case .failure(let error):
+                                    print(error)
+                                }
+                            }
+                        }
+                        
+                        if let url = URL(string: data.userProfileImageURLLarge) {
+                            ImageDownloader.default.downloadImage(with: url) { result in
+                                switch result {
+                                case .success(let value):
+                                    ImageFileManager.shared.saveImageToDocument(image: value.image, filename: data.userProfileID)
+                                case .failure(let error):
+                                    print(error)
+                                }
+                            }
+                        }
+                        
+                        cell.userProfileAndLikeButtonView.isLikeButtonSelected = true
+                        self.showLikeAddedToast()
+                        self.collectionView.reloadData()
+                    
+                    case .failure(let error):
+                        print(error)
+                        self.showRealmErrorAlert(type: .failedToCreate)
+                    }
+                    cell.userProfileAndLikeButtonView.likeButton.isEnabled = true
+                })
+            } else {
+                self.repository.deleteItem(photoID: sender.id) { result in
+                    switch result {
+                    case .success(_):
+                        ImageFileManager.shared.removeImageFromDocument(filename: sender.id)
+                        ImageFileManager.shared.removeImageFromDocument(filename: sender.userProfileID)
+                        cell.userProfileAndLikeButtonView.isLikeButtonSelected = false
+                        self.showLikeRemovedToast()
+                        
+                    case .failure(let error):
+                        print(error)
+                        self.showRealmErrorAlert(type: .failedToDelete)
+                    }
+                }
+            }
+        }
         
         return cell
     }
