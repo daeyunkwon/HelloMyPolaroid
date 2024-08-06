@@ -66,8 +66,6 @@ final class RandomPhotoCell: BaseCollectionViewCell {
     //MARK: - Methods
     
     func cellConfig(data: Photo) {
-        let url = URL(string: data.urls.raw)
-        self.photoImageView.kf.setImage(with: url)
         
         userProfileAndLikeButtonView.userNameLabel.text = data.user.name
         userProfileAndLikeButtonView.dateLabel.text = formatDate(iso8601String: data.createdAt)

@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		44431BE92C625FD0002076AF /* NVActivityIndicatorView in Frameworks */ = {isa = PBXBuildFile; productRef = 44431BE82C625FD0002076AF /* NVActivityIndicatorView */; };
+		44431BEB2C625FD0002076AF /* NVActivityIndicatorViewExtended in Frameworks */ = {isa = PBXBuildFile; productRef = 44431BEA2C625FD0002076AF /* NVActivityIndicatorViewExtended */; };
 		44689C5A2C4E4D7A00E307B4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44689C592C4E4D7A00E307B4 /* AppDelegate.swift */; };
 		44689C5C2C4E4D7A00E307B4 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44689C5B2C4E4D7A00E307B4 /* SceneDelegate.swift */; };
 		44689C5E2C4E4D7A00E307B4 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44689C5D2C4E4D7A00E307B4 /* OnboardingViewController.swift */; };
@@ -139,8 +141,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				44431BEB2C625FD0002076AF /* NVActivityIndicatorViewExtended in Frameworks */,
 				447F22CE2C57C8330037D433 /* Alamofire in Frameworks */,
 				447F22A22C5404190037D433 /* RealmSwift in Frameworks */,
+				44431BE92C625FD0002076AF /* NVActivityIndicatorView in Frameworks */,
 				447F22742C51567C0037D433 /* Kingfisher in Frameworks */,
 				44689C782C4E5C9E00E307B4 /* SnapKit in Frameworks */,
 				447F22C82C57AB800037D433 /* Toast in Frameworks */,
@@ -447,6 +451,8 @@
 				447F22A12C5404190037D433 /* RealmSwift */,
 				447F22C72C57AB800037D433 /* Toast */,
 				447F22CD2C57C8330037D433 /* Alamofire */,
+				44431BE82C625FD0002076AF /* NVActivityIndicatorView */,
+				44431BEA2C625FD0002076AF /* NVActivityIndicatorViewExtended */,
 			);
 			productName = HelloMyPoraroid;
 			productReference = 44689C562C4E4D7A00E307B4 /* HelloMyPolaroid.app */;
@@ -482,6 +488,7 @@
 				447F22A02C5404190037D433 /* XCRemoteSwiftPackageReference "realm-swift" */,
 				447F22C62C57AB800037D433 /* XCRemoteSwiftPackageReference "Toast-Swift" */,
 				447F22CC2C57C8330037D433 /* XCRemoteSwiftPackageReference "Alamofire" */,
+				44431BE72C625FD0002076AF /* XCRemoteSwiftPackageReference "NVActivityIndicatorView" */,
 			);
 			productRefGroup = 44689C572C4E4D7A00E307B4 /* Products */;
 			projectDirPath = "";
@@ -783,6 +790,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		44431BE72C625FD0002076AF /* XCRemoteSwiftPackageReference "NVActivityIndicatorView" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ninjaprox/NVActivityIndicatorView";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.2.0;
+			};
+		};
 		44689C762C4E5C9E00E307B4 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SnapKit/SnapKit";
@@ -826,6 +841,16 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		44431BE82C625FD0002076AF /* NVActivityIndicatorView */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 44431BE72C625FD0002076AF /* XCRemoteSwiftPackageReference "NVActivityIndicatorView" */;
+			productName = NVActivityIndicatorView;
+		};
+		44431BEA2C625FD0002076AF /* NVActivityIndicatorViewExtended */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 44431BE72C625FD0002076AF /* XCRemoteSwiftPackageReference "NVActivityIndicatorView" */;
+			productName = NVActivityIndicatorViewExtended;
+		};
 		44689C772C4E5C9E00E307B4 /* SnapKit */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 44689C762C4E5C9E00E307B4 /* XCRemoteSwiftPackageReference "SnapKit" */;

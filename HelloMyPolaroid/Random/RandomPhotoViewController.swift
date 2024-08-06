@@ -16,6 +16,7 @@
 import UIKit
 
 import Kingfisher
+import NVActivityIndicatorView
 import Toast
 
 final class RandomPhotoViewController: BaseViewController {
@@ -38,9 +39,15 @@ final class RandomPhotoViewController: BaseViewController {
         cv.register(RandomPhotoCell.self, forCellWithReuseIdentifier: RandomPhotoCell.identifier)
         cv.dataSource = self
         cv.delegate = self
-        cv.backgroundColor = Constant.Color.primaryMediumGray
+        cv.backgroundColor = .lightGray
         cv.bounces = false
         return cv
+    }()
+    
+    private let activityIndicatorView: NVActivityIndicatorView = {
+        let view = NVActivityIndicatorView(frame: .zero)
+        view.type = .lineSpinFadeLoader
+        return view
     }()
     
     //MARK: - Life Cycle
@@ -67,6 +74,12 @@ final class RandomPhotoViewController: BaseViewController {
         collectionView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
+        
+        view.addSubview(activityIndicatorView)
+        activityIndicatorView.snp.makeConstraints { make in
+            make.size.equalTo(44)
+            make.center.equalToSuperview()
+        }
     }
     
     override func configureUI() {
@@ -76,6 +89,8 @@ final class RandomPhotoViewController: BaseViewController {
     //MARK: - Methods
     
     private func fetchData() {
+        self.activityIndicatorView.startAnimating()
+        
         NetworkManager.shared.fetchData(api: .random, model: [Photo].self) { [weak self] result in
             switch result {
             case .success(let value):
@@ -106,9 +121,23 @@ extension RandomPhotoViewController: UICollectionViewDataSource, UICollectionVie
         }
         
         let data = self.photoList[indexPath.row]
+        
+        let url = URL(string: data.urls.raw)
+        cell.photoImageView.kf.setImage(with: url) { result in
+            switch result {
+            case .success(_):
+                self.activityIndicatorView.stopAnimating()
+            case .failure(let error):
+                print(error)
+                self.activityIndicatorView.stopAnimating()
+            }
+            
+        }
+        
         cell.photo = data
         cell.cellConfig(data: data)
         cell.userProfileAndLikeButtonView.isLikeButtonSelected = repository.isSaved(photoID: data.id)
+        
         
         cell.closureForDataSend = { [weak self] sender in
             guard let self else { return }
