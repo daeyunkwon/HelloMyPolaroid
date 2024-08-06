@@ -34,10 +34,11 @@ final class RandomPhotoViewController: BaseViewController {
         cv.dataSource = self
         cv.delegate = self
         cv.backgroundColor = Constant.Color.primaryMediumGray
+        cv.backgroundColor = .red
+        cv.bounces = false
+        print(UIScreen.main.bounds.height)
         return cv
     }()
-    
-    private let userProfileAndLikeButtonView = UserProfileAndLikeButtonView()
     
     //MARK: - Life Cycle
     
@@ -54,30 +55,19 @@ final class RandomPhotoViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         fetchData()
-        setupAction()
     }
     
     //MARK: - Configurations
     
-    private func setupAction() {
-        self.userProfileAndLikeButtonView.likeButton.addTarget(self, action: #selector(likeButtonTapped), for: .touchUpInside)
-    }
-    
     override func configureLayout() {
         view.addSubview(collectionView)
         collectionView.snp.makeConstraints { make in
-            make.top.equalToSuperview()
-            make.height.equalTo(UIScreen.main.bounds.height)
-            make.horizontalEdges.equalTo(view.safeAreaLayoutGuide)
+            make.edges.equalToSuperview()
         }
     }
     
     override func configureUI() {
         super.configureUI()
-        
-        userProfileAndLikeButtonView.userNameLabel.textColor = Constant.Color.primaryWhite
-        userProfileAndLikeButtonView.dateLabel.textColor = Constant.Color.primaryWhite
-        userProfileAndLikeButtonView.likeButton.tintColor = Constant.Color.primaryWhite
     }
     
     //MARK: - Actions
@@ -121,6 +111,22 @@ extension RandomPhotoViewController: UICollectionViewDataSource, UICollectionVie
         cell.cellConfig(data: self.photoList[indexPath.row])
         
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        if indexPath.row == 0 {
+            self.collectionView.scrollToItem(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
+        }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didEndDisplaying cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        if indexPath.row == 0 {
+            scrollViewDidScroll(collectionView)
+        }
+    }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        scrollView.contentOffset.y = max(scrollView.contentOffset.y, 0)
     }
 }
 
