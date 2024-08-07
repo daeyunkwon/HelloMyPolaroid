@@ -39,14 +39,13 @@ final class RandomPhotoCell: BaseCollectionViewCell {
     override func configureLayout() {
         contentView.addSubview(photoImageView)
         photoImageView.snp.makeConstraints { make in
-            make.horizontalEdges.equalToSuperview()
             make.edges.equalToSuperview()
         }
         
         contentView.addSubview(userProfileAndLikeButtonView)
         userProfileAndLikeButtonView.snp.makeConstraints { make in
             make.horizontalEdges.equalTo(contentView.safeAreaLayoutGuide)
-            make.bottom.equalToSuperview().offset(-10)
+            make.bottom.equalToSuperview().offset(-90)
         }
     }
     

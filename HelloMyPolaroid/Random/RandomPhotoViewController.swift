@@ -6,12 +6,8 @@
 //
 
 //TODO: 미구현 기능들
-// - 셀 선택 시 사진 상세 화면으로 전환
 // - 페이지 정보 표시 캡슐 뷰 UI 구현
 // - 스크롤마다 페이지 정보 업데이트
-// - 작가 프로필 영역 및 좋아요 버튼 UI 구현
-// - 스크롤해서 보여지는 사진들에 맞춰서 작가 프로필 영역 및 좋아요 버튼 상태 데이터 업데이트
-// - 사진마다 좋아요/좋아요해제 기능
 
 import UIKit
 
@@ -41,6 +37,7 @@ final class RandomPhotoViewController: BaseViewController {
         cv.delegate = self
         cv.backgroundColor = .lightGray
         cv.bounces = false
+        cv.contentInsetAdjustmentBehavior = .never
         return cv
     }()
     
@@ -210,21 +207,6 @@ extension RandomPhotoViewController: UICollectionViewDataSource, UICollectionVie
         pushViewController(vc)
     }
     
-    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-        if indexPath.row == 0 {
-            self.collectionView.scrollToItem(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
-        }
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, didEndDisplaying cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-        if indexPath.row == 0 {
-            scrollViewDidScroll(collectionView)
-        }
-    }
-    
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        scrollView.contentOffset.y = max(scrollView.contentOffset.y, 0)
-    }
 }
 
 //MARK: - UICollectionViewDelegateFlowLayout
@@ -233,11 +215,6 @@ extension RandomPhotoViewController: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        let value = view.safeAreaInsets.bottom
-        return UIEdgeInsets(top: -value, left: 0, bottom: 0, right: 0)
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
