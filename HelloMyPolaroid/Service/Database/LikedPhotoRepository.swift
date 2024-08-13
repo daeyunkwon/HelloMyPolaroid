@@ -9,7 +9,7 @@ import Foundation
 
 import RealmSwift
 
-class LikedPhotoRepository {
+final class LikedPhotoRepository {
     
     //MARK: - Properties
     

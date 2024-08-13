@@ -9,7 +9,7 @@ import Foundation
 
 import RealmSwift
 
-class LikedPhoto: Object {
+final class LikedPhoto: Object {
     @Persisted(primaryKey: true) var id: ObjectId
     @Persisted var photoID: String
     @Persisted var date: Date
